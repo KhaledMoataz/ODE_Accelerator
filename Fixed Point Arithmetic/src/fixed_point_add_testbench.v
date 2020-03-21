@@ -5,7 +5,7 @@ module fixed_point_add_testbench;
     reg [15:0] expected_result;
     wire overflow_flag;
     reg expected_overflow_flag;
-    reg[48:0] read_data [0:2];
+    reg[48:0] read_data [0:100];
 
     adder adder_unit(A, B, result, overflow_flag);
     integer i;
