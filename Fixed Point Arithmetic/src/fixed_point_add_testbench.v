@@ -13,7 +13,7 @@ module fixed_point_add_testbench;
     initial
     begin
         $readmemb("adder_test_cases.txt", read_data);
-        for (i=0; i<2; i=i+1)
+        for (i=0; i<100; i=i+1)
         begin
             {A, B, expected_result, expected_overflow_flag} = read_data[i];
             #20
