@@ -13,7 +13,7 @@ output overflow_flag;
 
 
 assign out = multiplicand*multiplier;
-assign out = out + 6'b100000; 
+assign out = out + 7'b1000000; 
 assign overflow_flag = !(( out[31:22] == 10'b0000000000 ) | ( out[31:22] == 10'b1111111111 )); 
 assign result = out>>>7;
 
