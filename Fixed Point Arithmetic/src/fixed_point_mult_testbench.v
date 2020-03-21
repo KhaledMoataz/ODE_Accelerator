@@ -17,7 +17,7 @@ module fixed_point_multiplier_testbench;
         begin
             {A, B, expected_result, expected_overflow_flag} = read_data[i];
             #20
-            if (result != expected_result || overflow_flag != expected_overflow_flag)
+            if (overflow_flag != expected_overflow_flag || expected_result != result)
                 $display("%d : FAILED", i);
         end
     end
