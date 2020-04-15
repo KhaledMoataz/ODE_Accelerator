@@ -35,16 +35,25 @@ namespace FixedPoint_Q9_7 {
         return result;
     }
 
+    bitset<numSize> divide(const bitset<numSize> a, const bitset<numSize> b, bool & divideByZero) {
+        short temp_a, temp_b, temp_result;
+        temp_a = (short) a.to_ulong();
+        temp_b = (short) b.to_ulong();
+        if (!temp_b){
+            divideByZero = true;
+            return temp_result;
+        }
+        temp_result = temp_a / temp_b;
+        return temp_result;
+    }
+
     bitset<numSize> floatToBitSet(float x){
         short value = 0;
         bool neg = x<0;
         if(neg) x *= -1;
         int pre = int(x);
         x -= pre;
-        for (int i=0; i<numSize - scaleFactor; i++){
-            value |= (pre & 1)<<(scaleFactor + i);
-            pre >>= 1;
-        }
+        value = pre<<scaleFactor;
         int i = 1;
         while (x && i<=scaleFactor){
             x *= 2;
