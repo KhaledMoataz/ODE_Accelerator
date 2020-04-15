@@ -1,4 +1,4 @@
-module fixed_point_multiplier_booth (
+module multiplier_booth (
            clk,
            multiplicand,
            multiplier,
