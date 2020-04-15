@@ -1,6 +1,6 @@
 module NegEdgeCounter #(parameter WORD_SIZE = 32, parameter IS_DOWN = 0)
 (
-input clk, rst, count_enable, load,
+input clk, rst, load, count_enable,
 input [WORD_SIZE-1:0] load_data,
 output [WORD_SIZE-1:0] count
 );
