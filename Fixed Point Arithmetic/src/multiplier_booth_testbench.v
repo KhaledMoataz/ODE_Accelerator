@@ -8,6 +8,7 @@ module multiplier_booth_testbench;
     reg[48:0] read_data [0:100];
     wire finish;
     reg clk;
+    reg start;
 
     integer i;
 
@@ -19,7 +20,7 @@ module multiplier_booth_testbench;
         end
     end
 
-    multiplier_booth multiplier_unit(clk, A, B, result, overflow_flag, finish);
+    multiplier_booth multiplier_unit(clk, 1'b0, A, B, start, result, overflow_flag, finish);
 
     initial
     begin
@@ -29,9 +30,11 @@ module multiplier_booth_testbench;
         begin
             #5
             {A, B, expected_result, expected_overflow_flag} = read_data[i];
+            start <= 1;
             #165
             if (finish != 1'b1 || overflow_flag != expected_overflow_flag || expected_result != result)
                 $display("%d : FAILED", i);
+            start <= 0;
         end
         $stop;
     end
