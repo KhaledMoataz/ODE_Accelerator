@@ -4,7 +4,7 @@ input clk, rst, load,
 input [WORD_SIZE-1:0] data_in, 
 output reg [WORD_SIZE-1:0] data_out
 );
-	always @ (posedge clk, rst)
+	always @ (posedge clk)
 	begin
 		if(rst)
 			data_out <= 'b0;
