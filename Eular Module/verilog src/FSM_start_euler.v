@@ -43,7 +43,7 @@ begin
                 else
                     begin
                         current_state <= State1;
-                        temp_out <= 1'b1;
+                        temp_out <= 1'b0;
                     end
             end
     endcase
