@@ -1,13 +1,13 @@
-module BUFFER_RD_MT(
+module mul_buffer(clk,rst_sync,rst_async,d1,d2,q1,q2);
 
 parameter Size = 4;
 
-input clk,rst_sync,rst_async,
-input [Size-1:0] d1,
-input [Size-1:0] d2,
-output [Size-1:0] q1,
-output [Size-1:0] q2
-);
+input clk,rst_sync,rst_async;
+input [Size-1:0] d1;
+input [Size-1:0] d2;
+output [Size-1:0] q1;
+output [Size-1:0] q2;
+
 
 reg [Size-1:0] temp1;
 reg [Size-1:0] temp2;

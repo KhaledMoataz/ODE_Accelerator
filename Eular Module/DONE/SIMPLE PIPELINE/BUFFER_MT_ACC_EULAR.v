@@ -1,9 +1,9 @@
-module BUFFER_MT_ACC(
+module BUFFER_MT_ACC(clk,rst_async,rst_sync,d,q);
 parameter Size = 8;
-input clk,rst_async,rst_sync
-input [Size-1:0] d,
-output [Size-1:0] q
-);
+input clk,rst_async,rst_sync;
+input [Size-1:0] d;
+output [Size-1:0] q;
+
 
 reg [Size-1:0] temp;
 assign q = temp;
