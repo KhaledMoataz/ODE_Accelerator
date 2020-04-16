@@ -20,7 +20,7 @@ module multiplier_booth(
 
     // Multiplicand complement
     wire [15:0] multiplicand_complement;
-    adder adder_multiplicand_complement(.A(~multiplicand), .B(16'h01), .result(multiplicand_complement));
+    adder adder_multiplicand_complement(.A(~multiplicand_buffer), .B(16'h01), .result(multiplicand_complement));
     // Accumulating result in A Q
     // B is either the multiplicand or 2's complement of the multiplicand or zeros
     // AB is A + B
@@ -30,7 +30,7 @@ module multiplier_booth(
     wire [15:0] AB;
 
     assign B =
-        (Q[1:0] == 2'b01) ? multiplicand:
+        (Q[1:0] == 2'b01) ? multiplicand_buffer:
             (Q[1:0] == 2'b10) ? multiplicand_complement:
                 16'h0000;
 
@@ -73,4 +73,4 @@ module multiplier_booth(
             finish <= counter_carry;
         end
     end
-endmodule: multiplier_booth
+endmodule

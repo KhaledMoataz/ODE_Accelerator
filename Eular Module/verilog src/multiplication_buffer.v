@@ -1,4 +1,4 @@
-module BUFFER_RD_MT(clk,rst_sync,rst_async,d1,d2,q1,q2);
+module mul_buffer(clk,rst_sync,rst_async,d1,d2,q1,q2);
 
 parameter Size = 4;
 

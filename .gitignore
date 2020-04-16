@@ -4,3 +4,4 @@ work/
 *.ini
 *.wlf
 *.zip
+.idea/
