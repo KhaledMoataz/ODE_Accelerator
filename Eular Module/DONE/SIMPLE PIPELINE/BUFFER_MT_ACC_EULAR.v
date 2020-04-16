@@ -1,21 +1,18 @@
 module BUFFER_MT_ACC(
-input clk,rst,
-input [7:0] d,
-output [7:0] q
+parameter Size = 8;
+input clk,rst_async,rst_sync
+input [Size-1:0] d,
+output [Size-1:0] q
 );
 
-reg [3:0] temp;
+reg [Size-1:0] temp;
 assign q = temp;
 
-always @(posedge clk or posedge rst)
+always @(posedge clk or posedge rst_async)
     begin
-        if(rst)
-            begin
-                temp <= 0;
-            end
+        if(rst_async == 1'b1 || rst_sync == 1'b1)
+            temp <= 0;
         else
-            begin
-                temp <= d;
-            end
+            temp <= d;
     end 
 endmodule 
