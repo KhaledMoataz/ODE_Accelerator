@@ -18,9 +18,9 @@ assign q1 = temp1;
 assign q2 = temp2;
 assign start_mult_out = temp3;
 
-always @(posedge clk or posedge rst_async)
+always @(negedge clk or posedge rst_async)
     begin
-        if(rst_async == 1'b1 || rst_sync == 1'b1)
+        if(rst_async == 1'b1 || rst_sync == 1'b0)
             begin
 				temp3 <= 0;
                 temp1 <= 0;
