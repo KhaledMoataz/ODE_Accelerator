@@ -14,10 +14,14 @@ assign done_mul_out = temp2;
 always @(negedge clk or posedge rst_async)
     begin
         if(rst_async == 1'b1 || rst_sync == 1'b0)
+          begin
             temp <= 0;
-			temp2 <= 0;
+			      temp2 <= 0;
+			     end
         else
+          begin
             temp <= d;
-			temp2 <= done_mul_in;
+			      temp2 <= done_mul_in;
+			    end
     end 
 endmodule 
