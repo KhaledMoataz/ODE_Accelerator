@@ -1,19 +1,14 @@
-set path {sim:/testbench.RAM1};
+#path to ram module
+set path {
+
+};
 
 set idx {
-1
-2
-3
-4
-5
+
 };
 
 set contents {
-32'hff
-32'hff
-32'hff
-32'hff
-32'hff
+
 };
 
 if {[string first {/MEM} $path] eq -1} {
