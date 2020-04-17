@@ -1,6 +1,6 @@
-#path to ram module
+# path to ram module
 set path {
-
+sim:/Pipeline/fetch_stage_/ram
 };
 
 set idx {
