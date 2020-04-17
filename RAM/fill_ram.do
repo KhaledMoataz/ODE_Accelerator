@@ -1,4 +1,4 @@
-set path {sim:/testbench.RAM1};
+set path {sim:/Pipeline/fetch_stage_/ram};
 
 set idx {
 1
