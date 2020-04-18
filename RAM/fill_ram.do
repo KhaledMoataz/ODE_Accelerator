@@ -1,19 +1,14 @@
-set path {sim:/Pipeline/fetch_stage_/ram};
+# path to ram module
+set path {
+sim:/Pipeline/fetch_stage_/ram
+};
 
 set idx {
-1
-2
-3
-4
-5
+
 };
 
 set contents {
-32'hff
-32'hff
-32'hff
-32'hff
-32'hff
+
 };
 
 if {[string first {/MEM} $path] eq -1} {

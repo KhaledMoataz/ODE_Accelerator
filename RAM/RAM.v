@@ -1,17 +1,18 @@
 module RAM 
-	(clk, rst, we1, we2, addr1, addr2, data1, data2);
+	(clk, rst, we1, addr1, addr2, data1, data2);
 
-parameter ADDRESS_SIZE = 4, // (32)
+parameter ADDRESS_SIZE = 4,
 	WORD_SIZE = 32;
 
-input clk, rst, we1, we2; // clock, asynchronous reset, Write Enable (bus 1), Write Enable (bus 2)
+input clk, rst, we1;
 input [ADDRESS_SIZE-1:0] addr1, addr2;
-inout [WORD_SIZE-1:0] data1, data2;
+inout [WORD_SIZE-1:0] data1;
+output [WORD_SIZE-1:0] data2;
 
 reg [WORD_SIZE-1:0] MEM [0:(1<<ADDRESS_SIZE)-1];
 
 assign data1 = (~|we1) ? MEM[addr1] : {WORD_SIZE{1'bz}};
-assign data2 = (~|we2) ? MEM[addr2] : {WORD_SIZE{1'bz}};
+assign data2 = MEM[addr2];
 
 integer i;
 
@@ -25,7 +26,6 @@ end
 
 always @(posedge clk) begin
 	MEM[addr1] = (|we1) ? data1 : MEM[addr1];
-	MEM[addr2] = (|we2) ? data2 : MEM[addr2];
 end
 
 endmodule

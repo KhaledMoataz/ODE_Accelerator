@@ -26,6 +26,6 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
  Register #(ADD_SIZE) pc_matrix(clk, reset, enable|init_start, mux_mat_out, pc_mat);
  Register #(ADD_SIZE) pc_vector(clk, reset, enable | finished_one_row | init_start, mux_vec_out, pc_vec);
 
-RAM #(ADD_SIZE,DATA_SIZE) ram(clk, reset, 1'b0, 1'b0, pc_vec, pc_mat, data_vec, data_mat); 
+RAM #(ADD_SIZE,DATA_SIZE) ram(clk, reset, 1'b0, pc_vec, pc_mat, data_vec, data_mat); 
 
 endmodule
