@@ -13,7 +13,6 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
  reg [ADD_SIZE-1:0] pc_matrix_init =   16'b0;
  reg [ADD_SIZE-1:0] pc_vector_init =   16'b101;
  wire [ADD_SIZE-1: 0] pc_mat, pc_vec, mux_mat_out, mux_vec_out, inc_mat_out, inc_vec_out;
- wire pc_vec_enable = enable | finished_one_row | init_start;
  
  assign sel_vec = finished_one_row | final_done | init_start;
  assign sel_mat = final_done | init_start;
@@ -25,8 +24,11 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
  incrementor #(ADD_SIZE) inc_vec(pc_vec, inc_vec_out);
  
  Register #(ADD_SIZE) pc_matrix(clk, reset, enable|init_start, mux_mat_out, pc_mat);
- Register #(ADD_SIZE) pc_vector(clk, reset, pc_vec_enable, mux_vec_out, pc_vec);
+ Register #(ADD_SIZE) pc_vector(clk, reset, enable | finished_one_row | init_start, mux_vec_out, pc_vec);
 
-RAM #(ADD_SIZE,DATA_SIZE) ram(clk, reset, 1'b0, 1'b0, pc_vec, pc_mat, data_vec, data_mat); 
- 
+RAM #(ADD_SIZE,DATA_SIZE) ram(clk, reset, 1'b0, pc_vec, pc_mat, data_vec, data_mat); 
+
 endmodule
+
+
+// we should make 1 memory

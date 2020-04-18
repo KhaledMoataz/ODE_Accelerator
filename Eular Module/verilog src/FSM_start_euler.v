@@ -11,8 +11,13 @@ reg temp_out;
 
 assign outp = temp_out;
 
+initial 
+    begin
+        current_state <= State0;
+        temp_out <= 1'b0;
+    end
 
-always @(posedge clk or posedge rst_async)
+always @(negedge clk or posedge rst_async)
 begin
     if(rst_sync == 1'b1 || rst_async == 1'b1)
         begin

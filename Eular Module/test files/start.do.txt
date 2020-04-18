@@ -1,0 +1,33 @@
+vsim -gui work.fetch_stage work.Pipeline work.RAM
+add wave -position insertpoint sim:/Pipeline/*
+force -freeze sim:/Pipeline/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Pipeline/rst 1 0
+force -freeze sim:/Pipeline/start 0 0
+noforce sim:/Pipeline/return_default_state
+force -freeze sim:/Pipeline/return_default_state 0 0
+force -freeze sim:/Pipeline/data_ready 0 0
+force -freeze sim:/Pipeline/FINAL_DONE 0 0
+force -freeze sim:/Pipeline/fetch_enable 0 0
+force -freeze sim:/Pipeline/finished_one_row 0 0
+force -freeze sim:/Pipeline/flush_mul_buffer 0 0
+force -freeze sim:/Pipeline/flush_acc_buffer 0 0
+force -freeze sim:/Pipeline/start_mult 0 0
+force -freeze sim:/Pipeline/done_mul 0 0
+force -freeze sim:/Pipeline/end_of_row 0 0
+force -freeze sim:/Pipeline/done_mul_acc 0 0
+run
+force -freeze sim:/Pipeline/rst 0 0
+force -freeze sim:/Pipeline/start 1 0
+noforce sim:/Pipeline/init_start
+noforce sim:/Pipeline/fetch_enable
+noforce sim:/Pipeline/finished_one_row
+noforce sim:/Pipeline/flush_mul_buffer
+noforce sim:/Pipeline/flush_acc_buffer
+noforce sim:/Pipeline/start_mult
+noforce sim:/Pipeline/end_of_row
+noforce sim:/Pipeline/done_mul_acc
+mem load -i E:/euler/memoryData.mem /Pipeline/fetch_stage_/ram/MEM
+run
+run
+noforce sim:/Pipeline/done_mul
+run
