@@ -87,7 +87,9 @@ module InterpolationFSM(
                                             ) ))  ) ));
     
     assign adder_opB_mux_sel = current_state == START1?3'b001 :( current_state == START2 ? 3'b010 :(
-                                 current_state == LOOP2 ? 3'b011 : (current_state == LOOP9 ? 3'b100 : 3'b000)));
+                                 current_state == LOOP2 ? 3'b011 : (current_state == LOOP9 ? 3'b100 :(
+                                     (current_state == INIT2 | current_state == UPDATE2)? 3'b101: 3'b000
+                                 ) )));
 
 
 
