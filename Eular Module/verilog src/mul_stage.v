@@ -10,8 +10,6 @@ output[DATA_SIZE-1:0] out,
 output overflow_flag
 );
 
-
-// use  modified
-multiplier_modified_booth multiplier(clk, rst, data1, data2, start_mul, out, overflow_flag, done_mul);
+multiplier_booth multiplier(clk, rst, data1, data2, start_mul, out, overflow_flag, done_mul);
 
 endmodule

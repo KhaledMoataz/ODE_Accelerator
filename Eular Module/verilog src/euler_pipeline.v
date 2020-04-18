@@ -14,12 +14,12 @@ wire init_start, fetch_enable, finished_one_row, flush_mul_buffer, flush_acc_buf
 wire [DATA_SIZE-1:0] vector_data, matrix_data, mul_buffer_out1, mul_buffer_out2, mul_out, data_to_acc;
 wire [MAX_DIM-1:0] col_count;
 
-reg[MAX_DIM-1:0] shape_0 = 'b10;
-reg[MAX_DIM-1:0] shape_1 = 'b10;
+reg[MAX_DIM-1:0] shape_0 = 'b100;
+reg[MAX_DIM-1:0] shape_1 = 'b100;
 
 assign flush_mul_buffer = new_start | return_default_state | (done_mul & ~(end_of_row));
 assign fetch_enable = flush_mul_buffer;
-assign flush_acc_buffer = done_mul;
+assign flush_acc_buffer = ~( (done_mul_acc|data_ready) & end_of_row) & (done_mul);
 assign overflow = mul_overflow | acc_overflow;
 
 FSM_START_EULAR fsm_start(clk, 1'b0, rst, start, FINAL_DONE, init_start);
