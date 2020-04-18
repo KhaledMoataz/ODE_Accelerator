@@ -2,11 +2,13 @@ module JOIN_PIPE  #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
 (
  input rst,
  input clk,
- input start_mul,
+ input data_ready1,
+ input data_ready2,
  input [DATA_SIZE-1:0] data_pipe1,
  input [DATA_SIZE-1:0] data_pipe2,
  input [DATA_SIZE-1:0] h_step,
-//  inout [DATA_SIZE-1:0] result,
+ 
+ output return_default_state,
  output overflow_flag
 
 );
@@ -24,6 +26,8 @@ wire done_mul;
 wire [ADD_SIZE-1:0] pc_answer;
 wire [ADD_SIZE-1:0] inc_pc_in;
 
+assign return_default_state = data_ready1 & data_ready2;
+wire start_mul = return_default_state;
 
 carry_select_adder add(data_pipe1,data_pipe2,carry_in,result_add,carry_out,overflow_flag,negative);
 
