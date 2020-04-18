@@ -1,25 +1,28 @@
 module carry_select_adder_testbench;
     reg [15:0] A;
     reg [15:0] B;
+    reg cin;
     wire [15:0] result;
     reg [15:0] expected_result;
+    wire cout;
+    reg expected_cout;
     wire overflow_flag;
     reg expected_overflow_flag;
-    reg[48:0] read_data [0:100];
-    wire cout;
     wire negative;
+    reg expected_negative;
+    reg[52:0] read_data [0:100];
 
-    carry_select_adder adder_unit(A, B, 1'b0, result, cout, overflow_flag, negative);
+    carry_select_adder adder_unit(A, B, cin, result, cout, overflow_flag, negative);
     integer i;
 
     initial
     begin
-        $readmemb("adder_test_cases.txt", read_data);
+        $readmemb("ODE_Accelerator\\Fixed Point Arithmetic\\test\\adder_test_cases.txt", read_data);
         for (i=0; i<100; i=i+1)
         begin
-            {A, B, expected_result, expected_overflow_flag} = read_data[i];
+            {A, B, cin, expected_result, expected_cout, expected_overflow_flag, expected_negative} = read_data[i];
             #20
-            if (result != expected_result || overflow_flag != expected_overflow_flag)
+            if (result != expected_result || cout != expected_cout || overflow_flag != expected_overflow_flag || negative != expected_negative)
                 $display("%d : FAILED", i);
         end
     end
