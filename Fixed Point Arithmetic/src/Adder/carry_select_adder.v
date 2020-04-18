@@ -25,7 +25,7 @@ module carry_select_adder
                 which_adder which_adder_x(A[2*j+1:2*j], B[2*j+1:2*j], carrys[j-1], {carrys[j], result[2*j+1:2*j]}, intermediate_carrys[j]);
             end
     endgenerate
-    assign cout = carrys[N/2-1];
-    assign overflow_flag = cout ^ intermediate_carrys[N/2-1];
+    assign carry = carrys[N/2-1];
+    assign overflow_flag = carry ^ intermediate_carrys[N/2-1];
     assign negative = overflow_flag ^ result[N-1];
 endmodule

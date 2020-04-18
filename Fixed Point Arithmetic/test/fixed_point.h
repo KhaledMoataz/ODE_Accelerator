@@ -1,3 +1,5 @@
+#ifndef FIXED_POINT
+#define FIXED_POINT
 #include<iostream>
 #include<bitset>
 using namespace std;
@@ -22,17 +24,28 @@ namespace FixedPoint_Q9_7 {
         return result;
     }
 
-    bitset<numSize> add(const bitset<numSize> a, const bitset<numSize> b, bool &overflow) {
-        short temp_a, temp_b;
+    bitset<numSize> add(const bitset<numSize> a, const bitset<numSize> b, const bool &cin, bool &cout, bool &overflow, bool &negative) {
+        short temp_a, temp_b, temp_b_complement;
         int temp_result;
         temp_a = (short) a.to_ulong();
         temp_b = (short) b.to_ulong();
-        temp_result = temp_a + temp_b;
+        if (cin) {
+            temp_result = temp_a - ~temp_b;
+        } else {
+            temp_result = temp_a + temp_b;
+        }
+        cout = ((unsigned short) temp_a + (unsigned short) temp_b) & (1 << 16);
+        negative = temp_result < 0;
         bitset<numSize> result = temp_result;
         if (temp_result != short(temp_result)) {
             overflow = true;
         }
         return result;
+    }
+
+    bitset<numSize> add(const bitset<numSize> a, const bitset<numSize> b, bool &overflow) {
+        bool cout, negative;
+        return add(a, b, false, cout, overflow, negative);
     }
 
     bitset<numSize> divide(const bitset<numSize> a, const bitset<numSize> b, bool & divideByZero) {
@@ -80,3 +93,4 @@ namespace FixedPoint_Q9_7 {
         cout << setprecision(9) << num << endl;
     }
 }
+#endif
