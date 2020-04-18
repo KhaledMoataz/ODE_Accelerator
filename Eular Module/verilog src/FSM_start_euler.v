@@ -24,6 +24,7 @@ begin
             current_state <= State0;
             temp_out <= 1'b0;
         end
+    else
     case(current_state)
         State0:
             begin
