@@ -1,4 +1,4 @@
-module BUFFER_MT_ACC(clk,rst_async,rst_sync,done_mul_in,d,done_mul_out,q);
+module acc_buffer(clk,rst_async,rst_sync,done_mul_in,d,done_mul_out,q);
 parameter Size = 8;
 input clk,rst_async,rst_sync, done_mul_in;
 input [Size-1:0] d;
