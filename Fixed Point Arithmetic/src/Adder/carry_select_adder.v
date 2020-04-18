@@ -13,19 +13,19 @@ module carry_select_adder
     );
 
 
-    wire [N/2-1:0] carrys;
-    wire [N/2-1:0] intermediate_carrys;
+    wire [N/2-1:0] cs;
+    wire [N/2-1:0] intermediate_cs;
 
-    which_adder which_adder_0(A[1:0], B[1:0], cin, {carrys[0], result[1:0]}, intermediate_carrys[0]);
+    which_adder which_adder_0(A[1:0], B[1:0], cin, {cs[0], result[1:0]}, intermediate_cs[0]);
 
     genvar j;
     generate
         for (j = 1; j < N/2; j = j+1)
             begin : Gen_Modules
-                which_adder which_adder_x(A[2*j+1:2*j], B[2*j+1:2*j], carrys[j-1], {carrys[j], result[2*j+1:2*j]}, intermediate_carrys[j]);
+                which_adder which_adder_x(A[2*j+1:2*j], B[2*j+1:2*j], cs[j-1], {cs[j], result[2*j+1:2*j]}, intermediate_cs[j]);
             end
     endgenerate
-    assign carry = carrys[N/2-1];
-    assign overflow_flag = carry ^ intermediate_carrys[N/2-1];
+    assign carry = cs[N/2-1];
+    assign overflow_flag = carry ^ intermediate_cs[N/2-1];
     assign negative = overflow_flag ^ result[N-1];
 endmodule
