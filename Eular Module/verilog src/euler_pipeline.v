@@ -5,6 +5,8 @@ input rst,
 input start,
 input FINAL_DONE,
 input return_default_state,
+input reg [MAX_DIM-1:0] shape_0,
+input reg [MAX_DIM-1:0] shape_1,
 output data_ready,
 output [ADD_SIZE-1:0] out_acc,
 output overflow
@@ -13,9 +15,6 @@ output overflow
 wire init_start, fetch_enable, finished_one_row, flush_mul_buffer, flush_acc_buffer, start_mult, mul_overflow, acc_overflow, done_mul, end_of_row, done_mul_acc, new_start;
 wire [DATA_SIZE-1:0] vector_data, matrix_data, mul_buffer_out1, mul_buffer_out2, mul_out, data_to_acc;
 wire [MAX_DIM-1:0] col_count;
-
-reg[MAX_DIM-1:0] shape_0 = 'b100;
-reg[MAX_DIM-1:0] shape_1 = 'b100;
 
 assign flush_mul_buffer = new_start | return_default_state | (done_mul & ~(end_of_row));
 assign fetch_enable = flush_mul_buffer;
