@@ -16,7 +16,7 @@ module multiplier_modified_booth(
     output reg finish;
 
     reg [15:0] multiplicand_buffer;
-    reg start_buffer;
+    reg start_buffer, working;
 
     // 2's Complement of multiplicand
     wire [15:0] multiplicand_complement;
@@ -67,6 +67,8 @@ module multiplier_modified_booth(
     always @(posedge clk) begin
         if (rst) begin
             start_buffer <= 0;
+            finish <= 0;
+            working <= 0;
         end
         else if (start_buffer) begin
             start_buffer <= 0;
@@ -74,13 +76,15 @@ module multiplier_modified_booth(
             A <= 16'h0000;
             Q <= {multiplier, 1'b0};
             multiplicand_buffer <= multiplicand;
-            finish <= 1'b0;
+            finish <= 0;
+            working <= 1;
         end
-        else if (!finish) begin
+        else if (working) begin
             A <= {B[16], B[16], AB[15:2]};
             Q <= {AB[1], AB[0], Q[16:2]};
             counter <= counter_new_value;
             finish <= counter_finish;
+            working <= !counter_finish;
         end
     end
 endmodule

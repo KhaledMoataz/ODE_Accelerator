@@ -24,14 +24,14 @@ module carry_lookahead_adder
         end
     endgenerate
 
-    full_adder full_adder_0(A[0], B[0], cs[0], result[0], cs[1]);
+    full_adder full_adder_0(.i_bit1(A[0]), .i_bit2(B[0]), .i_carry(cs[0]), .o_sum(result[0]));
     genvar i;
     generate
-        for (i = 1; i < N; i = i+1) begin
-            full_adder full_adder_x(A[i], B[i], cs[i], result[i], cs[i+1]);
+        for (i = 1; i < N - 1; i = i+1) begin
+            full_adder full_adder_x(.i_bit1(A[i]), .i_bit2(B[i]), .i_carry(cs[i]), .o_sum(result[i]));
         end
     endgenerate
-    assign carry = cs[N];
+    full_adder full_adder_x(.i_bit1(A[N - 1]), .i_bit2(B[N - 1]), .i_carry(cs[N - 1]), .o_sum(result[N - 1]), .o_carry(carry));
     assign overflow_flag = carry ^ cs[N-1];
     assign negative = overflow_flag ^ result[N-1];
 endmodule

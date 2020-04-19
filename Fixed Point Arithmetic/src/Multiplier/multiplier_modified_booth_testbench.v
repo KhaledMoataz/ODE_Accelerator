@@ -24,7 +24,7 @@ module multiplier_modified_booth_testbench;
 
     initial
     begin
-        $readmemb("multiplier_test_cases.txt", read_data);
+        $readmemb("ODE_Accelerator\\Fixed Point Arithmetic\\test\\multiplier_test_cases.txt", read_data);
         #1
         for (i=0; i<100; i=i+1)
         begin
