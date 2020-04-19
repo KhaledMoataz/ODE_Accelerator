@@ -1,22 +1,36 @@
 module StepControlFSM 
 (
-input clk, rst, init, start, multiplier_done, divider_done, adder_negative_flag, counter_zero, calculation_error,
-output error_load, n_load, tolerance_load, memory_read, step_load, adder_is_add, error_clear, done, proceed, multiplier_start, divider_start,
-	   address_load, loop_counter_load, decrement_counter, increment_addresses, result_inputs_selector, result_load, error_failure,
-output [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_selector, step_inputs_selector
+input clk, rst, init, start, multiplier_done, divider_done, adder_overflow, multiplier_overflow, 
+	  divider_overflow,adder_negative_flag, counter_zero,
+output error_load, n_load, tolerance_load, memory_read, step_load, adder_is_add, error_clear, 
+		done, proceed, multiplier_start, divider_start, address_load, loop_counter_load, 
+		decrement_counter, increment_addresses, result_inputs_selector, result_load, error_failure,
+output [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_selector, 
+	    step_inputs_selector
 );
 	reg [4:0] current_state;
 	reg is_negative;
+	wire calculation_error;
 
 	//States
 	localparam IDLE = 5'd0, READ_N_L = 5'd1, READ_H = 5'd2, DONE_INIT = 5'd3, INIT_ERROR_CALC = 5'd4,
-			   READ_AND_SUB_X = 5'd6, ACCUMULATE_ERROR = 5'd7, IS_TOLERABLE = 5'd8, DONE_PROCEED = 5'd9,
+			   SUB_X  = 5'd6, ACCUMULATE_ERROR = 5'd7, IS_TOLERABLE = 5'd8, DONE_PROCEED = 5'd9,
 			   INIT_CALC_STEP1 = 5'd10, WAIT_FOR_CALC_STEP1 = 5'd11,
 			   INIT_CALC_STEP2 = 5'd12, WAIT_FOR_CALC_STEP2 = 5'd13,
 			   INIT_CALC_STEP3 = 5'd14, WAIT_FOR_CALC_STEP3 = 5'd15,
 			   INIT_CALC_STEP4 = 5'd16, WAIT_FOR_CALC_STEP4 = 5'd17,
 			   DONE_NO_PROCEED = 5'd18, ERROR = 5'd19;
-			   
+
+	assign calculation_error = (adder_overflow & 
+							   (current_state == SUB_X | 
+							    current_state == ACCUMULATE_ERROR | 
+								current_state == IS_TOLERABLE)) |
+							   (multiplier_overflow &
+							   (current_state == WAIT_FOR_CALC_STEP1 |
+							    current_state == WAIT_FOR_CALC_STEP2 |
+								current_state == WAIT_FOR_CALC_STEP3)) |
+							   (divider_overflow &
+							    (current_state == WAIT_FOR_CALC_STEP4));
 	
 	// Control signals
 	assign error_load = current_state == ACCUMULATE_ERROR;
@@ -41,11 +55,12 @@ output [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_s
 						  current_state == INIT_ERROR_CALC;
 	assign result_load = ((current_state == WAIT_FOR_CALC_STEP1 | current_state == WAIT_FOR_CALC_STEP2 | 
 						   current_state == WAIT_FOR_CALC_STEP3) & multiplier_done) |
-						   current_state == READ_AND_SUB_X | current_state == IS_TOLERABLE;
+						   current_state == SUB_X  | current_state == IS_TOLERABLE;
+	assign error_failure = current_state == ERROR;
 
 	
 	// Inputs selectors
-	assign adder_inputs_selector = current_state == READ_AND_SUB_X ? 
+	assign adder_inputs_selector = current_state == SUB_X  ? 
 								   2'b00 : (current_state == ACCUMULATE_ERROR ? 2'b01 : 2'b10);
 	assign multiplier_inputs_selector = current_state == INIT_CALC_STEP1 ? 
 										2'b00 : (current_state == INIT_CALC_STEP2 ? 2'b01 : 2'b10);
@@ -89,9 +104,9 @@ output [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_s
 				end
 				INIT_ERROR_CALC:
 				begin
-					current_state <= READ_AND_SUB_X;
+					current_state <= SUB_X; 
 				end
-				READ_AND_SUB_X:
+				SUB_X: 
 				begin
 					current_state <= ACCUMULATE_ERROR;
 				end
@@ -100,7 +115,7 @@ output [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_s
 					if(counter_zero)
 						current_state <= IS_TOLERABLE;
 					else
-						current_state <= READ_AND_SUB_X;
+						current_state <= SUB_X; 
 				end
 				IS_TOLERABLE:
 				begin
