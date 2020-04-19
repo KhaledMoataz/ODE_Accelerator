@@ -29,6 +29,3 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
 RAM #(ADD_SIZE,DATA_SIZE) ram(clk, reset, 1'b0, pc_vec, pc_mat, data_vec, data_mat); 
 
 endmodule
-
-
-// we should make 1 memory

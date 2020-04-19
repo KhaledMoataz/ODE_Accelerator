@@ -8,8 +8,7 @@ output [1:0] outp
 localparam  State0 = 2'b00, State1 = 2'b10 , State2 = 2'b11;
 reg[1:0] current_state;
 
-
-assign outp = current_state;
+assign outp = current_state; 
 
 initial 
     begin
@@ -46,6 +45,7 @@ begin
                     end
             end
     endcase
+    //outp <= current_state;
 end
 
 endmodule
