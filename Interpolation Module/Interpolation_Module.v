@@ -159,8 +159,9 @@ wire un_add_en,uz_add_en,uk_add_en,
     assign data_to_ram = temp2_out;
     assign ram_add1 = MAR1_out;
     assign ram_add2 = MAR2_out;
-    //assign overflow_flag = overflow_flag_adder | overflow_flag_div | overflow_flag_mul ;
-    assign overflow_flag = 1'b0;
+    assign overflow_flag = (overflow_flag_adder & (add_sig | sub_sg)) | (overflow_flag_div & div_done) 
+                                | (overflow_flag_mul & mul_done) ;
+    //assign overflow_flag = 1'b0;
     assign overflow = overflow_flag;
     //for test only
     assign AdderAOP = adder_A_op_final;
