@@ -4,11 +4,15 @@ module InterpolationModule #(parameter WORD_SIZE = 16, ADDRESS_WIDTH = 16)
     input [WORD_SIZE-1: 0] tk_port, 
     input [WORD_SIZE-1: 0] ram_data1, ram_data2,
     input [ADDRESS_WIDTH-1 : 0] uk_port,
-    output done_sg,mem_write,
+    output done_sg,mem_write,overflow,
     output [ADDRESS_WIDTH-1 : 0] ram_add1, ram_add2,
-    output [WORD_SIZE-1:0] data_to_ram
-
+    output [WORD_SIZE-1:0] data_to_ram,
+    //to test
+    output [WORD_SIZE-1:0] AdderAOP,AdderBOP,ADDERRESULT,MUL_RESULTT,DIV_RESULTT,
+    output START_MULL,START_DIVVV,MUL_DONEEE,DIV_DONEEE,
+output [WORD_SIZE-1:0] MUL_OPP_A,MUL_OPP_B,DIV_OPP_A,DIV_OPP_B
 );
+
     //enables
 wire un_add_en,uz_add_en,uk_add_en,
     un_value_en,
@@ -55,11 +59,11 @@ wire un_add_en,uz_add_en,uk_add_en,
     tn_add_in,tz_add_in,m_add_in;
     //utilities
     wire[WORD_SIZE-1:0] adder_result_prefinal,adder_result,mul_result,div_result,adder_A_op,adder_B_op,adder_B_op_final,adder_A_op_final;
-    wire overflow_flag_mul,overflow_flag_div,overflow_flag_adder,carry_out_adder,negative_adder,
+    wire overflow_flag_mul,overflow_flag_div,overflow_flag_adder,overflow_flag,carry_out_adder,negative_adder,
     mul_done,div_done,deal_as_int;
     wire m_is_zero;
 
-    assign m_is_zero = ~& m_value_out;
+    assign m_is_zero = ~| m_value_out;
     
 
     //Constants
@@ -145,7 +149,7 @@ wire un_add_en,uz_add_en,uk_add_en,
                            tn_add_mux_sel,tz_add_mux_sel,mar2_mux_sel,mdr2_mux_sel,
                            m_value_mux_sel,start_div,start_mul,
                            done_sg,
-                           add_sig,sub_sg,
+                           add_sig,sub_sg,overflow_flag,
                             mar1_mux_select,
                             adder_opA_mux_sel,adder_opB_mux_sel
                         );
@@ -155,5 +159,22 @@ wire un_add_en,uz_add_en,uk_add_en,
     assign data_to_ram = temp2_out;
     assign ram_add1 = MAR1_out;
     assign ram_add2 = MAR2_out;
+    //assign overflow_flag = overflow_flag_adder | overflow_flag_div | overflow_flag_mul ;
+    assign overflow_flag = 1'b0;
+    assign overflow = overflow_flag;
+    //for test only
+    assign AdderAOP = adder_A_op_final;
+    assign AdderBOP = adder_B_op_final;
+    assign ADDERRESULT = adder_result;
+    assign MUL_RESULTT = mul_result;
+    assign DIV_RESULTT = div_result;
+    assign START_MULL = start_mul;
+    assign START_DIVVV = start_div;
+    assign MUL_DONEEE = mul_done;
+    assign DIV_DONEEE = div_done;
+    assign MUL_OPP_A = temp1_out;
+    assign MUL_OPP_B =k_out;
+    assign DIV_OPP_A = temp1_out;
+    assign DIV_OPP_B = adder_result;
 
 endmodule //
