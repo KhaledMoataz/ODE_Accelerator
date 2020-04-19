@@ -43,20 +43,16 @@ wire un_add_en,uz_add_en,uk_add_en,
     un_value_out,
     tz_value_out,tn_value_out,tk_value_out,
     temp1_out,temp2_out,k_out,   
-    MDR2_out,MDR1_out,m_value_out;
+    m_value_out;
     wire[ADDRESS_WIDTH-1:0] MAR1_out,MAR2_out,
     un_add_out,uz_add_out,uk_add_out,un_add_temp_out,
     tn_add_out,tz_add_out,m_add_out;
     
     //registers in
-    wire[WORD_SIZE-1:0] un_value_in,
-    
-    tz_value_in,tn_value_in,tk_value_in,
-    temp1_in,temp2_in,k_in,   
-    MDR2_in,MDR1_in,m_value_in;
+    wire[WORD_SIZE-1:0] m_value_in;
     wire[ADDRESS_WIDTH-1:0] MAR1_in,MAR2_in,
-    un_add_in,uz_add_in,uk_add_in,un_add_temp_in,
-    tn_add_in,tz_add_in,m_add_in;
+    un_add_in,uk_add_in,un_add_temp_in,
+    tn_add_in,tz_add_in;
     //utilities
     wire[WORD_SIZE-1:0] adder_result_prefinal,adder_result,mul_result,div_result,adder_A_op,adder_B_op,adder_B_op_final,adder_A_op_final;
     wire overflow_flag_mul,overflow_flag_div,overflow_flag_adder,overflow_flag,carry_out_adder,negative_adder,
@@ -107,7 +103,7 @@ wire un_add_en,uz_add_en,uk_add_en,
 
     mux_4_1 #(.SIZE(ADDRESS_WIDTH)) MAR1_mux      (mar1_mux_select,tz_add_out,adder_result,m_add_out,uz_add_out,MAR1_in);
     mux_2_1 #(.SIZE(ADDRESS_WIDTH)) MAR2_mux      (mar2_mux_sel,un_add_temp_out,uk_add_out,MAR2_in);
-    mux_2_1 #(.SIZE(WORD_SIZE)) MDR2_mux      (mdr2_mux_sel,ram_data2,temp2_out,MDR2_in);
+    
 
     mux_2_1 #(.SIZE(WORD_SIZE)) m_value_mux      (m_value_mux_sel,ram_data1,adder_result,m_value_in);
 
