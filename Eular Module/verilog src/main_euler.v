@@ -4,10 +4,11 @@ input clk,
 input rst,
 input start,
 input[DATA_SIZE-1:0] h_step,
-output reg finish
+output reg finish,
+output reg error
 );
 
-reg [MAX_DIM-1:0] shape1_0 = 6'b10, shape1_1 = 6'b10, shape2_0 = 6'b10, shape2_1 = 6'b11;
+reg [MAX_DIM-1:0] shape1_0 = 6'b11, shape1_1 = 6'b11, shape2_0 = 6'b11, shape2_1 = 6'b10;
 
 wire end_op, return_default_state, data_ready1, data_ready2, overflow1, overflow2, overflow3, result_stored;
 wire [DATA_SIZE-1:0] data1, data2;
@@ -27,6 +28,7 @@ always @(posedge clk or posedge end_op) begin
 	if(rst) begin
 		finish <= 1'b0;
 		DONE <= 1'b0;
+		error <= 1'b0;
 	end
 	else begin
 		if(end_op) begin
@@ -38,6 +40,11 @@ always @(posedge clk or posedge end_op) begin
 		if(start & finish) begin 
 			finish <= 1'b0;
 			DONE <= 1'b0;
+			error <= 1'b0; 
+		end
+		if (overflow1 | overflow2 | overflow3) begin
+			finish <= 1'b1;
+			error <= 1'b1;
 		end
 	end
  end
