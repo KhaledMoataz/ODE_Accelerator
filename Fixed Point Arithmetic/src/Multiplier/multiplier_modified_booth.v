@@ -53,7 +53,7 @@ module multiplier_modified_booth(
     carry_select_adder#(32) adder_round(.A({A, Q[16:1]}), .B(round), .cin(1'b0), .result(result_after_round), .overflow_flag(), .carry());
     // Final Result
     assign result = result_after_round[22:7];
-    assign overflow_flag = !((result_after_round[31:22] == 10'b0000000000) | (result_after_round[31:22] == 10'b1111111111));
+    assign overflow_flag = finish & !((result_after_round[31:22] == 10'b0000000000) | (result_after_round[31:22] == 10'b1111111111));
     // Counter
     reg [2:0] counter;
     wire [2:0] counter_new_value;
