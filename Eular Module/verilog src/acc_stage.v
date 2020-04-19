@@ -9,6 +9,8 @@ output[DATA_SIZE-1:0] out_data,
 output overflow
 );
 
-ACCUMULATOR_EULAR #(DATA_SIZE) accumulator(clk, rst_sync, rst, data, out_data, overflow);
+wire rst_new;
+PosEdgeDFF delay_cycle(clk, rst, rst_sync, 1'b1, rst_new);
+ACCUMULATOR_EULAR #(DATA_SIZE) accumulator(clk, rst_new, rst, data, out_data, overflow);
 
 endmodule
