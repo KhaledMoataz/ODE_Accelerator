@@ -17,9 +17,10 @@ wire [DATA_SIZE-1:0] vector_data, matrix_data, mul_buffer_out1, mul_buffer_out2,
 wire [MAX_DIM-1:0] col_count;
 
 assign flush_mul_buffer = new_start | return_default_state | (done_mul & ~(end_of_row));
-assign fetch_enable = flush_mul_buffer;
 assign flush_acc_buffer = ~( (done_mul_acc|data_ready) & end_of_row) & (done_mul);
 assign overflow = mul_overflow | acc_overflow;
+
+NegEdgeDFF delay_enable_half_cycle(clk, rst, flush_mul_buffer, 1'b1, fetch_enable);
 
 FSM_START_EULAR fsm_start(clk, 1'b0, rst, start, FINAL_DONE, init_start);
 PosEdgeDFF delay_start_half_cycle(clk, rst, init_start, 1'b1, new_start);
