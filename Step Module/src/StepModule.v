@@ -19,8 +19,7 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 		 memory_read, unused_output, adder_overflow, adder_carry_out,
 		 loop_counter_load, error_clear, multiplier_done, divider_done, adder_negative_flag, 
 		 counter_zero, adder_is_add, multiplier_overflow, divider_overflow,
-		 multiplier_start, divider_start, decrement_counter, result_inputs_selector, result_load, 
-		 calculation_error;
+		 multiplier_start, divider_start, decrement_counter, result_inputs_selector, result_load;
 		 
 	wire [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_selector, 
 			   step_inputs_selector;
@@ -32,9 +31,9 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	wire [ADDRESS_WIDTH-1:0] address1, address2;
 						 
 	
-	assign calculation_error = adder_overflow | multiplier_overflow | divider_overflow;
-	StepControlFSM controlFSM (clk, rst, init, start, multiplier_done, divider_done, 
-							   adder_negative_flag, counter_zero,	calculation_error,			
+	StepControlFSM controlFSM (clk, rst, init, start, multiplier_done, divider_done,
+							   adder_overflow, multiplier_overflow, divider_overflow,
+							   adder_negative_flag, counter_zero,			
 							   error_load, n_load, tolerance_load, memory_read, step_load, 
 							   adder_is_add, error_clear, done,	proceed, multiplier_start, 
 							   divider_start, address_load, loop_counter_load, decrement_counter, 

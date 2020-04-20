@@ -13,7 +13,7 @@ module InterpolationFSM(
     start_div, start_mul,
     
     done_sg,
-    add_sig, sub_sg,
+    add_sig, sub_sg,overflow,
 
     output[1:0] mar1_mux_select,
 
@@ -47,7 +47,7 @@ module InterpolationFSM(
     assign temp2_en = current_state == LOOP9;
     assign k_en = current_state == START4;
     assign MAR1_en = current_state == INIT2 | current_state == UPDATE1 | current_state == START1 | current_state == START4 | current_state == LOOP3;
-    assign MAR2_en = current_state == LOOP1 | current_state == LOOP4 | current_state == LOOP10;
+    assign MAR2_en = current_state == LOOP1 | current_state == LOOP3 | current_state == LOOP9;
     
     assign MDR2_en = current_state == LOOP4 | current_state == LOOP10;
     assign read_sg = current_state == LOOP1;
@@ -72,7 +72,7 @@ module InterpolationFSM(
     assign un_add_temp_mux_sel =  (current_state == LOOP4 | current_state == LOOP5) ? 1'b1 : 1'b0;
     assign tn_add_mux_sel = current_state == UPDATE1 ? 1'b1 : 1'b0;
     assign tz_add_mux_sel = current_state == UPDATE1 ? 1'b1 : 1'b0;
-    assign mar2_mux_sel = (current_state == LOOP4 | current_state == LOOP10) ? 1'b1 : 1'b0;
+    assign mar2_mux_sel = (current_state == LOOP3 | current_state == LOOP9) ? 1'b1 : 1'b0;
     assign mdr2_mux_sel = (current_state == LOOP4 | current_state == LOOP10) ? 1'b1 : 1'b0;
     assign m_value_mux_sel = current_state == LOOP6 ? 1'b1 : 1'b0;
 
@@ -99,7 +99,11 @@ module InterpolationFSM(
             current_state <= IDLE;
             not_first <= 1'b0;
             end
-        else 
+        else if(overflow) begin
+            current_state <= IDLE;
+            not_first <= 1'b0;
+            end
+        else
         begin
             case (current_state)
                 IDLE:
