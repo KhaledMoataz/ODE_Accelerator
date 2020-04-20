@@ -2,6 +2,8 @@
 #define FIXED_POINT
 #include<iostream>
 #include<bitset>
+#include<iomanip>
+#include<cmath>
 using namespace std;
 
 namespace FixedPoint_Q9_7 {

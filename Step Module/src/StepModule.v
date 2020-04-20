@@ -8,6 +8,8 @@ output [ADDRESS_WIDTH-1:0] memory_address1, memory_address2,
 output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 );
 	//TODO: Add divider module.
+	//TODO: Calculate the multiplication only once at init.
+	//TODO: Update adder interface
 
 	// Constants
 	localparam [ADDRESS_WIDTH-1:0] N_ADDRESS = 'd5, TOLERANCE_ADDRESS = 'd6, STEP_ADDRESS = 'd7;

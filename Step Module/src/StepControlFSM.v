@@ -40,7 +40,7 @@ output [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_s
 	assign tolerance_load = current_state == READ_N_L;
 	assign memory_read = current_state == READ_H | current_state == READ_N_L | 
 						 current_state == INIT_ERROR_CALC | current_state == ACCUMULATE_ERROR;
-	assign step_load = (current_state == WAIT_FOR_CALC_STEP4 & divider_done) | 
+	assign step_load = (current_state == WAIT_FOR_CALC_STEP4 & divider_done & !divider_overflow) | 
 						current_state == READ_H;
 	assign adder_is_add = current_state == ACCUMULATE_ERROR ? !is_negative : 0;
 	assign error_clear = current_state == INIT_ERROR_CALC;

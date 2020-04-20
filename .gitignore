@@ -7,3 +7,4 @@ work/
 .idea/
 *.exe
 transcript
+*vscode*
