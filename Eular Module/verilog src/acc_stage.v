@@ -1,4 +1,4 @@
-module acc_stage #(parameter DATA_SIZE)
+module acc_stage #(parameter DATA_SIZE = 16)
 (
 input clk, 
 input rst,

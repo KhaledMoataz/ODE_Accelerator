@@ -10,8 +10,8 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
  output [DATA_SIZE-1:0] data_vec
 );
  
- reg [ADD_SIZE-1:0] pc_matrix_init =   16'b0;
- reg [ADD_SIZE-1:0] pc_vector_init =   16'b101;
+ reg [ADD_SIZE-1:0] pc_matrix_init =   16'h0032;
+ reg [ADD_SIZE-1:0] pc_vector_init =   16'h0000;
  wire [ADD_SIZE-1: 0] pc_mat, pc_vec, mux_mat_out, mux_vec_out, inc_mat_out, inc_vec_out;
  
  assign sel_vec = finished_one_row | final_done | init_start;
