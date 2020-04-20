@@ -7,13 +7,15 @@ module io_fsm(  clk , reset , int , process , eob , data , out1 , out2 , out3 , 
   
   reg[1:0] current_state, next_state ,counter,counter2; // Counter in decompressing & counter2 for last element
   wire[1:0] temp , one , temp2;
+  wire zero , c1 , c2 , of1 , of2;
   reg  [3:0]finish; // Which decompressor finished
   
   
+  assign zero = 0;
   assign one = 2'b01;
   
-  adder #(1) add1(counter , one , temp);
-  adder #(1) add2(counter2 , one ,temp2);
+  carry_lookahead_adder #(2) add1(counter , one , zero, temp , c1 , of1);
+  carry_lookahead_adder #(2) add2(counter2 , one , zero , temp2 , c2 , of2);
   localparam IDLE = 2'b00, decompress = 2'b01 , calculate = 2'b10;
   
   assign out1 = data[7:0];
