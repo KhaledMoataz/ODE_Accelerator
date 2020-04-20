@@ -4,10 +4,13 @@
 
 
 struct TestCase {
+    int n;
+    fixed_point n_fixed_point, tolerance, initialStep;
+    vector<fixed_point> X_0, X_1;
     bool initError;
     bool calcError;
     bool proceed;
-    fixed_point step;
+    fixed_point finalStep;
 };
 
 void randomBitset(mt19937 &gen, int zerosOffset, fixed_point& randomNumber) {
@@ -53,7 +56,10 @@ vector<TestCase> generateTestCases(int testCasesCount) {
         
         proceed = stepModule.updateStep(X_0, X_1, calculationError);
 
-        testCases.push_back({initializationError, calculationError, proceed, stepModule.getStep()});
+        testCases.push_back({
+            n, FixedPoint_Q9_7::floatToBitSet(n), tolerance, step, X_0, X_1, initializationError, 
+            calculationError, proceed, stepModule.getStep()
+        });
     }
 
     return testCases;
@@ -67,7 +73,19 @@ int main(int argc, char *argv[]) {
     ofstream writer("test_cases.txt");
 
     for(auto testCase: testCases) {
+        // test case size
+        writer << testCase.n << endl;
+
+        // initial values
+        writer << testCase.n_fixed_point << " " << testCase.tolerance << " " << testCase.initialStep << endl;
+
+        // inputs
+        for(int i = 0; i < testCase.n; i++)
+            writer << testCase.X_0[i] << " " << testCase.X_1[i] << endl;
+
+        // outputs
         writer << testCase.initError << " " << testCase.calcError << " " 
-            << testCase.proceed << " " << testCase.step << endl;
+            << testCase.proceed << " " << testCase.finalStep << endl;
     }
+    writer.close();
 }

@@ -18,17 +18,17 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	
 	// Wire signals
 	wire step_load, n_load, tolerance_load, error_load, increment_addresses, address_load, 
-		 memory_read, unused_output, adder_overflow, adder_carry_out,
+		 memory_read, unused_output, adder_overflow, adder_carry_out, dividend_load,
 		 loop_counter_load, error_clear, multiplier_done, divider_done, adder_negative_flag, 
 		 counter_zero, adder_is_add, multiplier_overflow, divider_overflow,
-		 multiplier_start, divider_start, decrement_counter, result_inputs_selector, result_load;
+		 multiplier_start, divider_start, decrement_counter, result_load;
 		 
 	wire [1:0] adder_inputs_selector, multiplier_inputs_selector, address_inputs_selector, 
 			   step_inputs_selector;
 	
-	wire [WORD_SIZE-1:0] step_reg_in, error, tolerance, n, x0_data, x1_data, loop_counter, temp,
+	wire [WORD_SIZE-1:0] step_reg_in, error, tolerance, n, x0_data, x1_data, loop_counter, dividend,
 						 multiplier_operand1, multiplier_operand2, adder_operand1, adder_operand2, 
-						 add_sub_operand_2, adder_out, multiplier_out, divider_out, result_in, result;
+						 adder_out, multiplier_out, divider_out, result;
 						 
 	wire [ADDRESS_WIDTH-1:0] address1, address2;
 						 
@@ -39,8 +39,8 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 							   error_load, n_load, tolerance_load, memory_read, step_load, 
 							   adder_is_add, error_clear, done,	proceed, multiplier_start, 
 							   divider_start, address_load, loop_counter_load, decrement_counter, 
-							   increment_addresses, result_inputs_selector, result_load, 
-							   error_failure, adder_inputs_selector, multiplier_inputs_selector, 
+							   increment_addresses, result_load, error_failure, dividend_load, 
+							   adder_inputs_selector, multiplier_inputs_selector, 
 							   address_inputs_selector, step_inputs_selector);
 	
 	// Registers 
@@ -50,7 +50,8 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	Register #(.WORD_SIZE(WORD_SIZE)) n_reg (clk, rst, n_load, memory_data1, n);
 	Register #(.WORD_SIZE(WORD_SIZE)) data1_reg (clk, rst, memory_read, memory_data1, x0_data);
 	Register #(.WORD_SIZE(WORD_SIZE)) data2_reg (clk, rst, memory_read, memory_data2, x1_data);
-	Register #(.WORD_SIZE(WORD_SIZE)) result_reg (clk, rst, result_load, result_in, result);
+	Register #(.WORD_SIZE(WORD_SIZE)) result_reg (clk, rst, result_load, adder_out, result);
+	Register #(.WORD_SIZE(WORD_SIZE)) dividend_reg (clk, rst, dividend_load, multiplier_out, dividend);
 	
 	// Address registers (up counters)
 	NegEdgeCounter #(.WORD_SIZE(ADDRESS_WIDTH), .IS_DOWN(0)) 
@@ -62,19 +63,15 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	NegEdgeCounter #(.WORD_SIZE(WORD_SIZE), .IS_DOWN(1)) 
 		loop_counter_reg (clk, rst, loop_counter_load, decrement_counter, n, loop_counter);
 	assign counter_zero = loop_counter == 'b0;
-	
-	//Temporary signal, should be removed when the adder natively supports subtraction
-	assign temp = (~adder_operand2 + 1); //2's complement to subtract
-	assign add_sub_operand_2 = adder_is_add ? adder_operand2 : temp;
 
 	//Arithmetic Units
 	carry_select_adder #(.N(WORD_SIZE)) 
-		adder (adder_operand1, add_sub_operand_2, 1'b0, adder_out, adder_carry_out, 
+		adder (adder_operand1, adder_operand2, ~adder_is_add, adder_out, adder_carry_out, 
 			   adder_overflow, adder_negative_flag);
 	multiplier_modified_booth multiplier(clk, rst, multiplier_operand1, multiplier_operand2, 
 										 multiplier_start, multiplier_out, multiplier_overflow, 
 										 multiplier_done);
-	multiplier_modified_booth divider(clk, rst, result, error, divider_start, divider_out, 
+	multiplier_modified_booth divider(clk, rst, dividend, error, divider_start, divider_out, 
 									  divider_overflow, divider_done);
 
 	
@@ -83,7 +80,7 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	assign adder_operand2 = adder_inputs_selector == 2'b00 ? 
 							x1_data : (adder_inputs_selector == 2'b01 ? result : tolerance);
 	
-	assign multiplier_operand1 = multiplier_inputs_selector == 2'b00 ? step_out : result;
+	assign multiplier_operand1 = multiplier_inputs_selector == 2'b00 ? step_out : dividend;
 	assign multiplier_operand2 = multiplier_inputs_selector == 2'b00 ? 
 								 step_out : (multiplier_inputs_selector == 2'b01 ? 
 								 			 tolerance : STEP_CALC_CONSTANT);
@@ -94,6 +91,5 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	assign address2 = address_inputs_selector == 2'b00 ? TOLERANCE_ADDRESS : x1_address;
 	assign step_reg_in = step_inputs_selector == 2'b00 ? 
 						  memory_data1 : (step_inputs_selector == 2'b01 ? divider_out : step_in);
-	assign result_in = result_inputs_selector == 1'b0 ? adder_out : multiplier_out;
 
 endmodule

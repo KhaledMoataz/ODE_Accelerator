@@ -13,12 +13,13 @@ run 100
 force rst 0
 run 100
 
-mem load -i "Step Module/dev/memory_data.mem" /ram/MEM
+mem load -i "Step Module/test/memory_data.mem" /ram/MEM
 run 100
 
 force init 1
-run 300
+run 100
 force init 0
+run 4000
 
 force start 1
 force x0_address 0
