@@ -20,7 +20,7 @@ module multiplier_modified_booth(
 
     // 2's Complement of multiplicand
     wire [15:0] multiplicand_complement;
-    carry_select_adder adder_multiplicand_complement(.A(~multiplicand_buffer), .B(16'h01), .cin(1'b0), .result(multiplicand_complement), .overflow_flag(), .carry());
+    carry_select_adder adder_multiplicand_complement(.A(~multiplicand_buffer), .B(16'h01), .is_subtract(1'b0), .result(multiplicand_complement), .overflow_flag(), .carry());
     // Double multiplicand
     wire [16:0] double_multiplicand;
     assign double_multiplicand = {multiplicand_buffer[15:0], 1'b0};
@@ -45,12 +45,12 @@ module multiplier_modified_booth(
                                 {A[15], 16'h0000};
 
     // Main adder used in loop
-    carry_select_adder adder_loop(.A(A), .B(B[15:0]), .cin(1'b0), .result(AB), .overflow_flag(), .carry());
+    carry_select_adder adder_loop(.A(A), .B(B[15:0]), .is_subtract(1'b0), .result(AB), .overflow_flag(), .carry());
     // Rounding
     wire [31:0] round;
     wire [31:0] result_after_round;
     assign round = 32'h00000040;
-    carry_select_adder#(32) adder_round(.A({A, Q[16:1]}), .B(round), .cin(1'b0), .result(result_after_round), .overflow_flag(), .carry());
+    carry_select_adder#(32) adder_round(.A({A, Q[16:1]}), .B(round), .is_subtract(1'b0), .result(result_after_round), .overflow_flag(), .carry());
     // Final Result
     assign result = result_after_round[22:7];
     assign overflow_flag = finish & !((result_after_round[31:22] == 10'b0000000000) | (result_after_round[31:22] == 10'b1111111111));
@@ -58,7 +58,7 @@ module multiplier_modified_booth(
     reg [2:0] counter;
     wire [2:0] counter_new_value;
     wire counter_finish;
-    carry_select_adder#(4) adder_counter(.A({1'b0, counter}), .B(4'h1), .cin(1'b0), .result({counter_finish, counter_new_value}), .overflow_flag(), .carry());
+    carry_select_adder#(4) adder_counter(.A({1'b0, counter}), .B(4'h1), .is_subtract(1'b0), .result({counter_finish, counter_new_value}), .overflow_flag(), .carry());
 
     always @(posedge start) begin
         start_buffer <= 1;

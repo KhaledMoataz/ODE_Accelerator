@@ -24,17 +24,18 @@ namespace FixedPoint_Q9_7 {
         return result;
     }
 
-    bitset<numSize> add(const bitset<numSize> a, const bitset<numSize> b, const bool &cin, bool &cout, bool &overflow, bool &negative) {
+    bitset<numSize> add(const bitset<numSize> a, const bitset<numSize> b, const bool &subtract, bool &cout, bool &overflow, bool &negative) {
         short temp_a, temp_b, temp_b_complement;
         int temp_result;
         temp_a = (short) a.to_ulong();
         temp_b = (short) b.to_ulong();
-        if (cin) {
-            temp_result = temp_a - ~temp_b;
+        if (subtract) {
+            temp_result = temp_a - temp_b;
+            cout = ((unsigned short) temp_a + (unsigned short) ~temp_b) & (1 << 16);
         } else {
             temp_result = temp_a + temp_b;
+            cout = ((unsigned short) temp_a + (unsigned short) temp_b) & (1 << 16);
         }
-        cout = ((unsigned short) temp_a + (unsigned short) temp_b) & (1 << 16);
         negative = temp_result < 0;
         bitset<numSize> result = temp_result;
         if (temp_result != short(temp_result)) {
