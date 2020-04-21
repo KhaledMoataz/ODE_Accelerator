@@ -24,7 +24,7 @@ JOIN_PIPE  #(ADD_SIZE, DATA_SIZE) join_pipe(rst, clk, data_ready1, data_ready2, 
 NegEdgeCounter #(MAX_DIM,0) count_cloumns(clk, rst, DONE, return_default_state, 6'b0, row_count);
 COMPARATOR_EULAR #(MAX_DIM) if_end_of_op(row_count, shape1_0, end_op);
 
-always @(posedge clk or posedge end_op) begin
+always @(posedge clk or posedge end_op or posedge rst) begin
 	if(rst) begin
 		finish <= 1'b0;
 		DONE <= 1'b0;

@@ -22,13 +22,13 @@ always @(negedge clk or posedge rst_async)
     begin
         if(rst_async == 1'b1 || rst_sync == 1'b0)
             begin
-				temp3 <= 0;
+				        temp3 <= 0;
                 temp1 <= 0;
                 temp2 <= 0;
             end
         else
             begin
-				temp3 <= start_mult_in;
+				        temp3 <= start_mult_in;
                 temp1 <= d1;
                 temp2 <= d2;
             end
