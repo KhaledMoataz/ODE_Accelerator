@@ -1,6 +1,6 @@
 #!/usr/bin/tclsh
-source RAM/fill_ram.do
 
+# Parameters
 set test_dir "Step Module/test";
 set test_iterations 10
 set test_file_name "test.txt"
