@@ -21,29 +21,32 @@ class StepModule {
         for(int i = 0; i < X_0.size(); i++) {
             // elementwiseError = X_0 - X_1
             fixed_point elementwiseError = 
-                FixedPoint_Q9_7::add(X_0[i], ~X_1[i], true, carry, overflow, negative);
+                FixedPoint_Q9_7::add(X_0[i], X_1[i], true, carry, overflow, negative);
 
             if(overflow) {
+                cout << "Overflow in calculating elementwise error at index " << i << endl;
                 calculationError = true;
                 return error;
             }
 
             // error += abs(elementwiseError)
             if(negative)
-                error = FixedPoint_Q9_7::add(error, ~elementwiseError, true, carry, overflow, negative);
+                error = FixedPoint_Q9_7::add(error, elementwiseError, true, carry, overflow, negative);
             else
                 error = FixedPoint_Q9_7::add(error, elementwiseError, false, carry, overflow, negative);
         
             if(overflow) {
+                cout << "Overflow in accumulating error at index " << i << endl;
                 calculationError = true;
                 return error;
             }
         }
 
         // Check if error > tolerance
-        FixedPoint_Q9_7::add(error, ~tolerance, true, carry, overflow, negative);
+        FixedPoint_Q9_7::add(error, tolerance, true, carry, overflow, negative);
 
         if(overflow) {
+            cout << "Overflow in comparing error to tolerance at index " << endl;
             calculationError = true;
             return error;
         }
@@ -109,7 +112,8 @@ public:
         }
         
         // calculate new step value
-        fixed_point temp = FixedPoint_Q9_7::divide(stepCalculationDividend, error, overflow);
+        // TODO change to divide
+        fixed_point temp = FixedPoint_Q9_7::multiply(stepCalculationDividend, error, overflow);
 
         if(overflow) {
             calculationError = true;
