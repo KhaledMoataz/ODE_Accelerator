@@ -71,8 +71,8 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	multiplier_modified_booth multiplier(clk, rst, multiplier_operand1, multiplier_operand2, 
 										 multiplier_start, multiplier_out, multiplier_overflow, 
 										 multiplier_done);
-	multiplier_modified_booth divider(clk, rst, dividend, error, divider_start, divider_out, 
-									  divider_overflow, divider_done);
+	division divider(clk, rst, dividend, error, divider_start, divider_out, divider_overflow, 
+					divider_done);
 
 	
 	// Inputs selectors

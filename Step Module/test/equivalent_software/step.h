@@ -112,8 +112,7 @@ public:
         }
         
         // calculate new step value
-        // TODO change to divide
-        fixed_point temp = FixedPoint_Q9_7::multiply(stepCalculationDividend, error, overflow);
+        fixed_point temp = FixedPoint_Q9_7::divide(stepCalculationDividend, error, overflow);
 
         if(overflow) {
             calculationError = true;
