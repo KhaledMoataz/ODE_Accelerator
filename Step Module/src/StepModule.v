@@ -12,7 +12,7 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	//TODO: Update adder interface
 
 	// Constants
-	localparam [ADDRESS_WIDTH-1:0] N_ADDRESS = 'd5, TOLERANCE_ADDRESS = 'd6, STEP_ADDRESS = 'd7;
+	localparam [ADDRESS_WIDTH-1:0] N_ADDRESS = 'd0, TOLERANCE_ADDRESS = 'd1, STEP_ADDRESS = 'd2;
 	localparam [WORD_SIZE-1:0] STEP_CALC_CONSTANT = 'b1110011;  // Fixed point representation of 0.9
 		
 	
