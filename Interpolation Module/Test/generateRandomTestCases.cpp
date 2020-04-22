@@ -117,7 +117,7 @@ int main() {
             }
             // k = temp1/temp2 (note will use mul mo2qtn)
             overflow = false;
-            k = FixedPoint_Q9_7::multiply(temp1,temp2,overflow);
+            k = FixedPoint_Q9_7::divide(temp1,temp2,overflow);
             if (overflow)
             {
                 advance = false;

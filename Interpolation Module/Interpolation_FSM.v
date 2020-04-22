@@ -1,11 +1,11 @@
 module InterpolationFSM(
-    input clk,rst,init,alert,update,start,multipiler_done, divider_done,m_is_zero,
+    input clk,rst,init,alert,update,start,multipiler_done, divider_done,m_is_zero,overflow,
     output un_add_en,uz_add_en,uk_add_en,
     un_value,
     tn_add_en,tz_add_en,
     tz_value_en,tn_value_en,tk_value_en,
     un_add_temp_en,temp1_en,temp2_en,k_en,
-    MAR1_en,MAR2_en,MDR2_en,read_sg,write_sg,
+    MAR1_en,MAR2_en,write_sg,
     m_add_en,m_value_en,
     un_add_mux_sel,uk_add_mux_sel,un_add_temp_mux_sel,
     tn_add_mux_sel,tz_add_mux_sel,mdr2_mux_sel,
@@ -13,7 +13,7 @@ module InterpolationFSM(
     start_div, start_mul,
     
     done_sg,rst_init1,
-    add_sig, sub_sg,overflow,
+    add_sig, sub_sg,
 
     output[1:0] mar1_mux_select,mar2_mux_sel,
 
@@ -50,8 +50,8 @@ module InterpolationFSM(
     assign MAR2_en = current_state == LOOP1 | current_state == LOOP3 | current_state == LOOP9 | 
                         current_state == INIT1 | current_state == UPDATE1;
     
-    assign MDR2_en = current_state == LOOP4 | current_state == LOOP10;
-    assign read_sg = current_state == LOOP1 | current_state == INIT1 | current_state == UPDATE1;
+    //assign MDR2_en = current_state == LOOP4 | current_state == LOOP10;
+    //assign read_sg = current_state == LOOP1 | current_state == INIT1 | current_state == UPDATE1;
     assign write_sg = current_state == LOOP4 | current_state == LOOP10;
     assign m_add_en = current_state == INIT1;
     assign m_value_en = current_state == START2 | current_state == LOOP6;

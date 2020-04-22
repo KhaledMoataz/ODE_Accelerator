@@ -23,6 +23,7 @@ set end_of_ram_content [lindex $lines 2];
 set ram_contents [lrange $lines 3 $end_of_ram_content]; list
 set outputs [lrange $lines 1+$end_of_ram_content end]; list
 
+set init_ports 0;
 # Start simulation, generate clock, and reset
 vsim interpolationTestMain
 add wave *
@@ -32,6 +33,8 @@ force alert_sg 0
 force update_sg 0
 force start_sg 0
 force init_sg 0
+force uk_port 'd$init_ports
+force tk_port 'd$init_ports
 run 100
 force rst 0
 

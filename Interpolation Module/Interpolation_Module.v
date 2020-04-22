@@ -20,11 +20,11 @@ wire un_add_en,uz_add_en,uk_add_en,
     tz_value_en,tn_value_en,tk_value_en,
     un_add_temp_en,temp1_en,temp2_en,k_en,
     
-    MAR1_en,MAR2_en,MDR2_en,
+    MAR1_en,MAR2_en,
     m_add_en,m_value_en,
 
     //signals
-    read_sg,write_sg,
+    write_sg,
     add_sig, sub_sg,
 
     //mux selectors
@@ -54,7 +54,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     un_add_in,uk_add_in,un_add_temp_in,
     tn_add_in,tz_add_in;
     //utilities
-    wire[WORD_SIZE-1:0] adder_result_prefinal,adder_result,mul_result,div_result,adder_A_op,adder_B_op,adder_B_op_final,adder_A_op_final;
+    wire[WORD_SIZE-1:0] adder_result_prefinal,adder_result,mul_result,div_result,adder_A_op,adder_B_op,adder_A_op_final;
     wire overflow_flag_mul,overflow_flag_div,overflow_flag_adder,overflow_flag,carry_out_adder,negative_adder,
     mul_done,div_done,deal_as_int;
     wire m_is_zero,rst_tn_tz_value,rst_init1;
@@ -108,8 +108,8 @@ wire un_add_en,uz_add_en,uk_add_en,
     mux_2_1 #(.SIZE(WORD_SIZE)) m_value_mux      (m_value_mux_sel,ram_data1,adder_result,m_value_in);
 
 
-    multiplier_booth multiplier (clk,rst,temp1_out,k_out,start_mul,mul_result,overflow_flag_mul,mul_done);
-    multiplier_booth division (clk,rst,temp1_out,adder_result,start_div,div_result,overflow_flag_div,div_done);
+    multiplier multiplier (clk,rst,temp1_out,k_out,start_mul,mul_result,overflow_flag_mul,mul_done);
+    division divider (clk,rst,temp1_out,adder_result,start_div,div_result,overflow_flag_div,div_done);
 
     mux_16_1 #(.SIZE(WORD_SIZE)) adder_A_op_mux (adder_opA_mux_sel,
                                                 un_add_out,tz_add_out,uz_add_out,tk_value_out,
@@ -128,24 +128,24 @@ wire un_add_en,uz_add_en,uk_add_en,
                                 adder_opA_mux_sel == 4'b0010 | adder_opA_mux_sel == 4'b0110 | 
                                 adder_opA_mux_sel == 4'b0111 | adder_opA_mux_sel == 4'b1001 ) ? 1'b1 : 1'b0;
     assign adder_A_op_final = (deal_as_int == 1'b1) ? {adder_A_op<<7} : adder_A_op;
-    carry_select_adder #(.N(WORD_SIZE)) adder (adder_A_op_final,adder_B_op,sub_sg,adder_result_prefinal,carry_out_adder,
+    adder #(.N(WORD_SIZE)) adder (adder_A_op_final,adder_B_op,sub_sg,adder_result_prefinal,carry_out_adder,
                                                 overflow_flag_adder,negative_adder);
 
     assign adder_result = (deal_as_int == 1'b1) ? {adder_result_prefinal>>7}: adder_result_prefinal;
 
-    InterpolationFSM fsm (clk,rst,init_sg,alert_sg,update_sg,start_sg,mul_done,div_done,m_is_zero,
+    InterpolationFSM fsm (clk,rst,init_sg,alert_sg,update_sg,start_sg,mul_done,div_done,m_is_zero,overflow_flag,
                            un_add_en,uz_add_en,uk_add_en,
                            un_value_en,
                            tn_add_en,tz_add_en,
                            tz_value_en,tn_value_en,tk_value_en,
                            un_add_temp_en,temp1_en,temp2_en,k_en,
-                           MAR1_en,MAR2_en,MDR2_en,read_sg,write_sg,
+                           MAR1_en,MAR2_en,write_sg,
                            m_add_en,m_value_en,
                            un_add_mux_sel,uk_add_mux_sel,un_add_temp_mux_sel,
                            tn_add_mux_sel,tz_add_mux_sel,mdr2_mux_sel,
                            m_value_mux_sel,start_div,start_mul,
                            done_sg,rst_init1,
-                           add_sig,sub_sg,overflow_flag,
+                           add_sig,sub_sg,
                             mar1_mux_select,mar2_mux_sel,
                             adder_opA_mux_sel,adder_opB_mux_sel
                         );
