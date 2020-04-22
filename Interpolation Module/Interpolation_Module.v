@@ -57,10 +57,10 @@ wire un_add_en,uz_add_en,uk_add_en,
     wire[WORD_SIZE-1:0] adder_result_prefinal,adder_result,mul_result,div_result,adder_A_op,adder_B_op,adder_B_op_final,adder_A_op_final;
     wire overflow_flag_mul,overflow_flag_div,overflow_flag_adder,overflow_flag,carry_out_adder,negative_adder,
     mul_done,div_done,deal_as_int;
-    wire m_is_zero;
+    wire m_is_zero,rst_tn_tz_value,rst_init1;
 
     assign m_is_zero = ~| m_value_out;
-    
+    assign rst_tn_tz_value = rst_init1 | rst ;
 
     //Constants
     localparam [ADDRESS_WIDTH-1:0] t0_add = 16'd1,t1_add = 16'd2, m_const_add = 16'd0, u0_add = 16'd6, 
@@ -73,9 +73,9 @@ wire un_add_en,uz_add_en,uk_add_en,
     
     Register #(.WORD_SIZE(ADDRESS_WIDTH)) tn_add      (clk, rst, tn_add_en, tn_add_in, tn_add_out);
     Register #(.WORD_SIZE(ADDRESS_WIDTH)) tz_add      (clk, rst, tz_add_en, tz_add_in, tz_add_out);
-    Register #(.WORD_SIZE(WORD_SIZE)) tn_value     (clk, rst, tn_value_en,tz_value_out, tn_value_out);
+    Register #(.WORD_SIZE(WORD_SIZE)) tn_value     (clk, rst_tn_tz_value, tn_value_en,tz_value_out, tn_value_out);
     Register #(.WORD_SIZE(WORD_SIZE)) tk_value      (clk, rst, tk_value_en,tk_port, tk_value_out);
-    Register #(.WORD_SIZE(WORD_SIZE)) tz_value    (clk, rst, tz_value_en,ram_data1, tz_value_out);
+    Register #(.WORD_SIZE(WORD_SIZE)) tz_value    (clk, rst_tn_tz_value, tz_value_en,ram_data1, tz_value_out);
     
     Register #(.WORD_SIZE(WORD_SIZE)) temp1      (clk, rst, temp1_en, adder_result, temp1_out);
     Register #(.WORD_SIZE(WORD_SIZE)) temp2      (clk, rst, temp2_en, adder_result, temp2_out);
@@ -144,7 +144,7 @@ wire un_add_en,uz_add_en,uk_add_en,
                            un_add_mux_sel,uk_add_mux_sel,un_add_temp_mux_sel,
                            tn_add_mux_sel,tz_add_mux_sel,mdr2_mux_sel,
                            m_value_mux_sel,start_div,start_mul,
-                           done_sg,
+                           done_sg,rst_init1,
                            add_sig,sub_sg,overflow_flag,
                             mar1_mux_select,mar2_mux_sel,
                             adder_opA_mux_sel,adder_opB_mux_sel

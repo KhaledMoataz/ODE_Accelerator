@@ -12,7 +12,7 @@ module InterpolationFSM(
     m_value_mux_sel,
     start_div, start_mul,
     
-    done_sg,
+    done_sg,rst_init1,
     add_sig, sub_sg,overflow,
 
     output[1:0] mar1_mux_select,mar2_mux_sel,
@@ -64,7 +64,7 @@ module InterpolationFSM(
     assign sub_sg = current_state == START1 | current_state == START2 | current_state == LOOP2 | current_state == LOOP6;
     assign done_sg = current_state == INIT3 | current_state == UPDATE2 | current_state == ALERT1 | current_state == LOOP11;
     
-
+    assign rst_init1 = current_state == INIT1;
     assign not_first = (current_state == LOOP9)? 1'b1 : ((current_state == LOOP10) ? 1'b0 : not_first);
 
     //selectors
