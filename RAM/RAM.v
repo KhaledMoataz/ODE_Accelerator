@@ -16,16 +16,15 @@ assign data2 = MEM[addr2];
 
 integer i;
 
-always @(rst) begin
+always @(posedge rst or posedge clk) begin
 	if (rst) begin
 		for (i = 0; i < (1<<ADDRESS_SIZE); i = i+1) begin
 			MEM[i] = {WORD_SIZE{1'b0}};
 		end
 	end
-end
-
-always @(posedge clk) begin
-	MEM[addr1] = (|we1) ? data1 : MEM[addr1];
+	else begin
+		MEM[addr1] = (|we1) ? data1 : MEM[addr1];
+	end
 end
 
 endmodule

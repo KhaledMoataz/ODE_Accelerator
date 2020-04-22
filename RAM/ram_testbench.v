@@ -1,4 +1,4 @@
-module testbench ();
+module ram_testbench ();
 
 localparam ADDRESS_SIZE = 4,
 	WORD_SIZE = 32;
@@ -7,21 +7,20 @@ reg clk, rst, we1;
 reg [ADDRESS_SIZE-1:0] addr1, addr2;
 wire [WORD_SIZE-1:0] data1, data2;
 
-reg [WORD_SIZE-1:0] test_values [1:0];
+reg [WORD_SIZE-1:0] test_values [2:0];
 
 integer j = 0;
 
 assign data1 = (|we1) ? test_values[j] : {WORD_SIZE{1'bZ}};
-//assign data2 = (|we2) ? test_values[j] : {WORD_SIZE{1'bZ}};
 
-RAM #(.ADDRESS_SIZE(ADDRESS_SIZE), .WORD_SIZE(WORD_SIZE)) 
-	RAM1(clk, rst, we1, addr1, addr2, 
-		data1, data2);
+RAM // # (.ADDRESS_SIZE(ADDRESS_SIZE), .WORD_SIZE(WORD_SIZE)) 
+	ram(clk, rst, we1, addr1, addr2, data1, data2);
 
 initial begin
 	// initializing test_values
 	test_values[0] = 32'haaaaaaaa;
 	test_values[1] = 32'h55555555;
+	test_values[2] = 32'hffffffff;
 	// init
 	rst = 0;
 	we1 = 0;
@@ -40,8 +39,10 @@ initial begin
 	// testing writing from first bus
 	addr1 = 4'b0011;
 	we1 = 1;
-	#100;
-	if (RAM1.MEM[addr1] != test_values[j])
+	#50;
+	we1 = 0;
+	#50;
+	if (data1 != test_values[j])
 		$display("Writing failed");
 	
 	// testing reading
@@ -57,8 +58,10 @@ initial begin
 	j = j + 1;
 	addr1 = 4'b0001;
 	we1 = 1;
-	#100;
-	if (RAM1.MEM[addr1] != test_values[j])
+	#50;
+	we1 = 0;
+	#50;
+	if (data1 != test_values[j])
 		$display("Writing failed");
 	// reading
 	addr2 = addr1;
@@ -69,8 +72,21 @@ initial begin
 		$display("Reading new value from other bus failed");
 	if (data1 != {WORD_SIZE{1'b0}})
 		$display("Reading unchanged value on first bus failed");
-	if (RAM1.MEM[4'b0011] != test_values[0])
+	#50;
+	addr1 = 4'b0011;
+	#50;
+	if (data1 != test_values[0])
 		$display("Previously written value was changed");
+	
+	// testing overwriting new value
+	j = j + 1;
+	addr1 = 4'b0001;
+	we1 = 1;
+	#50;
+	we1 = 0;
+	#50;
+	if (data1 != test_values[j])
+		$display("Overwriting new value failed");
 end
 
 always begin 
