@@ -1,4 +1,4 @@
-module carry_lookahead_adder
+module adder
     #(parameter N=16)
     (
         input [N-1:0] A,

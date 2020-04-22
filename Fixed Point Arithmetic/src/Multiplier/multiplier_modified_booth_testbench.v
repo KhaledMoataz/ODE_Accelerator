@@ -9,6 +9,7 @@ module multiplier_modified_booth_testbench;
     wire finish;
     reg clk;
     reg start;
+    reg rst;
 
     integer i;
 
@@ -20,10 +21,16 @@ module multiplier_modified_booth_testbench;
         end
     end
 
-    multiplier_modified_booth multiplier_unit(clk, 1'b0, A, B, start, result, overflow_flag, finish);
+    multiplier multiplier_unit(clk, rst, A, B, start, result, overflow_flag, finish);
 
     initial
     begin
+        A <= 16'h0000;
+        B <= 16'h0000;
+        start <= 0;
+        rst <= 1;
+        #10
+        rst <= 0;
         $readmemb("ODE_Accelerator\\Fixed Point Arithmetic\\test\\multiplier_test_cases.txt", read_data);
         #1
         for (i=0; i<100; i=i+1)
@@ -31,10 +38,11 @@ module multiplier_modified_booth_testbench;
             #5
             {A, B, expected_result, expected_overflow_flag} = read_data[i];
             start <= 1;
-            #85
+            #40
+            start <= 0;
+            #45
             if (finish != 1'b1 || overflow_flag != expected_overflow_flag || expected_result != result)
                 $display("%d : FAILED", i);
-            start <= 0;
         end
         $stop;
     end
