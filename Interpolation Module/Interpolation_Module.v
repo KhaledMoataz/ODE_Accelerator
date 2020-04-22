@@ -29,11 +29,11 @@ wire un_add_en,uz_add_en,uk_add_en,
 
     //mux selectors
     un_add_mux_sel,uk_add_mux_sel,un_add_temp_mux_sel,
-    tn_add_mux_sel,tz_add_mux_sel,mar2_mux_sel,mdr2_mux_sel,
+    tn_add_mux_sel,tz_add_mux_sel,mdr2_mux_sel,
     m_value_mux_sel,
     start_div, start_mul;
     
-    wire[1:0] mar1_mux_select;
+    wire[1:0] mar1_mux_select,mar2_mux_sel;
 
     wire[3:0] adder_opA_mux_sel;
     wire[2:0] adder_opB_mux_sel;
@@ -63,7 +63,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     
 
     //Constants
-    localparam [ADDRESS_WIDTH-1:0] t0_add = 16'd1,t1_add = 16'd2, m_const_add = 16'd0, u0_add = 16'd10, 
+    localparam [ADDRESS_WIDTH-1:0] t0_add = 16'd1,t1_add = 16'd2, m_const_add = 16'd0, u0_add = 16'd6, 
                     u_add_offset = 16'b0000001000000000;
     //Registers
     Register #(.WORD_SIZE(ADDRESS_WIDTH)) un_add      (clk, rst, un_add_en,un_add_in, un_add_out);
@@ -93,7 +93,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     Register #(.WORD_SIZE(ADDRESS_WIDTH)) un_add_temp      (clk, rst, un_add_temp_en, un_add_temp_in, un_add_temp_out);
 
     //muxes
-    mux_2_1 #(.SIZE(ADDRESS_WIDTH)) un_add_mux      (un_add_mux_sel,16'd10,uz_add_out,un_add_in);
+    mux_2_1 #(.SIZE(ADDRESS_WIDTH)) un_add_mux      (un_add_mux_sel,u0_add,uz_add_out,un_add_in);
     mux_2_1 #(.SIZE(ADDRESS_WIDTH)) uk_add_mux      (uk_add_mux_sel,uk_port,adder_result,uk_add_in);
     
     mux_2_1 #(.SIZE(ADDRESS_WIDTH)) tn_add_mux      (tn_add_mux_sel,t0_add,tz_add_out,tn_add_in);
@@ -102,7 +102,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     mux_2_1 #(.SIZE(ADDRESS_WIDTH)) un_add_temp_mux      (un_add_temp_mux_sel,un_add_out,adder_result,un_add_temp_in);
 
     mux_4_1 #(.SIZE(ADDRESS_WIDTH)) MAR1_mux      (mar1_mux_select,tz_add_out,adder_result,m_add_out,uz_add_out,MAR1_in);
-    mux_2_1 #(.SIZE(ADDRESS_WIDTH)) MAR2_mux      (mar2_mux_sel,un_add_temp_out,uk_add_out,MAR2_in);
+    mux_4_1 #(.SIZE(ADDRESS_WIDTH)) MAR2_mux      (mar2_mux_sel,un_add_temp_out,uk_add_out,m_add_out,m_const_add,MAR2_in);
     
 
     mux_2_1 #(.SIZE(WORD_SIZE)) m_value_mux      (m_value_mux_sel,ram_data1,adder_result,m_value_in);
@@ -119,16 +119,16 @@ wire un_add_en,uz_add_en,uk_add_en,
 
     mux_8_1 #(.SIZE(WORD_SIZE)) adder_B_op_mux (adder_opB_mux_sel,
                                                 16'b0000000010000000,tn_value_out,tk_value_out,
-                                                ram_data2,un_value_out,u_add_offset,
+                                                ram_data2,un_value_out,ram_data2,
                                                 16'd0,16'd0,adder_B_op);
 
-    assign adder_B_op_final = (sub_sg == 1'b1)? ~adder_B_op : adder_B_op;
+    //assign adder_B_op_final = (sub_sg == 1'b1)? ~adder_B_op : adder_B_op;
 
     assign deal_as_int = (adder_opA_mux_sel == 4'b0000 | adder_opA_mux_sel == 4'b0001 | 
                                 adder_opA_mux_sel == 4'b0010 | adder_opA_mux_sel == 4'b0110 | 
                                 adder_opA_mux_sel == 4'b0111 | adder_opA_mux_sel == 4'b1001 ) ? 1'b1 : 1'b0;
     assign adder_A_op_final = (deal_as_int == 1'b1) ? {adder_A_op<<7} : adder_A_op;
-    carry_select_adder #(.N(WORD_SIZE)) adder (adder_A_op_final,adder_B_op_final,sub_sg,adder_result_prefinal,carry_out_adder,
+    carry_select_adder #(.N(WORD_SIZE)) adder (adder_A_op_final,adder_B_op,sub_sg,adder_result_prefinal,carry_out_adder,
                                                 overflow_flag_adder,negative_adder);
 
     assign adder_result = (deal_as_int == 1'b1) ? {adder_result_prefinal>>7}: adder_result_prefinal;
@@ -142,11 +142,11 @@ wire un_add_en,uz_add_en,uk_add_en,
                            MAR1_en,MAR2_en,MDR2_en,read_sg,write_sg,
                            m_add_en,m_value_en,
                            un_add_mux_sel,uk_add_mux_sel,un_add_temp_mux_sel,
-                           tn_add_mux_sel,tz_add_mux_sel,mar2_mux_sel,mdr2_mux_sel,
+                           tn_add_mux_sel,tz_add_mux_sel,mdr2_mux_sel,
                            m_value_mux_sel,start_div,start_mul,
                            done_sg,
                            add_sig,sub_sg,overflow_flag,
-                            mar1_mux_select,
+                            mar1_mux_select,mar2_mux_sel,
                             adder_opA_mux_sel,adder_opB_mux_sel
                         );
     
@@ -161,7 +161,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     assign overflow = overflow_flag;
     //for test only
     assign AdderAOP = adder_A_op_final;
-    assign AdderBOP = adder_B_op_final;
+    assign AdderBOP = adder_B_op;
     assign ADDERRESULT = adder_result;
     assign MUL_RESULTT = mul_result;
     assign DIV_RESULTT = div_result;

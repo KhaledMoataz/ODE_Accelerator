@@ -8,14 +8,14 @@ module InterpolationFSM(
     MAR1_en,MAR2_en,MDR2_en,read_sg,write_sg,
     m_add_en,m_value_en,
     un_add_mux_sel,uk_add_mux_sel,un_add_temp_mux_sel,
-    tn_add_mux_sel,tz_add_mux_sel,mar2_mux_sel,mdr2_mux_sel,
+    tn_add_mux_sel,tz_add_mux_sel,mdr2_mux_sel,
     m_value_mux_sel,
     start_div, start_mul,
     
     done_sg,
     add_sig, sub_sg,overflow,
 
-    output[1:0] mar1_mux_select,
+    output[1:0] mar1_mux_select,mar2_mux_sel,
 
     output[3:0] adder_opA_mux_sel,
     output[2:0] adder_opB_mux_sel
@@ -47,10 +47,11 @@ module InterpolationFSM(
     assign temp2_en = current_state == LOOP9;
     assign k_en = current_state == START4;
     assign MAR1_en = current_state == INIT2 | current_state == UPDATE1 | current_state == START1 | current_state == START4 | current_state == LOOP3;
-    assign MAR2_en = current_state == LOOP1 | current_state == LOOP3 | current_state == LOOP9;
+    assign MAR2_en = current_state == LOOP1 | current_state == LOOP3 | current_state == LOOP9 | 
+                        current_state == INIT1 | current_state == UPDATE1;
     
     assign MDR2_en = current_state == LOOP4 | current_state == LOOP10;
-    assign read_sg = current_state == LOOP1;
+    assign read_sg = current_state == LOOP1 | current_state == INIT1 | current_state == UPDATE1;
     assign write_sg = current_state == LOOP4 | current_state == LOOP10;
     assign m_add_en = current_state == INIT1;
     assign m_value_en = current_state == START2 | current_state == LOOP6;
@@ -72,7 +73,8 @@ module InterpolationFSM(
     assign un_add_temp_mux_sel =  (current_state == LOOP4 | current_state == LOOP5) ? 1'b1 : 1'b0;
     assign tn_add_mux_sel = current_state == UPDATE1 ? 1'b1 : 1'b0;
     assign tz_add_mux_sel = current_state == UPDATE1 ? 1'b1 : 1'b0;
-    assign mar2_mux_sel = (current_state == LOOP3 | current_state == LOOP9) ? 1'b1 : 1'b0;
+    assign mar2_mux_sel = (current_state == LOOP3 | current_state == LOOP9) ? 2'b01 : (
+                            current_state == UPDATE1 ? 2'b10 : (current_state == INIT1 ? 2'b11 : 2'b00 ));
     assign mdr2_mux_sel = (current_state == LOOP4 | current_state == LOOP10) ? 1'b1 : 1'b0;
     assign m_value_mux_sel = current_state == LOOP6 ? 1'b1 : 1'b0;
 

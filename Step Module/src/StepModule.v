@@ -1,16 +1,13 @@
-module StepModule #(parameter WORD_SIZE = 16, ADDRESS_WIDTH = 4)
+module StepModule #(parameter WORD_SIZE = 16, ADDRESS_WIDTH = 16)
 (
 input clk, rst, init, start, read_step, 
 input [WORD_SIZE-1:0] step_in, 
 input [ADDRESS_WIDTH-1:0] x0_address, x1_address,
+input [WORD_SIZE-1:0] memory_data1, memory_data2,
 output done, proceed, error_failure,
 output [ADDRESS_WIDTH-1:0] memory_address1, memory_address2, 
-output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
+output [WORD_SIZE-1:0] step_out
 );
-	//TODO: Add divider module.
-	//TODO: Calculate the multiplication only once at init.
-	//TODO: Update adder interface
-
 	// Constants
 	localparam [ADDRESS_WIDTH-1:0] N_ADDRESS = 'd0, TOLERANCE_ADDRESS = 'd1, STEP_ADDRESS = 'd2;
 	localparam [WORD_SIZE-1:0] STEP_CALC_CONSTANT = 'b1110011;  // Fixed point representation of 0.9
@@ -71,8 +68,8 @@ output [WORD_SIZE-1:0] memory_data1, memory_data2, step_out
 	multiplier_modified_booth multiplier(clk, rst, multiplier_operand1, multiplier_operand2, 
 										 multiplier_start, multiplier_out, multiplier_overflow, 
 										 multiplier_done);
-	multiplier_modified_booth divider(clk, rst, dividend, error, divider_start, divider_out, 
-									  divider_overflow, divider_done);
+	division divider(clk, rst, dividend, error, divider_start, divider_out, divider_overflow, 
+					 divider_done);
 
 	
 	// Inputs selectors
