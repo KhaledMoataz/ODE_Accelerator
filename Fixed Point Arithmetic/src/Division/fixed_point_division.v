@@ -22,7 +22,7 @@ module division (
     reg sign;
     reg f;
     // Main adder used in loop
-    carry_select_adder#(24) adder_loop(.A({1'b0, rem[45:23]}), .B({8'b00000000, B}), .is_subtract(f), .result(add_result), .overflow_flag(), .carry(), .negative());
+    adder#(24) adder_loop(.A({1'b0, rem[45:23]}), .B({8'b00000000, B}), .is_subtract(f), .result(add_result), .overflow_flag(), .carry(), .negative());
     assign result = (sign)? -rem[15:0]: rem[15:0];
     assign overflow_flag = (rem[22:15] != 0);
     // Counter
@@ -30,20 +30,23 @@ module division (
     wire [5:0] counter_new_value;
     wire counter_finish;
     assign counter_finish = !(counter_new_value ^ 5'b10111);
-    carry_select_adder#(6) adder_counter(.A(counter), .B(6'b1), .is_subtract(1'b0), .result(counter_new_value), .overflow_flag(), .carry(), .negative());
-
-    always @(posedge start) begin
-        start_buffer <= 1;
-    end
+    adder#(6) adder_counter(.A(counter), .B(6'b1), .is_subtract(1'b0), .result(counter_new_value), .overflow_flag(), .carry(), .negative());
 
     always @(posedge clk) begin
+        if (!start) begin
+            start_buffer <= 0;
+        end
         if (rst) begin
             start_buffer <= 0;
             finish <= 0;
             working <= 0;
+            rem <= 0;
+            sign <= 0;
+            f <= 0;
+            counter <= 5'b0;
         end
-        else if (start_buffer) begin
-            start_buffer <= 0;
+        else if (start && !start_buffer) begin
+            start_buffer <= 1;
             counter <= 5'b0;
             sign <= dividen[15] ^ divisor[15];
             rem[45:24] <= 0;
