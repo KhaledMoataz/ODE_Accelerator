@@ -1,6 +1,6 @@
 `include "which_adder.v"
 
-module carry_select_adder
+module adder
     #(parameter N=16)
     (
         input [N-1:0] A,
@@ -31,4 +31,4 @@ module carry_select_adder
     assign carry = cs[N/2-1];
     assign overflow_flag = carry ^ intermediate_cs[N/2-1];
     assign negative = overflow_flag ^ result[N-1];
-endmodule: carry_select_adder
+endmodule

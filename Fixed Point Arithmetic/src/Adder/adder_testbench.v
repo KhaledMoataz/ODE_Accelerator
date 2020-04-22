@@ -1,4 +1,4 @@
-module carry_select_adder_testbench;
+module adder_testbench;
     reg [15:0] A;
     reg [15:0] B;
     reg cin;
@@ -12,7 +12,7 @@ module carry_select_adder_testbench;
     reg expected_negative;
     reg[52:0] read_data [0:100];
 
-    carry_select_adder adder_unit(A, B, cin, result, cout, overflow_flag, negative);
+    adder adder_unit(A, B, cin, result, cout, overflow_flag, negative);
     integer i;
 
     initial

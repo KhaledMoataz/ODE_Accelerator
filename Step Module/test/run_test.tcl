@@ -1,8 +1,8 @@
 #!/usr/bin/tclsh
 
 # Parameters
-set test_dir "Step Module/test";
-set test_iterations 10
+set test_dir "Step Module/test"
+set test_iterations 30
 set test_file_name "test.txt"
 set test_generator_file_name "test_generator"
 set ram_sim_path "/TestStepModule/ram/MEM";
@@ -26,8 +26,12 @@ set ram_contents [lrange $lines 1+$iterations end]; list
 vsim TestStepModule
 add wave *
 add wave step/controlFSM/current_state
+add wave step/error
 force clk 1 0, 0 50 -r 100
 force rst 1
+force start 0
+force init 0
+force read_step 0
 force write_enable 0
 run 100
 force rst 0
