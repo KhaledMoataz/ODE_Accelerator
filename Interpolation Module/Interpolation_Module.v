@@ -63,7 +63,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     
 
     //Constants
-    localparam [ADDRESS_WIDTH-1:0] t0_add = 16'd1,t1_add = 16'd2, m_const_add = 16'd0, u0_add = 16'd4, 
+    localparam [ADDRESS_WIDTH-1:0] t0_add = 16'd1,t1_add = 16'd2, m_const_add = 16'd0, u0_add = 16'd6, 
                     u_add_offset = 16'b0000001000000000;
     //Registers
     Register #(.WORD_SIZE(ADDRESS_WIDTH)) un_add      (clk, rst, un_add_en,un_add_in, un_add_out);
@@ -161,7 +161,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     assign overflow = overflow_flag;
     //for test only
     assign AdderAOP = adder_A_op_final;
-    assign AdderBOP = adder_B_op_final;
+    assign AdderBOP = adder_B_op;
     assign ADDERRESULT = adder_result;
     assign MUL_RESULTT = mul_result;
     assign DIV_RESULTT = div_result;

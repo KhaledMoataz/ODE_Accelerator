@@ -40,10 +40,17 @@ int main() {
     float temp = 0;
     for (int i = 0; i <no_of_Us+1 ; i++)//generate T's at 0,1,2....etc
     {  
-        temp+=i;
+        temp=(float) i;
         time.push_back(FixedPoint_Q9_7::floatToBitSet(temp));
+        
     }
+    
     ofstream cout1("Interpolation_test_cases.txt");
+    //write M and no of Us
+    cout1<<M_as_int<<endl;
+    
+    cout1<<no_of_Us<<endl;
+    cout1<<(1+(no_of_Us+1)+((no_of_Us+1)*M_as_int)+2)<<endl;
     // write m value to the file
     cout1<<m<<endl;
     // write the times to the file
@@ -51,6 +58,8 @@ int main() {
     {
         cout1<<time[i]<<endl;
     }
+    vector<bitset <FixedPoint_Q9_7::numSize>> all_tks;
+    vector<vector<bitset <FixedPoint_Q9_7::numSize>>> all_uks;
     int j = 0;
     vector<bitset <FixedPoint_Q9_7::numSize>> old_uz;
     while (j < no_of_Us)
@@ -145,7 +154,8 @@ int main() {
         {
             //if here no over flow
             //write tk value 
-            cout1<<tk<<endl;
+            //cout1<<tk<<endl;
+            all_tks.push_back(tk);
             //write the U's values
             
             if (j == 0)
@@ -154,21 +164,39 @@ int main() {
                 {
                     cout1<<un[i]<<endl;
                 }
-                old_uz = uz;
             }
+            old_uz = uz;
             for (int i = 0; i < uz.size(); i++)
             {
                 cout1<<uz[i]<<endl;
             }
+            /*
             for (int i = 0; i < uk.size(); i++)
             {
                 cout1<<uk[i]<<endl;
             }
+            */
+           all_uks.push_back(uk);
             j++;
         }
 
         
     }
+    //write all tk's values
+    for (int i = 0; i < all_tks.size(); i++)
+    {
+        cout1<<all_tks[i]<<endl;
+    }
+    for (int i = 0; i < all_uks.size(); i++)
+    {
+        for (int g = 0; g < M_as_int; g++)
+        {
+            cout1<<all_uks[i][g]<<endl;
+        }
+        
+    }
+    
+    
     
     
     
