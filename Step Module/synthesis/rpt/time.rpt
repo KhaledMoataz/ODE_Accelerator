@@ -1,0 +1,126 @@
+Report for group default
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: controlFSM/current_state_reg[2]/Q
+    (Clocked by sysclk R)
+Endpoint: address2_reg/generate_flipflops_15_DFF/Q_reg/D
+    (Clocked by sysclk F)
+Path Group: default
+Data required time: 867.6
+    (Clock shift: 900.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 32.4)
+Data arrival time: 858.7
+Slack: 8.9
+Logic depth: 24
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0     64     0,   68                       
+controlFSM/clk_gate_current_state_reg/CK->GCK
+                         CLKGATETST_X1           rr      0.0      0.0      0.0      0.0      0.0      0.0      0.0      5    67,   66  /PD_TOP        (1.10)
+controlFSM/current_state_reg[2]/CK->Q
+                         DFF_X1*                 rr    162.1    162.1    162.1      0.0      0.0      7.6     70.8     11    67,   66  /PD_TOP        (1.10)
+controlFSM/i_0_82/A2->ZN NAND4_X4                rf    213.1     51.0     50.8      0.2     15.3      0.7     26.2      1    67,   66  /PD_TOP        (1.10)
+controlFSM/i_0_66/A->ZN  INV_X32                 fr    241.4     28.3     28.3      0.0     33.9      9.2     82.0     14    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_88/A1->ZN
+                         NAND3_X4*               rf    279.7     38.3     38.1      0.2     10.9      1.4     31.1      2    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_87/A->ZN
+                         INV_X8                  fr    293.4     13.7     13.7      0.0     15.3      1.2      7.1      2    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_86/A1->ZN
+                         NAND2_X4                rf    309.9     16.5     16.5      0.0      6.0      1.9     14.2      3    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_85/A1->ZN
+                         NOR2_X4*                fr    367.1     57.2     57.2      0.0     10.9      1.8     33.1      3    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_84/A1->ZN
+                         NAND2_X4*               rf    397.0     29.9     29.9      0.0     15.3      1.3     31.0      2    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_83/A->ZN
+                         INV_X8                  fr    410.7     13.7     13.7      0.0     15.3      1.2      7.1      2    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_82/A1->ZN
+                         NAND2_X4                rf    427.2     16.5     16.5      0.0      6.0      1.9     14.2      3    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_81/A1->ZN
+                         NOR2_X4*                fr    485.5     58.3     58.3      0.0     10.9      1.9     35.1      3    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_80/A1->ZN
+                         NAND2_X4                rf    512.0     26.5     26.5      0.0     15.3      0.6     26.0      1    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_79/A->ZN
+                         INV_X8                  fr    530.7     18.7     18.7      0.0     15.9      2.6     18.7      4    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_78/A1->ZN
+                         NAND2_X4                rf    545.6     14.9     14.9      0.0      8.9      1.2      9.2      2    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_77/A1->ZN
+                         NOR2_X4*                fr    603.1     57.5     57.5      0.0      8.9      1.9     35.1      3    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_76/A1->ZN
+                         NAND2_X4                rf    629.6     26.5     26.5      0.0     15.3      0.6     26.0      1    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_75/A->ZN
+                         INV_X8                  fr    648.3     18.7     18.7      0.0     15.9      2.6     18.7      4    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_74/A1->ZN
+                         NAND2_X4                rf    663.2     14.9     14.9      0.0      8.9      1.2      9.2      2    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_73/A1->ZN
+                         NOR2_X4*                fr    725.4     62.2     62.2      0.0      8.9      3.4     44.9      5    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_72/A1->ZN
+                         NAND3_X4                rf    752.6     27.2     27.1      0.1     15.3      2.1     13.9      3    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_71/B1->ZN
+                         AOI21_X4                fr    782.4     29.8     29.8      0.0     16.9      0.7      4.7      1    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_70/A->ZN
+                         OAI21_X4                rf    804.2     21.8     21.8      0.0     22.0      0.7      4.6      1    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_68/A2->ZN
+                         NAND2_X4                fr    834.5     30.3     30.3      0.0      9.5      0.6     26.0      1    67,   66  /PD_TOP        (1.10)
+address2_reg/generate_flipflops_15_DFF/i_0_2/A->ZN
+                         INV_X8                  rf    841.8      7.3      7.3      0.0     21.5      0.6      4.8      1    67,   66  /PD_TOP        (1.10)
+address2_reg/generate_flipflops_15_DFF/i_0_1/A1->ZN
+                         NOR2_X2                 fr    858.7     16.9     16.9      0.0      3.5      0.7      1.8      1    67,   66  /PD_TOP        (1.10)
+address2_reg/generate_flipflops_15_DFF/Q_reg/D
+                         DFF_X1                   r    858.7      0.0               0.0     12.1                             67,   66  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2R
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: x1_address[0]
+    (Clocked by rtDefaultClock R)
+Endpoint: address2_reg/generate_flipflops_0_DFF/Q_reg/D
+    (Clocked by sysclk F)
+Path Group: I2R
+Data required time: 867.6
+    (Clock shift: 900.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 32.4)
+Data arrival time: 831.3
+Slack: 36.3
+Logic depth: 6
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+x1_address[0]            {set_input_delay}        r    700.0    700.0    700.0                        8.9     34.3      1     0,   65                       
+i_0_0_138/A->ZN          INV_X8                  rf    703.9      3.9      2.5      1.4    100.0      0.6      4.4      1    67,   66  /PD_TOP        (1.10)
+i_0_0_137/A1->ZN         NAND2_X4                fr    728.8     24.9     24.9      0.0      3.5      0.6     26.0      1    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_8/A->ZN INV_X8                  rf    736.1      7.3      7.3      0.0     21.5      0.7      4.8      1    67,   66  /PD_TOP        (1.10)
+address2_reg/i_0_2/B2->ZN
+                         AOI22_X4                fr    807.9     71.8     71.8      0.0      3.5      0.7     26.2      1    67,   66  /PD_TOP        (1.10)
+address2_reg/generate_flipflops_0_DFF/i_0_2/A->ZN
+                         INV_X8                  rf    814.4      6.5      6.5      0.0     50.8      0.6      4.8      1    67,   66  /PD_TOP        (1.10)
+address2_reg/generate_flipflops_0_DFF/i_0_1/A1->ZN
+                         NOR2_X2                 fr    831.3     16.9     16.9      0.0      3.5      0.7      1.8      1    67,   66  /PD_TOP        (1.10)
+address2_reg/generate_flipflops_0_DFF/Q_reg/D
+                         DFF_X1                   r    831.3      0.0               0.0     12.1                             67,   66  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2O
+Report for group R2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: address2_reg/generate_flipflops_1_DFF/Q_reg/Q
+    (Clocked by sysclk F)
+Endpoint: memory_address2[1]
+    (Clocked by vsysclk R)
+Path Group: R2O
+Data required time: 720.0
+    (Clock shift: 900.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 180.0)
+Data arrival time: 155.6
+Slack: 564.4
+Logic depth: 0
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           f      0.0      0.0      0.0                        0.0      0.0     64     0,   68                       
+address2_reg/generate_flipflops_1_DFF/i_0_0/A->ZN
+                         INV_X1                  fr      0.0      0.0      0.0      0.0      0.0      0.0      0.0      1    67,   66  /PD_TOP        (1.10)
+address2_reg/generate_flipflops_1_DFF/Q_reg/CK->Q
+                         DFF_X1*                 rr    153.8    153.8    153.8      0.0      0.0     11.5     46.2      3    67,   66  /PD_TOP        (1.10)
+memory_address2[1]                                r    155.6      1.8               1.8     15.3                              0,   55                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -62,10 +62,10 @@ output [WORD_SIZE-1:0] step_out
 	assign counter_zero = loop_counter == 'b0;
 
 	//Arithmetic Units
-	carry_select_adder #(.N(WORD_SIZE)) 
+	adder #(.N(WORD_SIZE)) 
 		adder (adder_operand1, adder_operand2, ~adder_is_add, adder_out, adder_carry_out, 
 			   adder_overflow, adder_negative_flag);
-	multiplier_modified_booth multiplier(clk, rst, multiplier_operand1, multiplier_operand2, 
+	multiplier multiplier(clk, rst, multiplier_operand1, multiplier_operand2, 
 										 multiplier_start, multiplier_out, multiplier_overflow, 
 										 multiplier_done);
 	division divider(clk, rst, dividend, error, divider_start, divider_out, divider_overflow, 

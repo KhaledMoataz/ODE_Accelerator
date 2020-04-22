@@ -1,0 +1,30 @@
+Report End Points: 
+-----+-------+------+-------+-----+-----+-----+-----+---------------------------------+----------------------------------------------
+     |Group  |Launch|Capture|Shift|Delay|Depth|Slack|Begin Point                      |End Point                                     
+-----+-------+------+-------+-----+-----+-----+-----+---------------------------------+----------------------------------------------
+1    |default|sysclk|sysclk |900.0|696.6|   24|  8.9|controlFSM/current_state_reg[2]/Q|address2_reg/generate_flipflops_15_DFF/Q_reg/D
+2    |default|sysclk|sysclk |900.0|695.7|   24|  9.8|controlFSM/current_state_reg[2]/Q|address1_reg/generate_flipflops_15_DFF/Q_reg/D
+3    |default|sysclk|sysclk |900.0|673.9|   24| 25.3|controlFSM/current_state_reg[2]/Q|address2_reg/generate_flipflops_14_DFF/Q_reg/D
+-----+-------+------+-------+-----+-----+-----+-----+---------------------------------+----------------------------------------------
+Report End Points: 
+-----+-----+--------------+-------+-----+-----+-----+-----+--------------+----------------------------------------------
+     |Group|Launch        |Capture|Shift|Delay|Depth|Slack|Begin Point   |End Point                                     
+-----+-----+--------------+-------+-----+-----+-----+-----+--------------+----------------------------------------------
+1    |I2R  |rtDefaultClock|sysclk |900.0|131.3|    6| 36.3|x1_address[0] |address2_reg/generate_flipflops_0_DFF/Q_reg/D 
+2    |I2R  |rtDefaultClock|sysclk |900.0|113.8|    5| 47.5|x0_address[15]|address1_reg/generate_flipflops_15_DFF/Q_reg/D
+3    |I2R  |rtDefaultClock|sysclk |900.0|113.8|    5| 47.5|x0_address[14]|address1_reg/generate_flipflops_14_DFF/Q_reg/D
+-----+-----+--------------+-------+-----+-----+-----+-----+--------------+----------------------------------------------
+Report End Points: 
+-----+-----+------+-------+-----+-----+-----+-----+-----------+---------
+     |Group|Launch|Capture|Shift|Delay|Depth|Slack|Begin Point|End Point
+-----+-----+------+-------+-----+-----+-----+-----+-----------+---------
+1    |I2O  |      |       |     |     |     |     |           |         
+-----+-----+------+-------+-----+-----+-----+-----+-----------+---------
+Report End Points: 
+-----+-----+------+-------+-----+-----+-----+-----+---------------------------------------------+------------------
+     |Group|Launch|Capture|Shift|Delay|Depth|Slack|Begin Point                                  |End Point         
+-----+-----+------+-------+-----+-----+-----+-----+---------------------------------------------+------------------
+1    |R2O  |sysclk|vsysclk|900.0|  1.8|    0|564.4|address2_reg/generate_flipflops_1_DFF/Q_reg/Q|memory_address2[1]
+2    |R2O  |sysclk|vsysclk|900.0|  1.9|    0|566.4|address1_reg/generate_flipflops_9_DFF/Q_reg/Q|memory_address1[9]
+3    |R2O  |sysclk|vsysclk|900.0|  1.8|    0|566.5|address1_reg/generate_flipflops_6_DFF/Q_reg/Q|memory_address1[6]
+-----+-----+------+-------+-----+-----+-----+-----+---------------------------------------------+------------------
