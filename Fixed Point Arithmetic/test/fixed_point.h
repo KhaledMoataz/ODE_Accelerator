@@ -51,19 +51,27 @@ namespace FixedPoint_Q9_7 {
         return add(a, b, false, cout, overflow, negative);
     }
 
-    bitset<numSize> divide(const bitset<numSize> a, const bitset<numSize> b, bool & divideByZero) {
-        short temp_a, temp_b, temp_result;
+    bitset<numSize> divide(const bitset<numSize> a, const bitset<numSize> b, bool & overflow) {
+        int temp_a, temp_b, temp_result;
         temp_a = (short) a.to_ulong();
         temp_b = (short) b.to_ulong();
         if (!temp_b){
-            divideByZero = true;
-            return temp_result;
+            overflow = true;
+            return 0;
         }
+
+        temp_a = temp_a<<scaleFactor;
         temp_result = temp_a / temp_b;
+        if ((short) temp_result != temp_result){
+            overflow = true;
+            return 0;
+        }
         return temp_result;
     }
 
     bitset<numSize> floatToBitSet(float x){
+        return (unsigned short)(x * (1<<scaleFactor));
+        /*
         short value = 0;
         bool neg = x<0;
         if(neg) x *= -1;
@@ -81,10 +89,12 @@ namespace FixedPoint_Q9_7 {
         }
         if (neg) value *= -1;
         return bitset<numSize>(value);
+        */
     }
 
     void printFloat(short x) {
-        double num = 0;
+        double num = (float)(1.0*x/(1<<scaleFactor));
+        /*
         bool neg = x < 0;
         if (neg) x *= -1;
         for (int i = 0; i < numSize - 1; i++) {
@@ -93,6 +103,7 @@ namespace FixedPoint_Q9_7 {
             }
         }
         if (neg) num *= -1;
+        */
         cout << setprecision(9) << num << endl;
     }
 }
