@@ -1,5 +1,8 @@
 
 proc fill_ram {path contents {idx {}}} {
+	#if {[string first {sim:/} $path] eq -1} {
+	#	set path [concat sim:/$path]
+	#}
 	if {[string first {/MEM} $path] eq -1} {
 		set path [concat $path/MEM]
 	}
@@ -8,9 +11,9 @@ proc fill_ram {path contents {idx {}}} {
 	
 	if {$idx ne {}} {
 		foreach i $idx word $contents {
-			if {i eq {}} {
+			if {$i eq {}} {
 				puts {content size larger than idx size}
-			} elseif {word eq {}} {
+			} elseif {$word eq {}} {
 				puts {idx size larger than content size}
 			} else {
 				force $path\[$i\] $word
