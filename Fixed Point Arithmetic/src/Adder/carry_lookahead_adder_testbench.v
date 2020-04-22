@@ -12,7 +12,7 @@ module carry_lookahead_adder_testbench;
     reg expected_negative;
     reg[52:0] read_data [0:100];
 
-    carry_lookahead_adder adder_unit(A, B, cin, result, cout, overflow_flag, negative);
+    carry_lookahead_adder_behavioral adder_unit(A, B, cin, result, cout, overflow_flag, negative);
     integer i;
 
     initial
