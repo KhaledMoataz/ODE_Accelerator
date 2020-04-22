@@ -6,11 +6,11 @@ module InterpolationModule #(parameter WORD_SIZE = 16, ADDRESS_WIDTH = 16)
     input [ADDRESS_WIDTH-1 : 0] uk_port,
     output done_sg,mem_write,overflow,
     output [ADDRESS_WIDTH-1 : 0] ram_add1, ram_add2,
-    output [WORD_SIZE-1:0] data_to_ram,
+    output [WORD_SIZE-1:0] data_to_ram
     //to test
-    output [WORD_SIZE-1:0] AdderAOP,AdderBOP,ADDERRESULT,MUL_RESULTT,DIV_RESULTT,
+    /*output [WORD_SIZE-1:0] AdderAOP,AdderBOP,ADDERRESULT,MUL_RESULTT,DIV_RESULTT,
     output START_MULL,START_DIVVV,MUL_DONEEE,DIV_DONEEE,
-output [WORD_SIZE-1:0] MUL_OPP_A,MUL_OPP_B,DIV_OPP_A,DIV_OPP_B
+output [WORD_SIZE-1:0] MUL_OPP_A,MUL_OPP_B,DIV_OPP_A,DIV_OPP_B*/
 );
 
     //enables
@@ -160,7 +160,7 @@ wire un_add_en,uz_add_en,uk_add_en,
     //assign overflow_flag = 1'b0;
     assign overflow = overflow_flag;
     //for test only
-    assign AdderAOP = adder_A_op_final;
+    /*assign AdderAOP = adder_A_op_final;
     assign AdderBOP = adder_B_op;
     assign ADDERRESULT = adder_result;
     assign MUL_RESULTT = mul_result;
@@ -173,5 +173,5 @@ wire un_add_en,uz_add_en,uk_add_en,
     assign MUL_OPP_B =k_out;
     assign DIV_OPP_A = temp1_out;
     assign DIV_OPP_B = adder_result;
-
+*/
 endmodule //
