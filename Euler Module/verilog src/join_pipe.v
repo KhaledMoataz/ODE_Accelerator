@@ -35,9 +35,9 @@ assign finished = finished_mul;
 assign return_default_state = data_ready1 & data_ready2;
 wire start_mul = return_default_state;
 
-carry_select_adder add(data_pipe1,data_pipe2,carry_in,result_add,carry_out,overflow_flag,negative);
+adder add(data_pipe1,data_pipe2,carry_in,result_add,carry_out,overflow_flag,negative);
 
-multiplier_modified_booth multiplier(clk, rst|clear, result_add, h_step, start_mul, result_mul, overflow_flag, done_mul);
+multiplier multiplier_(clk, rst|clear, result_add, h_step, start_mul, result_mul, overflow_flag, done_mul);
 
 
 incrementor #(ADD_SIZE) inc_pc(inc_pc_in, pc_answer);

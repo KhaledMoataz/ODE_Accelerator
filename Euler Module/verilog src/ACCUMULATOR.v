@@ -17,7 +17,7 @@ reg temp_overflow_flag;
 assign overflow_flag = temp_overflow_flag;
 assign outp = accum;
 
-carry_select_adder #(Size) adder(inp,accum,1'b0,result,carry,overflow_flag_temp,neg);
+adder #(Size) adder_(inp,accum,1'b0,result,carry,overflow_flag_temp,neg);
 
 initial
     begin
