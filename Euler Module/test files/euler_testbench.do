@@ -118,12 +118,17 @@ set file_data [read $inputfile];
 
 set it 0
 foreach line $file_data {
-    set element [examine /Main_Euler/join_pipe/ram/MEM($it)];
-    puts $element;
-    if { $line == $element } {
-        echo "Element $it is Correct !";
+    if {$it == 0 } {
+        set overflowflag [examine -binary error];
+        if {$overflowflag == 1 && ($overflowflag == $line )} {
+            echo "Overflow occurs!";
+        }
     } else {
-        echo "Element $it is NOT Correct !";
+        set element [examine /Main_Euler/join_pipe/ram/MEM($it)];
+        puts $element;
+        if { $line != $element } {
+             echo "Element $it is NOT Correct !";
+        }
     }
     incr it;
 }
