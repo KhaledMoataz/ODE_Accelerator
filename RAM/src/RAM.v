@@ -11,19 +11,19 @@ output [WORD_SIZE-1:0] data2;
 
 reg [WORD_SIZE-1:0] MEM [0:(1<<ADDRESS_SIZE)-1];
 
-assign data1 = (~|we1) ? MEM[addr1] : {WORD_SIZE{1'bz}};
+assign data1 = (~we1) ? MEM[addr1] : {WORD_SIZE{1'bZ}};
 assign data2 = MEM[addr2];
 
-integer i;
+integer i = 0;
 
-always @(posedge rst or posedge clk) begin
+always @(posedge clk) begin
 	if (rst) begin
 		for (i = 0; i < (1<<ADDRESS_SIZE); i = i+1) begin
-			MEM[i] = {WORD_SIZE{1'b0}};
+			MEM[i] <= 0;
 		end
 	end
 	else begin
-		MEM[addr1] = (|we1) ? data1 : MEM[addr1];
+		MEM[addr1] <= (we1) ? data1 : MEM[addr1];
 	end
 end
 
