@@ -8,7 +8,9 @@ do Fixed\ Point\ Arithmetic/src/Adder/carry_lookahead_adder.do
 do Fixed\ Point\ Arithmetic/src/Adder/carry_lookahead_adder.do  
 do Fixed\ Point\ Arithmetic/src/Multiplier/multiplier_booth.do  
 do Fixed\ Point\ Arithmetic/src/Multiplier/multiplier_modified_booth.do  
+  
 For post synthesis simulation, run the following commands:  
+  
 do Fixed\ Point\ Arithmetic/src/post-synthesis/carry_select_adder.do  
 do Fixed\ Point\ Arithmetic/src/post-synthesis/carry_lookahead_adder.do  
 do Fixed\ Point\ Arithmetic/src/post-synthesis/multiplier_booth_carry_select.do  
