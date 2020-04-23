@@ -1,0 +1,36 @@
+Report Physical info: 
+------------------------+-------------------+-----------+------------
+                        |                   |Area (squm)|Leakage (uW)
+------------------------+-------------------+-----------+------------
+Design Name             |InterpolationModule|           |            
+  Total Instances       |               2319|       4157|      83.408
+    Macros              |                  0|          0|       0.000
+    Pads                |                  0|          0|       0.000
+    Phys                |                  0|          0|       0.000
+    Blackboxes          |                  0|          0|       0.000
+    Cells               |               2319|       4157|      83.408
+      Buffers           |                  0|          0|       0.000
+      Inverters         |                214|        114|       3.072
+      Clock-Gates       |                 19|         76|       1.124
+      Combinational     |               1713|       2281|      49.704
+      Latches           |                  0|          0|       0.000
+      FlipFlops         |                373|       1687|      29.509
+       Single-Bit FF    |                373|       1687|      29.509
+       Multi-Bit FF     |                  0|          0|       0.000
+       Clock-Gated      |                365|           |            
+       Bits             |                373|       1687|      29.509
+         Load-Enabled   |                  0|           |            
+         Clock-Gated    |                365|           |            
+  Tristate Pin Count    |                  0|           |            
+Physical Info           |Placed             |           |            
+  Chip Size (mm x mm)   |0.143 x 0.143      |      20516|            
+  Fixed Cell Area       |                   |          0|            
+    Phys Only           |                  0|          0|            
+  Placeable Area        |                   |       6874|            
+  Movable Cell Area     |                   |       4157|            
+  Utilization (%)       |                 60|           |            
+  Chip Utilization (%)  |                 60|           |            
+  Total Wire Length (mm)|              9.276|           |            
+  Longest Wire (mm)     |              0.084|           |            
+  Average Wire (mm)     |              0.077|           |            
+------------------------+-------------------+-----------+------------

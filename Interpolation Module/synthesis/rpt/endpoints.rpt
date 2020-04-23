@@ -1,0 +1,30 @@
+Report End Points: 
+-----+-------+------+-------+------+------+-----+-----+--------------------------+-------------------
+     |Group  |Launch|Capture|Shift |Delay |Depth|Slack|Begin Point               |End Point          
+-----+-------+------+-------+------+------+-----+-----+--------------------------+-------------------
+1    |default|sysclk|sysclk |2200.0|1639.4|   51|369.0|fsm/current_state_reg[4]/Q|divider/B_reg[15]/D
+2    |default|sysclk|sysclk |2200.0|1629.2|   51|370.9|fsm/current_state_reg[4]/Q|divider/B_reg[14]/D
+3    |default|sysclk|sysclk |2200.0|1613.6|   51|386.5|fsm/current_state_reg[4]/Q|divider/B_reg[13]/D
+-----+-------+------+-------+------+------+-----+-----+--------------------------+-------------------
+Report End Points: 
+-----+-----+--------------+-------+------+------+-----+-----+------------+-------------------
+     |Group|Launch        |Capture|Shift |Delay |Depth|Slack|Begin Point |End Point          
+-----+-----+--------------+-------+------+------+-----+-----+------------+-------------------
+1    |I2R  |rtDefaultClock|sysclk |2200.0|1218.7|   42|250.9|ram_data2[0]|divider/B_reg[15]/D
+2    |I2R  |rtDefaultClock|sysclk |2200.0|1208.5|   42|252.8|ram_data2[0]|divider/B_reg[14]/D
+3    |I2R  |rtDefaultClock|sysclk |2200.0|1192.9|   42|268.4|ram_data2[0]|divider/B_reg[13]/D
+-----+-----+--------------+-------+------+------+-----+-----+------------+-------------------
+Report End Points: 
+-----+-----+--------------+-------+------+-----+-----+-----+------------+---------
+     |Group|Launch        |Capture|Shift |Delay|Depth|Slack|Begin Point |End Point
+-----+-----+--------------+-------+------+-----+-----+-----+------------+---------
+1    |I2O  |rtDefaultClock|vsysclk|2200.0|839.3|   39|  0.7|ram_data2[0]|overflow 
+-----+-----+--------------+-------+------+-----+-----+-----+------------+---------
+Report End Points: 
+-----+-----+------+-------+------+------+-----+------+--------------------------+---------
+     |Group|Launch|Capture|Shift |Delay |Depth|Slack |Begin Point               |End Point
+-----+-----+------+-------+------+------+-----+------+--------------------------+---------
+1    |R2O  |sysclk|vsysclk|2200.0|1260.0|   48| 118.8|fsm/current_state_reg[4]/Q|overflow 
+2    |R2O  |sysclk|vsysclk|2200.0| 226.4|    5|1158.1|fsm/current_state_reg[3]/Q|mem_write
+3    |R2O  |sysclk|vsysclk|2200.0| 193.4|    5|1182.9|fsm/current_state_reg[1]/Q|done_sg  
+-----+-----+------+-------+------+------+-----+------+--------------------------+---------

@@ -1,0 +1,392 @@
+Report for group default
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: fsm/current_state_reg[4]/Q
+    (Clocked by sysclk R)
+Endpoint: divider/B_reg[15]/D
+    (Clocked by sysclk R)
+Path Group: default
+Data required time: 2169.6
+    (Clock shift: 2200.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 30.4)
+Data arrival time: 1800.6
+Slack: 369.0
+Logic depth: 51
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0     27    81,    0                       
+fsm/current_state_reg[4]/CK->Q
+                         DFF_X1*                 rr    161.2    161.2    161.2      0.0      0.0      8.0     67.7     11    72,   71  /PD_TOP        (1.10)
+fsm/i_0_114/A->ZN        INV_X8                  rf    175.6     14.4     14.2      0.2     15.3      5.0     32.7      7    72,   71  /PD_TOP        (1.10)
+fsm/i_0_112/B2->ZN       OAI21_X4                fr    210.2     34.6     34.5      0.1      6.7      1.3      7.3      2    72,   71  /PD_TOP        (1.10)
+fsm/i_0_110/A2->ZN       OR2_X4                  rr    237.2     27.0     27.0      0.0     21.8      0.7      4.3      1    72,   71  /PD_TOP        (1.10)
+fsm/i_0_104/A1->ZN       NAND4_X4*               rf    329.0     91.8     91.8      0.0      6.8     66.1    317.3     86    72,   71  /PD_TOP        (1.10)
+fsm/i_0_103/A2->ZN       OR2_X4*                 ff    393.6     64.6     62.1      2.5     15.3      1.3     30.6      2    72,   71  /PD_TOP        (1.10)
+fsm/i_0_98/A1->ZN        NAND3_X4*               fr    464.7     71.1     71.1      0.0     15.3     40.2    190.8     56    72,   71  /PD_TOP        (1.10)
+fsm/i_0_96/A1->ZN        OR3_X4                  rr    504.1     39.4     38.0      1.4     15.3      0.6     26.1      1    72,   71  /PD_TOP        (1.10)
+fsm/i_0_95/A->ZN         INV_X32                 rf    518.9     14.8     14.8      0.0     18.9     13.0    107.6     19    72,   71  /PD_TOP        (1.10)
+fsm/i_0_92/B1->ZN        OAI21_X4*               fr    612.0     93.1     92.7      0.4      6.7     38.3    187.1     51    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux1/mux1/mux3/i_0_1/S->Z
+                         MUX2_X2                 rf    690.0     78.0     76.7      1.3     15.3      0.7      4.4      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux1/mux3/i_0_19/A1->ZN
+                         NAND2_X4                fr    705.4     15.4     15.4      0.0     11.2      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux1/mux3/i_0_17/A2->ZN
+                         NAND2_X4                rf    719.1     13.7     13.7      0.0      9.6      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux3/i_0_19/A1->ZN
+                         NAND2_X4                fr    732.3     13.2     13.2      0.0      7.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux3/i_0_17/A1->ZN
+                         NAND2_X4                rf    744.8     12.5     12.5      0.0      9.6      1.3      4.6      2    72,   71  /PD_TOP        (1.10)
+i_0_0_2/A1->ZN           AND2_X4                 ff    775.6     30.8     30.8      0.0      7.1      2.4     16.6      4    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_7/A2->ZN
+                         NOR2_X4*                fr    845.4     69.8     69.8      0.0      8.6      1.1     52.0      2    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_6/A->ZN
+                         INV_X8                  rf    852.4      7.0      7.0      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_5/A2->ZN
+                         NAND2_X4                fr    866.4     14.0     14.0      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_4/A1->ZN
+                         NAND2_X4                rf    878.7     12.3     12.3      0.0      9.6      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_3/A1->ZN
+                         NAND2_X4                fr    892.0     13.3     13.3      0.0      7.0      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_2/A2->ZN
+                         NAND2_X4*               rf    923.9     31.9     31.9      0.0      9.6      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  fr    936.4     12.5     12.5      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_4/A1->ZN
+                         NAND2_X4                rf    947.4     11.0     11.0      0.0      5.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               fr    983.1     35.7     35.7      0.0      7.1      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  rf    990.1      7.0      7.0      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_4/A2->ZN
+                         NAND2_X4                fr   1004.1     14.0     14.0      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_2/A1->ZN
+                         NAND2_X4*               rf   1034.7     30.6     30.6      0.0      9.6      2.6     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_4/A1->ZN
+                         NAND2_X4                fr   1052.1     17.4     17.4      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_3/A2->ZN
+                         NAND2_X4                rf   1077.5     25.4     25.4      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1101.8     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1108.5      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1120.1     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1144.3     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1168.6     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1175.3      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1186.9     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1211.1     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1235.4     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1249.1     13.7     13.7      0.0     13.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               fr   1286.9     37.8     37.8      0.0      7.1      3.2     40.7      5    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_1/S->Z
+                         MUX2_X2                 rf   1364.0     77.1     77.0      0.1     15.3      1.4      4.7      2    72,   71  /PD_TOP        (1.10)
+i_0_0_24/A->Z            MUX2_X2*                ff   1444.0     80.0     80.0      0.0     11.3      6.8     28.1     10    72,   71  /PD_TOP        (1.10)
+divider/i_0_139/A4->ZN   NOR4_X4                 fr   1541.6     97.6     97.4      0.2     15.3      1.4      9.4      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_138/A1->ZN   NAND2_X4                rf   1563.2     21.6     21.6      0.0     55.1      1.2      7.1      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_114/A1->ZN   OR2_X4                  ff   1605.1     41.9     41.9      0.0      8.1      1.2      7.1      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_113/A1->ZN   OR2_X4                  ff   1648.5     43.4     43.4      0.0      9.1      1.2      9.2      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_112/A1->ZN   NOR2_X4                 fr   1678.2     29.7     29.7      0.0      9.6      1.2      9.2      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_111/A1->ZN   NAND2_X4                rf   1700.0     21.8     21.8      0.0     21.1      2.1     14.0      3    72,   71  /PD_TOP        (1.10)
+divider/i_0_184/A1->ZN   NOR4_X4                 fr   1747.5     47.5     47.5      0.0     10.8      0.8      4.8      1    72,   71  /PD_TOP        (1.10)
+divider/i_0_183/B2->ZN   OAI21_X4                rf   1788.2     40.7     40.7      0.0     44.0      0.6     26.1      1    72,   71  /PD_TOP        (1.10)
+divider/i_0_182/A->ZN    INV_X8                  fr   1800.6     12.4     12.4      0.0     18.8      0.7      1.8      1    72,   71  /PD_TOP        (1.10)
+divider/B_reg[15]/D      DFF_X1                   r   1800.6      0.0               0.0      4.7                             72,   71  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2R
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: ram_data2[0]
+    (Clocked by rtDefaultClock R)
+Endpoint: divider/B_reg[15]/D
+    (Clocked by sysclk R)
+Path Group: I2R
+Data required time: 2169.6
+    (Clock shift: 2200.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 30.4)
+Data arrival time: 1918.7
+Slack: 250.9
+Logic depth: 42
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+ram_data2[0]             {set_input_delay}        f    700.0    700.0    700.0                       10.8     64.0      3    76,    0                       
+adder_B_op_mux/mux1/mux2/i_0_3/A->ZN
+                         INV_X8                  fr    731.2     31.2     29.6      1.6    100.0      0.6      4.7      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux1/mux2/i_0_0/B1->ZN
+                         AOI21_X2                rf    741.9     10.7     10.7      0.0      5.4      0.7      2.0      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux1/mux3/i_0_17/A->Z
+                         MUX2_X2                 ff    818.1     76.2     76.2      0.0      6.6      0.6     26.1      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux3/i_0_16/A->ZN
+                         INV_X8                  fr    832.6     14.5     14.5      0.0     22.0      0.6      4.7      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux3/i_0_0/B1->ZN
+                         AOI21_X4                rf    844.5     11.9     11.9      0.0      5.4      0.7      3.8      1    72,   71  /PD_TOP        (1.10)
+adder/i_0_12/A->ZN       XNOR2_X2*               fr    939.6     95.1     95.1      0.0      7.6      2.4     36.4      4    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst1/full_adder_inst1/i_0_1/A1->ZN
+                         AND2_X4                 rr    973.0     33.4     33.4      0.0     15.3      1.2      8.4      2    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_4/A1->ZN
+                         NAND2_X4                rf    985.5     12.5     12.5      0.0     10.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_3/A1->ZN
+                         NAND2_X4                fr    998.7     13.2     13.2      0.0      7.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_4/A1->ZN
+                         NAND2_X4                rf   1011.0     12.3     12.3      0.0      9.6      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_2/A1->ZN
+                         NAND2_X4*               fr   1044.2     33.2     33.2      0.0      7.0      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  rf   1051.1      6.9      6.9      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_4/A1->ZN
+                         NAND2_X4                fr   1062.8     11.7     11.7      0.0      3.5      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               rf   1094.7     31.9     31.9      0.0      9.6      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  fr   1107.3     12.6     12.6      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_4/A2->ZN
+                         NAND2_X4                rf   1119.8     12.5     12.5      0.0      5.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_2/A1->ZN
+                         NAND2_X4*               fr   1152.9     33.1     33.1      0.0      7.0      2.6     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1159.8      6.9      6.9      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1171.4     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1195.6     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1219.9     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1226.6      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1238.2     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1262.4     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1286.7     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1293.4      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1305.0     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1329.2     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1353.5     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1367.2     13.7     13.7      0.0     13.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               fr   1405.0     37.8     37.8      0.0      7.1      3.2     40.7      5    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_1/S->Z
+                         MUX2_X2                 rf   1482.1     77.1     77.0      0.1     15.3      1.4      4.7      2    72,   71  /PD_TOP        (1.10)
+i_0_0_24/A->Z            MUX2_X2*                ff   1562.1     80.0     80.0      0.0     11.3      6.8     28.1     10    72,   71  /PD_TOP        (1.10)
+divider/i_0_139/A4->ZN   NOR4_X4                 fr   1659.7     97.6     97.4      0.2     15.3      1.4      9.4      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_138/A1->ZN   NAND2_X4                rf   1681.3     21.6     21.6      0.0     55.1      1.2      7.1      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_114/A1->ZN   OR2_X4                  ff   1723.2     41.9     41.9      0.0      8.1      1.2      7.1      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_113/A1->ZN   OR2_X4                  ff   1766.6     43.4     43.4      0.0      9.1      1.2      9.2      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_112/A1->ZN   NOR2_X4                 fr   1796.3     29.7     29.7      0.0      9.6      1.2      9.2      2    72,   71  /PD_TOP        (1.10)
+divider/i_0_111/A1->ZN   NAND2_X4                rf   1818.1     21.8     21.8      0.0     21.1      2.1     14.0      3    72,   71  /PD_TOP        (1.10)
+divider/i_0_184/A1->ZN   NOR4_X4                 fr   1865.6     47.5     47.5      0.0     10.8      0.8      4.8      1    72,   71  /PD_TOP        (1.10)
+divider/i_0_183/B2->ZN   OAI21_X4                rf   1906.3     40.7     40.7      0.0     44.0      0.6     26.1      1    72,   71  /PD_TOP        (1.10)
+divider/i_0_182/A->ZN    INV_X8                  fr   1918.7     12.4     12.4      0.0     18.8      0.7      1.8      1    72,   71  /PD_TOP        (1.10)
+divider/B_reg[15]/D      DFF_X1                   r   1918.7      0.0               0.0      4.7                             72,   71  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: ram_data2[0]
+    (Clocked by rtDefaultClock R)
+Endpoint: overflow
+    (Clocked by vsysclk R)
+Path Group: I2O
+Data required time: 1540.0
+    (Clock shift: 2200.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 660.0)
+Data arrival time: 1539.3
+Slack: 0.7
+Logic depth: 39
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+ram_data2[0]             {set_input_delay}        f    700.0    700.0    700.0                        9.7     64.0      3    76,    0                       
+adder_B_op_mux/mux1/mux2/i_0_3/A->ZN
+                         INV_X8                  fr    731.2     31.2     29.6      1.6    100.0      0.6      4.7      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux1/mux2/i_0_0/B1->ZN
+                         AOI21_X2                rf    741.9     10.7     10.7      0.0      5.4      0.7      2.0      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux1/mux3/i_0_17/A->Z
+                         MUX2_X2                 ff    818.1     76.2     76.2      0.0      6.6      0.6     26.1      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux3/i_0_16/A->ZN
+                         INV_X8                  fr    832.6     14.5     14.5      0.0     22.0      0.6      4.7      1    72,   71  /PD_TOP        (1.10)
+adder_B_op_mux/mux3/i_0_0/B1->ZN
+                         AOI21_X4                rf    844.5     11.9     11.9      0.0      5.4      0.7      3.8      1    72,   71  /PD_TOP        (1.10)
+adder/i_0_12/A->ZN       XNOR2_X2*               fr    939.6     95.1     95.1      0.0      7.6      2.4     36.4      4    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst1/full_adder_inst1/i_0_1/A1->ZN
+                         AND2_X4                 rr    973.0     33.4     33.4      0.0     15.3      1.2      8.4      2    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_4/A1->ZN
+                         NAND2_X4                rf    985.5     12.5     12.5      0.0     10.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_3/A1->ZN
+                         NAND2_X4                fr    998.7     13.2     13.2      0.0      7.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_4/A1->ZN
+                         NAND2_X4                rf   1011.0     12.3     12.3      0.0      9.6      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_2/A1->ZN
+                         NAND2_X4*               fr   1044.2     33.2     33.2      0.0      7.0      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  rf   1051.1      6.9      6.9      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_4/A1->ZN
+                         NAND2_X4                fr   1062.8     11.7     11.7      0.0      3.5      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               rf   1094.7     31.9     31.9      0.0      9.6      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  fr   1107.3     12.6     12.6      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_4/A2->ZN
+                         NAND2_X4                rf   1119.8     12.5     12.5      0.0      5.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_2/A1->ZN
+                         NAND2_X4*               fr   1152.9     33.1     33.1      0.0      7.0      2.6     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1159.8      6.9      6.9      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1171.4     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1195.6     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1219.9     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1226.6      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1238.2     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1262.4     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1286.7     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1293.4      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1305.0     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1329.2     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1353.5     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1367.2     13.7     13.7      0.0     13.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               fr   1405.0     37.8     37.8      0.0      7.1      3.2     40.7      5    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1413.4      8.4      8.3      0.1     15.3      1.2      8.7      2    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1425.2     11.8     11.8      0.0      4.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_5/A1->ZN
+                         NAND2_X4*               rf   1452.5     27.3     27.3      0.0      9.6      1.2     30.5      2    72,   71  /PD_TOP        (1.10)
+adder/i_0_19/A->ZN       INV_X8                  fr   1465.0     12.5     12.5      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/i_0_18/A1->ZN      NAND2_X4                rf   1476.0     11.0     11.0      0.0      5.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/i_0_14/A2->ZN      NAND2_X4                fr   1491.9     15.9     15.9      0.0      7.1      0.7      4.6      1    72,   71  /PD_TOP        (1.10)
+i_0_0_43/A->ZN           OAI21_X4                rf   1510.3     18.4     18.4      0.0      9.7      0.7      4.6      1    72,   71  /PD_TOP        (1.10)
+i_0_0_42/A2->ZN          NAND2_X4                fr   1537.3     27.0     27.0      0.0      9.5     11.4     20.6      2    72,   71  /PD_TOP        (1.10)
+overflow                                          r   1539.3      2.0               2.0     18.4                            143,   58                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group R2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: fsm/current_state_reg[4]/Q
+    (Clocked by sysclk R)
+Endpoint: overflow
+    (Clocked by vsysclk R)
+Path Group: R2O
+Data required time: 1540.0
+    (Clock shift: 2200.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 660.0)
+Data arrival time: 1421.2
+Slack: 118.8
+Logic depth: 48
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0     27    81,    0                       
+fsm/current_state_reg[4]/CK->Q
+                         DFF_X1*                 rr    161.2    161.2    161.2      0.0      0.0      8.0     67.7     11    72,   71  /PD_TOP        (1.10)
+fsm/i_0_114/A->ZN        INV_X8                  rf    175.6     14.4     14.2      0.2     15.3      5.0     32.7      7    72,   71  /PD_TOP        (1.10)
+fsm/i_0_112/B2->ZN       OAI21_X4                fr    210.2     34.6     34.5      0.1      6.7      1.3      7.3      2    72,   71  /PD_TOP        (1.10)
+fsm/i_0_110/A2->ZN       OR2_X4                  rr    237.2     27.0     27.0      0.0     21.8      0.7      4.3      1    72,   71  /PD_TOP        (1.10)
+fsm/i_0_104/A1->ZN       NAND4_X4*               rf    329.0     91.8     91.8      0.0      6.8     66.1    317.3     86    72,   71  /PD_TOP        (1.10)
+fsm/i_0_103/A2->ZN       OR2_X4*                 ff    393.6     64.6     62.1      2.5     15.3      1.3     30.6      2    72,   71  /PD_TOP        (1.10)
+fsm/i_0_98/A1->ZN        NAND3_X4*               fr    464.7     71.1     71.1      0.0     15.3     40.2    190.8     56    72,   71  /PD_TOP        (1.10)
+fsm/i_0_96/A1->ZN        OR3_X4                  rr    504.1     39.4     38.0      1.4     15.3      0.6     26.1      1    72,   71  /PD_TOP        (1.10)
+fsm/i_0_95/A->ZN         INV_X32                 rf    518.9     14.8     14.8      0.0     18.9     13.0    107.6     19    72,   71  /PD_TOP        (1.10)
+fsm/i_0_92/B1->ZN        OAI21_X4*               fr    612.0     93.1     92.7      0.4      6.7     38.3    187.1     51    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux1/mux1/mux3/i_0_1/S->Z
+                         MUX2_X2                 rf    690.0     78.0     76.7      1.3     15.3      0.7      4.4      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux1/mux3/i_0_19/A1->ZN
+                         NAND2_X4                fr    705.4     15.4     15.4      0.0     11.2      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux1/mux3/i_0_17/A2->ZN
+                         NAND2_X4                rf    719.1     13.7     13.7      0.0      9.6      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux3/i_0_19/A1->ZN
+                         NAND2_X4                fr    732.3     13.2     13.2      0.0      7.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder_A_op_mux/mux3/i_0_17/A1->ZN
+                         NAND2_X4                rf    744.8     12.5     12.5      0.0      9.6      1.3      4.6      2    72,   71  /PD_TOP        (1.10)
+i_0_0_2/A1->ZN           AND2_X4                 ff    775.6     30.8     30.8      0.0      7.1      2.4     16.6      4    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_7/A2->ZN
+                         NOR2_X4*                fr    845.4     69.8     69.8      0.0      8.6      1.1     52.0      2    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_6/A->ZN
+                         INV_X8                  rf    852.4      7.0      7.0      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_5/A2->ZN
+                         NAND2_X4                fr    866.4     14.0     14.0      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/adder_block_inst2/full_adder_inst2/i_0_4/A1->ZN
+                         NAND2_X4                rf    878.7     12.3     12.3      0.0      9.6      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_3/A1->ZN
+                         NAND2_X4                fr    892.0     13.3     13.3      0.0      7.0      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/which_adder_0/i_0_2/A2->ZN
+                         NAND2_X4*               rf    923.9     31.9     31.9      0.0      9.6      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  fr    936.4     12.5     12.5      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_4/A1->ZN
+                         NAND2_X4                rf    947.4     11.0     11.0      0.0      5.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_1_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               fr    983.1     35.7     35.7      0.0      7.1      2.6     36.5      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_5/A->ZN
+                         INV_X8                  rf    990.1      7.0      7.0      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_4/A2->ZN
+                         NAND2_X4                fr   1004.1     14.0     14.0      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_2_which_adder_x/i_0_2/A1->ZN
+                         NAND2_X4*               rf   1034.7     30.6     30.6      0.0      9.6      2.6     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_4/A1->ZN
+                         NAND2_X4                fr   1052.1     17.4     17.4      0.0     15.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_3/A2->ZN
+                         NAND2_X4                rf   1077.5     25.4     25.4      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_3_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1101.8     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1108.5      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1120.1     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1144.3     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_4_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1168.6     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1175.3      6.7      6.7      0.0     13.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1186.9     11.6     11.6      0.0      3.5      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1211.1     24.2     24.2      0.0      9.6      0.6     26.0      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_5_which_adder_x/i_0_2/A->ZN
+                         INV_X8                  fr   1235.4     24.3     24.3      0.0     15.9      2.5     36.3      4    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_3/A1->ZN
+                         NAND2_X4                rf   1249.1     13.7     13.7      0.0     13.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_6_which_adder_x/i_0_2/A2->ZN
+                         NAND2_X4*               fr   1286.9     37.8     37.8      0.0      7.1      3.2     40.7      5    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_7/A->ZN
+                         INV_X8                  rf   1295.3      8.4      8.3      0.1     15.3      1.2      8.7      2    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_6/A1->ZN
+                         NAND2_X4                fr   1307.1     11.8     11.8      0.0      4.0      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/Gen_Modules_7_which_adder_x/i_0_5/A1->ZN
+                         NAND2_X4*               rf   1334.4     27.3     27.3      0.0      9.6      1.2     30.5      2    72,   71  /PD_TOP        (1.10)
+adder/i_0_19/A->ZN       INV_X8                  fr   1346.9     12.5     12.5      0.0     15.3      0.6      4.4      1    72,   71  /PD_TOP        (1.10)
+adder/i_0_18/A1->ZN      NAND2_X4                rf   1357.9     11.0     11.0      0.0      5.3      0.6      4.5      1    72,   71  /PD_TOP        (1.10)
+adder/i_0_14/A2->ZN      NAND2_X4                fr   1373.8     15.9     15.9      0.0      7.1      0.7      4.6      1    72,   71  /PD_TOP        (1.10)
+i_0_0_43/A->ZN           OAI21_X4                rf   1392.2     18.4     18.4      0.0      9.7      0.7      4.6      1    72,   71  /PD_TOP        (1.10)
+i_0_0_42/A2->ZN          NAND2_X4                fr   1419.2     27.0     27.0      0.0      9.5     11.4     20.6      2    72,   71  /PD_TOP        (1.10)
+overflow                                          r   1421.2      2.0               2.0     18.4                            143,   58                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------

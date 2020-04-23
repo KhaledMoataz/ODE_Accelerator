@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 # Parameters
-set test_dir "Interpolation Module/Test";
+set test_dir "Test";
 set test_iterations 10
 set test_file_name "Interpolation_test_cases.txt"
 
@@ -110,10 +110,10 @@ for { set it 0}  {$it < $U_num} {incr it} {
 		set overflow [examine -binary overflow]; list
 
 		if { $done_sg == 1 } {
-			echo "Interploation module initialized successfully";
+			echo "Interploation module finished successfully";
 			set cond 1
 		} elseif { $overflow == 1 } {
-			echo "Step Module initialization overflow";
+			echo "Interpolation Module start overflow";
 			set cond 1
 		}
 	}

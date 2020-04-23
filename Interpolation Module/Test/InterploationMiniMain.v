@@ -14,9 +14,9 @@ wire[ADDRESS_WIDTH-1 : 0] ram_add1, ram_add2;
 wire mem_write;
 
 
+RAM #(.WORD_SIZE(WORD_SIZE), .ADDRESS_SIZE(ADDRESS_WIDTH)) ram_module (clk,rst,mem_write,ram_add2,ram_add1,Mdr2,ram_data1);
 
-
-InterpolationModule #(WORD_SIZE, ADDRESS_WIDTH) interpolation_module(start_sg,alert_sg,update_sg,init_sg,
+InterpolationModule interpolation_module(start_sg,alert_sg,update_sg,init_sg,
                             clk,rst,tk_port,
                             ram_data1,ram_data2,
                             uk_port,
@@ -30,7 +30,7 @@ InterpolationModule #(WORD_SIZE, ADDRESS_WIDTH) interpolation_module(start_sg,al
 assign Mdr2 = mem_write == 1'b1 ? data_to_ram : {WORD_SIZE{1'bZ}}; 
 assign ram_data2 = Mdr2;
 
-RAM #(ADDRESS_WIDTH,WORD_SIZE) ram_module (clk,rst,mem_write,ram_add2,ram_add1,Mdr2,ram_data1);
+
 
 
 endmodule // interpolationTestMain

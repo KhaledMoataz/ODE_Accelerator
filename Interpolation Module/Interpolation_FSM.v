@@ -65,7 +65,7 @@ module InterpolationFSM(
     assign done_sg = current_state == INIT3 | current_state == UPDATE2 | current_state == ALERT1 | current_state == LOOP11;
     
     assign rst_init1 = current_state == INIT1;
-    assign not_first = (current_state == LOOP9)? 1'b1 : ((current_state == LOOP10) ? 1'b0 : not_first);
+    //assign not_first = (current_state == LOOP9)? 1'b1 : ((current_state == LOOP10) ? 1'b0 : not_first);
 
     //selectors
     assign un_add_mux_sel = current_state == UPDATE1 ? 1'b1 : 1'b0;
@@ -148,6 +148,7 @@ module InterpolationFSM(
                 START1:
                 begin
                     current_state <= START2;
+                    not_first <= 1'b0;
                 end
                 START2:
                 begin
@@ -207,6 +208,7 @@ module InterpolationFSM(
                 end
                 LOOP9:
                 begin
+                    not_first <= 1'b1;
                     if(m_is_zero)
                         current_state<= LOOP10;
                     else
@@ -214,6 +216,7 @@ module InterpolationFSM(
                 end
                 LOOP10:
                 begin
+                    not_first <= 1'b0;
                     current_state <= LOOP11;
                 end
                 LOOP11:
