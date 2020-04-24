@@ -128,7 +128,6 @@ foreach line $file_data {
         }
     } else {
         set element [examine /demomain/ram3/MEM($it)];
-        puts $element;
         if { $line != $element } {
              echo "Element $it is NOT Correct !";
         }
