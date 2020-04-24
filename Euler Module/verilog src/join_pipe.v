@@ -11,8 +11,9 @@ module JOIN_PIPE  #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
  
  output return_default_state,
  output overflow_flag,
- output finished
-
+ output finished,
+ output [DATA_SIZE-1:0] result_saved,
+ output [ADD_SIZE-1:0] pc_saved
 );
 
 
@@ -43,10 +44,12 @@ multiplier multiplier_(clk, rst|clear, result_add, h_step, start_mul, result_mul
 incrementor #(ADD_SIZE) inc_pc(inc_pc_in, pc_answer);
 Register #(ADD_SIZE) pc_write(clk, rst|clear, finished_mul, pc_answer, inc_pc_in);
 
+assign result_saved = result_mul;
+assign pc_saved = inc_pc_in;
 
 // last parameter data2out is not connected (not needed)
 // if not synthesizable add dummy wire
-RAM #(ADD_SIZE,DATA_SIZE) ram(~clk, rst, finished_mul, inc_pc_in, 1'b0, result_mul); 
+// RAM #(ADD_SIZE,DATA_SIZE) ram(~clk, rst, finished_mul, inc_pc_in, 1'b0, result_mul); 
 
  always @(posedge done_mul) begin
 	finished_mul <= 1'b1;

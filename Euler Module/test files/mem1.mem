@@ -1,5 +1,5 @@
 // memory data file (do not edit the following line - required for mem load use)
-// instance=/Main_Euler/pipeline1/fetch_stage_/ram/MEM
+// instance=/demomain/ram1/MEM
 // format=bin addressradix=h dataradix=b version=1.0 wordsperline=1
 @0 0000000010000000
 @1 0000000100000000
