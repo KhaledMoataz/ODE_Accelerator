@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 # Parameters
-set test_dir "Test";
+set test_dir "Interpolation Module/Test";
 set test_iterations 10
 set test_file_name "Interpolation_test_cases.txt"
 
