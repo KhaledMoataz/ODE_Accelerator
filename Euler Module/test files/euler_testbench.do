@@ -120,6 +120,7 @@ set inputfile [open "C:/Users/user/Desktop/ODE_Accelerator/Euler\ Module/test\ f
 set file_data [read $inputfile];
 
 set it 0
+set itt 0
 foreach line $file_data {
     if {$it == 0 } {
         set overflowflag [examine -binary /demomain/eul/errorr];
@@ -127,10 +128,11 @@ foreach line $file_data {
             echo "Overflow occurs!";
         }
     } else {
-        set element [examine /demomain/ram3/MEM($it)];
+        set element [examine /demomain/ram3/MEM($itt)];
         if { $line != $element } {
              echo "Element $it is NOT Correct !";
         }
+        incr itt;
     }
     incr it;
 }
