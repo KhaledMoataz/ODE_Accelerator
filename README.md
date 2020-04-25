@@ -19,12 +19,12 @@ do Fixed\ Point\ Arithmetic/src/post-synthesis/multiplier_modified_booth_carry_s
 do Fixed\ Point\ Arithmetic/src/post-synthesis/multiplier_modified_booth_carry_lookahead.do  
 
 # Division
-Pre Synthesis: *do "Fixed Point Arithmetic/test/division_pre_synthesis.do"*
+Pre Synthesis: *do "Fixed Point Arithmetic/test/division_pre_synthesis.do"*  
 Post Synthesis: *do "Fixed Point Arithmetic/test/division_post_synthesis.do"*
 
-To run the equivalent software, run main.cpp.
-It has two modes: interactive mode & generate test cases mode.
-To test any functionality, choose the interactive mode and choose which function would you like to test (Add, Multiply or Divide).
+To run the equivalent software, run main.cpp.  
+It has two modes: interactive mode & generate test cases mode.  
+To test any functionality, choose the interactive mode and choose which function would you like to test (Add, Multiply or Divide).  
 Then input two float numbers.
 
 # Step Module
