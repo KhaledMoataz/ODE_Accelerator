@@ -108,7 +108,7 @@ set endtest 0
 
 while {$endtest == 0} {
     run
-    set endtest [examine -binary /demomain/eul/finish]
+    set endtest [examine -binary /demomain/eul/finishh];
 }
 run
 run
@@ -122,7 +122,7 @@ set file_data [read $inputfile];
 set it 0
 foreach line $file_data {
     if {$it == 0 } {
-        set overflowflag [examine -binary /demomain/eul/error];
+        set overflowflag [examine -binary /demomain/eul/errorr];
         if {$overflowflag == 1 && ($overflowflag == $line )} {
             echo "Overflow occurs!";
         }

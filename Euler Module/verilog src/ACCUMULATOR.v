@@ -1,8 +1,8 @@
-module ACCUMULATOR_EULAR(clk,rst_sync,rst_async,inp,outp,overflow_flag);
+module ACCUMULATOR_EULAR(clk,rst_sync,inp,outp,overflow_flag);
 
 parameter Size = 16;
 
-input clk,rst_async,rst_sync;
+input clk,rst_sync;
 input [Size-1:0]inp;
 
 output overflow_flag;
@@ -19,15 +19,9 @@ assign outp = accum;
 
 adder #(Size) adder_(inp,accum,1'b0,result,carry,overflow_flag_temp,neg);
 
-initial
+always @(posedge clk )
     begin
-        accum <= 'b0;
-        temp_overflow_flag<= 'b0;
-    end
-
-always @(posedge clk or posedge rst_async)
-    begin
-        if(rst_async == 1'b1 || rst_sync == 1'b1)
+        if(rst_sync == 1'b1)
             begin
                 accum <= 'b0;
                 temp_overflow_flag <= 'b0;
