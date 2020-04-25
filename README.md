@@ -22,7 +22,7 @@ do Fixed\ Point\ Arithmetic/src/post-synthesis/multiplier_modified_booth_carry_l
 # Step Module
 To initialize a modelsim project to run and test the step module:
 
-1. Make sure your base directory is ODE_Accelerator (this repositry).
+1. Make sure your base directory is ODE_Accelerator (this repository).
 2. Initialize modelsim project using presynthesis module: do "Step Module/init_project.tcl"
 or
 2. Initialize modelsim project using presynthesis module: do "Step Module/init_project_post_synthesis.tcl"
