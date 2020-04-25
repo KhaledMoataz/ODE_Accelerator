@@ -6,17 +6,20 @@ module decompressor #(parameter N = 32)(clk ,  reset , start , bit , value , sto
   wire [N-1:0] parllel , cond1 ,cond2;
   reg [$clog2(N) - 1:0] counter,counter2; // counter for number of decompressed bits
   wire [$clog2 (N) + 1:0] new_pos , remain , new_value , temp ,full; // new_pos is new counter after decompress & remain number of uncompressed bits
+  reg [$clog2 (N) + 1:0] reg_temp;
   reg next; // finished decompressing
-  wire work ;  // Haven't finished decompressing
+  wire work,zero,one,c1,c2,c3,of1,of2,of3;  // Haven't finished decompressing
     
   assign full = N;
+  assign zero = 0;
+  assign one = 1;
   
-  adder #($clog2 (N) + 1) add1(new_value , {2'b00 ,counter2} , new_pos);
-  sub #($clog2 (N) + 1) sub1(full , {2'b00 , counter2} , remain);
-  sub #($clog2 (N) + 1) sub2({1'b0,value} , remain , temp);
+  adder #($clog2 (N) + 2) add1(new_value , {2'b00 ,counter} , 0 ,  new_pos , c1 , of1);
+  adder #($clog2 (N) + 2) sub1(full , {2'b00 , counter2} , 1 ,remain , c2 ,of2);
+  adder #($clog2 (N) + 2) sub2({1'b0,value} , remain , 1 , temp , c3 , of3);
   
-  assign new_value = (start == 1)? {1'b0,value} : temp;
-  assign work = (~next) | start;
+  assign new_value = (start & work)? {1'b0,value} : reg_temp;
+  assign work = (~next) | start ;
   
   
   genvar i;
@@ -30,14 +33,15 @@ module decompressor #(parameter N = 32)(clk ,  reset , start , bit , value , sto
     end
   endgenerate
   
-  
+
   
   always @( posedge clk , posedge reset)begin
     if(reset == 1'b1)begin
       counter <= 0;
-      next <= 0;
+      next <= 1;
     end else if(work == 1'b1) begin
         out <= parllel;
+        reg_temp <= temp;
         if( new_pos <= N )begin
           counter <= new_pos[$clog2(N) - 1:0]; 
           next <= 1'b1;
