@@ -8,7 +8,7 @@ module memory_manager #(parameter N = 32)( clk,reset,store1,store2 , write , tem
   reg wait1,wait2;
   
   
-  always@(posedge(clk) or posedge(reset))begin
+  always@(*)begin
     if(reset) begin
       counter = 0;
       wait1 <= 0;
