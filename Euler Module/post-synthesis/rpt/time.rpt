@@ -1,0 +1,120 @@
+Report for group default
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: pipeline2/acc_buffer_/temp_reg[1]/Q
+    (Clocked by sysclk F)
+Endpoint: pipeline2/acc_stage_/accumulator/temp_overflow_flag_reg/D
+    (Clocked by sysclk R)
+Path Group: default
+Data required time: 911.3
+    (Clock shift: 950.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 38.7)
+Data arrival time: 833.7
+Slack: 77.6
+Logic depth: 12
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           f      0.0      0.0      0.0                        0.0      0.0     71     0,   56                       
+pipeline2/i_1_0/A->ZN    INV_X1                  fr      0.0      0.0      0.0      0.0      0.0      0.0      0.0     55    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_buffer_/temp_reg[1]/CK->Q
+                         DFF_X1                  rr     99.9     99.9     99.9      0.0      0.0      1.5      8.6      2    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_0/A->Z
+                         XOR2_X2                 rr    166.8     66.9     66.9      0.0     22.6      1.4      8.7      2    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_2/A1->ZN
+                         AOI22_X4                rf    202.4     35.6     35.6      0.0     36.7      0.7     26.2      1    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_3/A->ZN
+                         INV_X8                  fr    219.0     16.6     16.6      0.0     22.0      2.0      8.9      3    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/Gen_Modules_1_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf    297.5     78.5     78.5      0.0      6.4      2.2      9.0      3    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/Gen_Modules_2_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 fr    366.6     69.1     69.1      0.0     13.6      2.2      9.0      3    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/Gen_Modules_3_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf    448.6     82.0     82.0      0.0     15.5      2.2      9.0      3    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/Gen_Modules_4_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 fr    517.7     69.1     69.1      0.0     13.6      2.2      9.0      3    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/Gen_Modules_5_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf    599.7     82.0     82.0      0.0     15.5      2.2      9.0      3    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/Gen_Modules_6_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 fr    672.7     73.0     73.0      0.0     13.6      2.9     12.0      4    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/Gen_Modules_7_which_adder_x/i_0_0/S->Z
+                         MUX2_X2                 rf    750.1     77.4     77.3      0.1     18.6      0.7      4.1      1    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/adder_/i_7_0/B->Z
+                         XOR2_X2                 ff    807.5     57.4     57.4      0.0     11.0      0.6      2.7      1    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/i_0_1/A1->ZN
+                         AND2_X4                 ff    833.7     26.2     26.2      0.0     11.7      0.7      1.8      1    91,   88  /PD_TOP        (1.10)
+pipeline2/acc_stage_/accumulator/temp_overflow_flag_reg/D
+                         DFF_X1                   f    833.7      0.0               0.0      4.9                             91,   88  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2R
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: shape2_1[5]
+    (Clocked by rtDefaultClock R)
+Endpoint: pipeline2/fsm_end/current_state_reg[1]/D
+    (Clocked by sysclk F)
+Path Group: I2R
+Data required time: 914.8
+    (Clock shift: 950.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 35.2)
+Data arrival time: 908.9
+Slack: 5.9
+Logic depth: 4
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+shape2_1[5]              {set_input_delay}        f    700.0    700.0    700.0                        7.6     10.8      1   145,   92                       
+pipeline2/if_end_of_row/i_0/i_2/A->Z
+                         XOR2_X2                 ff    792.6     92.6     91.6      1.0    100.0      0.7      4.5      1    91,   88  /PD_TOP        (1.10)
+pipeline2/if_end_of_row/i_0/i_0/A3->ZN
+                         NOR3_X4                 fr    846.6     54.0     54.0      0.0     12.7      0.7      4.9      1    91,   88  /PD_TOP        (1.10)
+pipeline2/fsm_end/i_0_1/B2->ZN
+                         AOI21_X4                rf    865.5     18.9     18.9      0.0     28.7      0.7      4.6      1    91,   88  /PD_TOP        (1.10)
+pipeline2/fsm_end/i_0_0/A3->ZN
+                         NOR3_X2                 fr    908.9     43.4     43.4      0.0      7.9      0.7      1.9      1    91,   88  /PD_TOP        (1.10)
+pipeline2/fsm_end/current_state_reg[1]/D
+                         DFF_X1                   r    908.9      0.0               0.0     22.2                             91,   88  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2O
+Report for group R2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: join_pipe/multiplier_/Q_reg[9]/Q
+    (Clocked by sysclk R)
+Endpoint: result_saved[15]
+    (Clocked by vsysclk R)
+Path Group: R2O
+Data required time: 1330.0
+    (Clock shift: 1900.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 570.0)
+Data arrival time: 472.3
+Slack: 857.7
+Logic depth: 9
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0     71     0,   56                       
+join_pipe/multiplier_/clk_gate_finish_reg/CK->GCK
+                         CLKGATETST_X1           rr      0.0      0.0      0.0      0.0      0.0      0.0      0.0     37    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/Q_reg[9]/CK->Q
+                         DFF_X1                  rr    116.5    116.5    116.5      0.0      0.0      2.7     15.8      4    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_4_which_adder_x/adder_block_inst2/full_adder_inst2/i_0_1/A1->ZN
+                         AND2_X4                 rr    152.2     35.7     35.7      0.0     38.8      0.6      2.9      1    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_4_which_adder_x/i_0_1/A2->ZN
+                         AND2_X4                 rr    184.4     32.2     32.2      0.0      7.1      1.9      9.7      3    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_5_which_adder_x/i_0_1/A1->ZN
+                         AND2_X4                 rr    216.8     32.4     32.4      0.0     10.6      1.9      9.7      3    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_6_which_adder_x/i_0_1/A1->ZN
+                         AND2_X4                 rr    249.2     32.4     32.4      0.0     10.6      1.9      9.7      3    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_7_which_adder_x/i_0_1/A1->ZN
+                         AND2_X4                 rr    281.6     32.4     32.4      0.0     10.6      1.9      9.7      3    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_8_which_adder_x/i_0_1/A1->ZN
+                         AND2_X4                 rr    314.0     32.4     32.4      0.0     10.6      1.9      9.7      3    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_9_which_adder_x/i_0_1/A1->ZN
+                         AND2_X4                 rr    346.4     32.4     32.4      0.0     10.6      1.9      9.7      3    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_10_which_adder_x/i_0_1/A1->ZN
+                         AND2_X4                 rr    378.8     32.4     32.4      0.0     10.6      8.7      9.7      3    50,   95  /PD_TOP        (1.10)
+join_pipe/multiplier_/adder_round/Gen_Modules_11_which_adder_x/i_0_1/B->Z
+                         XOR2_X2                 rr    471.5     92.7     92.7      0.0     10.6      8.3     21.0      3    50,   95  /PD_TOP        (1.10)
+result_saved[15]                                  r    472.3      0.8               0.8     65.3                             52,  145                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------
