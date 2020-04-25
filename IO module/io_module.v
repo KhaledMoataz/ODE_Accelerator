@@ -5,7 +5,7 @@ module io_module #(parameter N=32)(clk,reset,int,process,eob,data,ready , out , 
   wire [7:0]out1,out2,out3,out4;
   wire [3:0] start;
   wire next; // next address for decompressor 4
-  wire store1,store2,store3,store4,write1,write2,c1,c2,of1,of2;
+  wire store1,store2,store3,store4,write1,write2,c1,c2,of1,of2,n1,n2;
   wire [1:0]select1,select2; 
   wire [N-1:0] decoded1,decoded2,decoded3,decoded4,unused1,unused2;
   reg [N-1:0] MDR1,MDR2;
@@ -28,8 +28,8 @@ module io_module #(parameter N=32)(clk,reset,int,process,eob,data,ready , out , 
   assign X_addr = 20;
   assign cpu_out = out;
   
-  adder #(20)add1( X_addr , counter2 , zero, out_addr , c1 , of1);
-  adder #(20)add2( one , counter2 , zero , counter3 , c2 , of2);
+  adder #(20)add1( X_addr , counter2 , zero, out_addr , c1 , of1 , n1);
+  adder #(20)add2( one , counter2 , zero , counter3 , c2 , of2 , n2);
   io_fsm  s ( clk , reset , int , process , eob , data , out1 , out2 , out3 , out4 , start , ready , next );
   
   decompressor #(N) d1 (clk ,  reset , start[0] , out1[6] , out1[$clog2 (N):0] , store1 , decoded1); // decompress A

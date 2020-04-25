@@ -8,15 +8,16 @@ module decompressor #(parameter N = 32)(clk ,  reset , start , bit , value , sto
   wire [$clog2 (N) + 1:0] new_pos , remain , new_value , temp ,full; // new_pos is new counter after decompress & remain number of uncompressed bits
   reg [$clog2 (N) + 1:0] reg_temp;
   reg next; // finished decompressing
-  wire work,zero,one,c1,c2,c3,of1,of2,of3;  // Haven't finished decompressing
+  wire work,zero,one,c1,c2,c3,of1,of2,of3,n1,n2,n3 ;  // Haven't finished decompressing
     
   assign full = N;
   assign zero = 0;
   assign one = 1;
   
-  adder #($clog2 (N) + 2) add1(new_value , {2'b00 ,counter} , 0 ,  new_pos , c1 , of1);
-  adder #($clog2 (N) + 2) sub1(full , {2'b00 , counter2} , 1 ,remain , c2 ,of2);
-  adder #($clog2 (N) + 2) sub2({1'b0,value} , remain , 1 , temp , c3 , of3);
+  adder #($clog2 (N) + 2) add1(new_value , {2'b00 ,counter} , zero ,  new_pos , c1 , of1 , n1);
+  adder #($clog2 (N) + 2) sub1(full , {2'b00 , counter2} , one ,remain , c2 ,of2 , n2);
+  adder #($clog2 (N) + 2) sub2({1'b0,value} , remain , one , temp , c3 , of3 , n3);
+  
   
   assign new_value = (start & work)? {1'b0,value} : reg_temp;
   assign work = (~next) | start ;
