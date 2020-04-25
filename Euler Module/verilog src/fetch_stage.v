@@ -11,8 +11,18 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
 
 );
  
- reg [ADD_SIZE-1:0] pc_matrix_init =   16'h0032;
- reg [ADD_SIZE-1:0] pc_vector_init =   16'h0000;
+ reg [ADD_SIZE-1:0] pc_matrix_init ;
+ reg [ADD_SIZE-1:0] pc_vector_init ;
+
+always @(posedge clk)
+begin
+    if(reset)
+    begin
+        pc_matrix_init <= 16'h0032;
+        pc_vector_init <= 16'h0000;
+    end
+end
+ 
  wire [ADD_SIZE-1: 0] pc_mat, pc_vec, mux_mat_out, mux_vec_out, inc_mat_out, inc_vec_out;
  
  assign sel_vec = finished_one_row | final_done | init_start;

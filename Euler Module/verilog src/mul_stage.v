@@ -1,4 +1,4 @@
-module mul_stage #(parameter DATA_SIZE)
+module mul_stage #(parameter DATA_SIZE=16)
 (
 input clk,
 input rst,

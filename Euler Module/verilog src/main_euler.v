@@ -18,13 +18,25 @@ output[ADD_SIZE-1:0] add2_1,
 
 output [DATA_SIZE-1:0] result_saved,
 output [ADD_SIZE-1:0] pc_saved,
-output result_stored
+output result_stored,
+
+output finishh,
+output errorr,
+input[MAX_DIM-1:0] shape1_0,
+input[MAX_DIM-1:0] shape1_1,
+input[MAX_DIM-1:0] shape2_0,
+input[MAX_DIM-1:0] shape2_1
 
 );
 
-reg finish,error;
+reg  finish ,error;
 
-reg [MAX_DIM-1:0] shape1_0 = 6'b11, shape1_1 = 6'b11, shape2_0 = 6'b11, shape2_1 = 6'b10;
+assign finishh = finish;
+assign errorr = error;
+
+// we can try to assign it to inputs
+// reg [MAX_DIM-1:0] shape1_0 = 6'b11, shape1_1 = 6'b11, shape2_0 = 6'b11, shape2_1 = 6'b10;
+
 
 wire end_op, return_default_state, data_ready1, data_ready2, overflow1, overflow2, overflow3;
 wire [DATA_SIZE-1:0] data1, data2;
@@ -38,10 +50,10 @@ Pipeline #(ADD_SIZE, DATA_SIZE, MAX_DIM) pipeline2(clk, rst|finish, start, finis
 JOIN_PIPE  #(ADD_SIZE, DATA_SIZE) join_pipe(rst, clk, data_ready1, data_ready2, data1, data2, h_step, finish, return_default_state, overflow3, result_stored,result_saved,pc_saved);
 
 //count number of rows
-NegEdgeCounter #(MAX_DIM,0) count_cloumns(clk, rst, DONE, return_default_state, 6'b0, row_count);
+PosEdgeCounter #(MAX_DIM,0) count_cloumns(~clk, rst, DONE, return_default_state, 6'b0, row_count);
 COMPARATOR_EULAR #(MAX_DIM) if_end_of_op(row_count, shape1_0, end_op);
 
-always @(posedge clk or posedge end_op or posedge rst) begin
+always @(posedge clk) begin
 	if(rst) begin
 		finish <= 1'b0;
 		DONE <= 1'b0;
@@ -53,6 +65,7 @@ always @(posedge clk or posedge end_op or posedge rst) begin
 		end
 		if(DONE & result_stored) begin
 			finish <= 1'b1;
+			error <= 1'b0;
 		end
 		if(start & finish) begin 
 			finish <= 1'b0;
