@@ -98,16 +98,17 @@ module io_module #(parameter N=32)(clk,reset,int,process,eob,data,ready , out , 
 end
 
  
- always@(posedge(clk) , posedge(reset) , posedge(next))begin
-   if(next)
-    counter <= 1;
-   if(out)
-    counter2 <= counter3;
-   if(reset) begin
+  always@(posedge clk , posedge next , posedge reset)begin
+   if(reset == 1) begin
     counter <= 0;
     counter2 <= 0;     
-   end
- end
+   end else begin   
+     if(next == 1)
+       counter <= 1;
+     if(out == 1)
+      counter2 <= counter3;
+    end
+ end    
      
 endmodule
 
