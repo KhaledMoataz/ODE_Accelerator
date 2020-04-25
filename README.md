@@ -19,7 +19,7 @@ do Fixed\ Point\ Arithmetic/src/post-synthesis/multiplier_modified_booth_carry_s
 do Fixed\ Point\ Arithmetic/src/post-synthesis/multiplier_modified_booth_carry_lookahead.do  
 
 # Division
-Pre Synthesis: *do "Fixed Point Arithmetic/test/division_pre_synthesis.do"*
+Pre Synthesis: *do "Fixed Point Arithmetic/test/division_pre_synthesis.do"*  
 Post Synthesis: *do "Fixed Point Arithmetic/test/division_post_synthesis.do"*
 
 To run the equivalent software, run main.cpp.  
