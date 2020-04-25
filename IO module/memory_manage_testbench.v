@@ -18,42 +18,51 @@ module memory_manager_testbench();
     store2 <= 1;
    	#100
     clk <= 0;
-    if(write !== 1)
+ 	  #100
+ 	  clk <= 1;
+ 	  
+ 	  if(write !== 1)
       $display("Memory manager should emit write signal");
-   	if(select !== 0)
+   	if(select !== 1)
    	  $display("Wrong selection");
- 	  #100
- 	  clk <= 1;
+   	  
     #100
-    clk <= 0;
-    if(write !== 1)
-      $display("Memory manager should emit write signal");
-   	if(select !== 3)
-   	  $display("Wrong selection"); 
+    clk <= 0; 
  	  #100
  	  clk <= 1;
+ 	  
+ 	  if(write !== 1)
+      $display("Memory manager should emit write signal");
+   	if(select !== 2)
+   	  $display("Wrong selection");
+ 	  
  	  store1 <= 0;
     store2 <= 0;
     #100
-    clk <= 0;
-    if(write !== 1)
-      $display("Memory manager should emit write signal");
-   	if(select !== 2)
-   	  $display("Wrong selection");	   
+    clk <= 0;	   
  	  #100
  	  clk <= 1;
-    #100
-    clk <= 0;
-    if(write !== 1)
+ 	  
+ 	  if(write !== 1)
       $display("Memory manager should emit write signal");
    	if(select !== 3)
    	  $display("Wrong selection");
+    #100
+    clk <= 0;
  	  #100
  	  clk <= 1;
+ 	  
+ 	  if(write !== 1)
+      $display("Memory manager should emit write signal");
+   	if(select !== 2)
+   	  $display("Wrong selection");
+
+ 	  
  	  #100
  	  clk <= 0;
+ 	  #100
+ 	  clk <= 1;
  	  if(write !== 0)
    	  $display("Write signal should be low"); 
   end
 endmodule
-
