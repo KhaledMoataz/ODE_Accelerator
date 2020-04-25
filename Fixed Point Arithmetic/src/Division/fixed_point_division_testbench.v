@@ -24,7 +24,7 @@ module division_testbench;
 
     initial
     begin
-        $readmemb("ODE_Accelerator\\Fixed Point Arithmetic\\test\\division_test_cases.txt", read_data);
+        $readmemb("Fixed Point Arithmetic/test/division_test_cases.txt", read_data);
 
         #1
         for (i=0; i<100; i=i+1)
