@@ -14,8 +14,8 @@ module io_fsm(  clk , reset , int , process , eob , data , out1 , out2 , out3 , 
   assign zero = 0;
   assign one = 2'b01;
   
-  carry_lookahead_adder #(2) add1(counter , one , zero, temp , c1 , of1);
-  carry_lookahead_adder #(2) add2(counter2 , one , zero , temp2 , c2 , of2);
+  adder #(2) add1(counter , one , zero, temp , c1 , of1);
+  adder #(2) add2(counter2 , one , zero , temp2 , c2 , of2);
   localparam IDLE = 2'b00, decompress = 2'b01 , calculate = 2'b10;
   
   assign out1 = data[7:0];
