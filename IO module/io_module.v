@@ -32,10 +32,10 @@ module io_module #(parameter N=32)(clk,reset,int,process,eob,data,ready , out , 
   adder #(20)add2( one , counter2 , zero , counter3 , c2 , of2);
   io_fsm  s ( clk , reset , int , process , eob , data , out1 , out2 , out3 , out4 , start , ready , next );
   
-  decomp2 #(N) d1 (clk ,  reset , start[0] , out1[6] , out1[$clog2 (N):0] , store1 , decoded1); // decompress A
-  decomp2 #(N) d2 (clk ,  reset , start[1] , out2[6] , out2[$clog2 (N):0] , store2 , decoded2); // decompress B
-  decomp2 #(N) d3 (clk ,  reset , start[2] , out3[6] , out3[$clog2 (N):0] , store3 , decoded3); // decompress U
-  decomp2 #(N) d4 (clk ,  reset , start[3] , out4[6] , out4[$clog2 (N):0] , store4 , decoded4); // decompress rest
+  decompressor #(N) d1 (clk ,  reset , start[0] , out1[6] , out1[$clog2 (N):0] , store1 , decoded1); // decompress A
+  decompressor #(N) d2 (clk ,  reset , start[1] , out2[6] , out2[$clog2 (N):0] , store2 , decoded2); // decompress B
+  decompressor #(N) d3 (clk ,  reset , start[2] , out3[6] , out3[$clog2 (N):0] , store3 , decoded3); // decompress U
+  decompressor #(N) d4 (clk ,  reset , start[3] , out4[6] , out4[$clog2 (N):0] , store4 , decoded4); // decompress rest
     
   memory_manager #(N) m1 (clk , reset , store2 , store3 , write2 , temp2 , temp3 ,decoded2 , decoded3 , select2); // Store in memory 2
   memory_manager #(N) m2 (clk , reset , store1 , store4 , write1 , temp1 , temp4 , decoded1 , decoded4 , select1); // store in memory 1
