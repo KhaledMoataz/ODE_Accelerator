@@ -1,7 +1,7 @@
 # IO Module
 
 ## Schematic Desgin
-![](Capture.Jpg)
+![](Capture.JPG)
 
 ## Run Module
 Make sure that your base directory is ODE_Accelerator. Then, run the following commands:
