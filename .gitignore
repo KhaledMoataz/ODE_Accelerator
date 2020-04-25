@@ -8,3 +8,4 @@ work/
 *.exe
 transcript
 *vscode*
+*nul*
