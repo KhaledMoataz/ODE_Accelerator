@@ -1,4 +1,3 @@
-#namespace import ::tcl::mathfunc::int
 
 proc int {num} {
 	set endI [expr {[string first {.} $num] - 1}]
@@ -91,9 +90,6 @@ proc encode {word {max_len 6}} {
 	set bin_code {}
 	
 	foreach {cnt bit} $code {
-		puts -nonewline $cnt
-		puts -nonewline {+}
-		puts $bit
 		set bin_code [concat $bin_code $bit[dec2bin $cnt $max_len]]
 	}
 	

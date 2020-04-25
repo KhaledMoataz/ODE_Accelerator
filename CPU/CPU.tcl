@@ -150,6 +150,18 @@ puts $fp Us_encoded
 puts $fp others_encoded
 close $fp
 
+# write to logs file
+set fp [open "output_logs.txt" "w+"]
+
+set a_test {}
+set a_i 0
+set b_test {}
+set b_i 0
+set u_test {}
+set u_i 0
+set others_test {}
+set o_i 0
+
 # start the communication with the chip
 force clk 0 0, 1 $half_clk ps -r $clk
 force reset 0
@@ -177,30 +189,182 @@ foreach a $a_encoded b $b_encoded u $Us_encoded o $others_encoded ea $a_eob eb $
 		set o [string repeat {0} $max_len]
 	}
 	# load data
-	force data 0${a}0${b}0${u}0${o}
-	force eob 0
-	run $clk
-	#noforce data
-	
-	# process data
-	force process 1
+	force data 0${o}0${u}0${b}0${a}
 	# a cycle
 	force eob $ea
 	run $clk
 	
+	# save values to be stored in ram to compare later
+	if {[examine d1/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {A:}
+		puts $fp [concat {expected output:} [string range $a_code end-$start end-$finish]]
+		puts $fp [concat {actual output:} [examine d1/out]]
+		incr a_i
+	}
+	if {[examine d2/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {B:}
+		puts $fp [concat {expected output:} [string range $b_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d2/out]]
+		incr b_i
+	}
+	if {[examine d3/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {U:}
+		puts $fp [concat {expected output:} [string range $Us_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d3/out]]
+		incr u_i
+	}
+	if {[examine d4/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {Control signals:}
+		puts $fp [concat {expected output:} [string range $others_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d4/out]]
+		incr o_i
+	}
+	#noforce data
+	
+	# process data
+	force process 1
 	# b cycle
 	force eob $eb
 	run $clk
+	# save values to be stored in ram to compare later
+	if {[examine d1/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {A:}
+		puts $fp [concat {expected output:} [string range $a_code end-$start end-$finish]]
+		puts $fp [concat {actual output:} [examine d1/out]]
+		incr a_i
+	}
+	if {[examine d2/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {B:}
+		puts $fp [concat {expected output:} [string range $b_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d2/out]]
+		incr b_i
+	}
+	if {[examine d3/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {U:}
+		puts $fp [concat {expected output:} [string range $Us_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d3/out]]
+		incr u_i
+	}
+	if {[examine d4/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {Control signals:}
+		puts $fp [concat {expected output:} [string range $others_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d4/out]]
+		incr o_i
+	}
 	
 	# u cycle
 	force eob $eu
 	run $clk
+	# save values to be stored in ram to compare later
+	if {[examine d1/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {A:}
+		puts $fp [concat {expected output:} [string range $a_code end-$start end-$finish]]
+		puts $fp [concat {actual output:} [examine d1/out]]
+		incr a_i
+	}
+	if {[examine d2/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {B:}
+		puts $fp [concat {expected output:} [string range $b_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d2/out]]
+		incr b_i
+	}
+	if {[examine d3/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {U:}
+		puts $fp [concat {expected output:} [string range $Us_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d3/out]]
+		incr u_i
+	}
+	if {[examine d4/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {Control signals:}
+		puts $fp [concat {expected output:} [string range $others_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d4/out]]
+		incr o_i
+	}
 	
 	# others cycle
-	#force eob $eo
-	#run $clk
+	force eob $eo
+	run $clk
+	# save values to be stored in ram to compare later
+	if {[examine d1/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {A:}
+		puts $fp [concat {expected output:} [string range $a_code end-$start end-$finish]]
+		puts $fp [concat {actual output:} [examine d1/out]]
+		incr a_i
+	}
+	if {[examine d2/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {B:}
+		puts $fp [concat {expected output:} [string range $b_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d2/out]]
+		incr b_i
+	}
+	if {[examine d3/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {U:}
+		puts $fp [concat {expected output:} [string range $Us_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d3/out]]
+		incr u_i
+	}
+	if {[examine d4/store] eq 1} {
+		set start [expr {$mem_width * ($b_i + 1)}]
+		set finish [expr {$mem_width * $b_i}]
+		puts $fp {Control signals:}
+		puts $fp [concat {expected output:} [string range $others_code end-$start end-$finish]]
+		puts $fp [concat {acutal output:} [examine d4/out]]
+		incr o_i
+	}
 	
 }
+close $fp
+
+#if {$a_code eq $a_test} {
+#	puts {A is stored correctly}
+#} else {
+#	puts {A was NOT stored correctly}
+#}
+#if {$b_code eq $b_test} {
+#	puts {B is stored correctly}
+#} else {
+#	puts {B was NOT stored correctly}
+#}
+#if {$Us_code eq $u_test} {
+#	puts {U is stored correctly}
+#} else {
+#	puts {U was NOT stored correctly}
+#}
+#if {$others_code eq $others_test} {
+#	puts {Control signals are stored correctly}
+#} else {
+#	puts {Control signals were NOT stored correctly}
+#}
 
 # wait for calculations
 
