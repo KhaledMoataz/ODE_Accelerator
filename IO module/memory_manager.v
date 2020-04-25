@@ -8,46 +8,51 @@ module memory_manager #(parameter N = 32)( clk,reset,store1,store2 , write , tem
   reg wait1,wait2;
   
   
-  always@(*)begin
-    if(reset) begin
-      counter = 0;
+  always@(negedge clk)begin
+    if(reset) begin 
       wait1 <= 0;
       wait2 <= 0;
     end else begin
-      if(counter == 0)begin
-        if(store2 == 1)begin
-          wait2 <= 1;
-          temp2 <= data2;
-        end
-        if(wait1 == 1)begin   // there is data in temp1
-          select <= 2;
-          if(store1 == 0)begin
-            wait1 <= 0; 
-          end else begin        // store new value in temp1
-            temp1 <= data1;
-          end
-        end else if( store1 == 1)begin
-          select <= 0;
-        end
-        end else begin    // counter = 1
-        if(store1 == 1)begin
-          wait1 <= 1;
+    if(counter == 0)begin
+      if(store2 == 1)begin
+        wait2 <= 1;
+        temp2 <= data2;
+      end
+      if(wait1 == 1)begin   // there is data in temp1
+        select <= 2;
+        if(store1 == 0)begin
+          wait1 <= 0; 
+        end else begin        // store new value in temp1
           temp1 <= data1;
         end
-        if(wait2 == 1)begin   // there is data in temp2
-          select <= 3;
-          if(store2 == 0)begin
-            wait2 <= 0; 
-          end else begin        // store new value in temp2
-            temp2 <= data2;
-          end
-        end else if( store2 == 1)begin
-          select <= 1;
+      end else if( store1 == 1)begin
+        select <= 0;
+      end
+    end else begin    // counter = 1
+      if(store1 == 1)begin
+        wait1 <= 1;
+        temp1 <= data1;
+      end
+      if(wait2 == 1)begin   // there is data in temp2
+        select <= 3;
+        if(store2 == 0)begin
+          wait2 <= 0; 
+        end else begin        // store new value in temp2
+          temp2 <= data2;
         end
-      end    
-      counter = ~counter; 
-      write <= wait1 | wait2 | store1 | store2;   
+      end else if( store2 == 1)begin
+        select <= 1;
+      end
+    end     
+    write <= wait1 | wait2 | store1 | store2;   
     end
+  end
+
+always@(posedge clk , posedge reset)begin
+  if(reset)
+    counter <= 0;
+  else
+    counter <= ~counter;
   end
   
 endmodule
