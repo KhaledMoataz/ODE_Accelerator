@@ -1,0 +1,11 @@
+Report SDC units: 
+-----+-----------+-----
+     |Unit       |Value
+-----+-----------+-----
+1    |Time       |ns   
+2    |Capacitance|ff   
+3    |Resistance |kohm 
+4    |Power      |nW   
+5    |Voltage    |V    
+6    |Current    |mA   
+-----+-----------+-----
