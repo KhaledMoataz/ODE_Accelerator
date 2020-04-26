@@ -28,18 +28,20 @@ module io_fsm_tbench();
       $display("Wrong output data");
    	#100
     clk <= 0;
-    if( start !== 4'b1111)
-      $display("decompressor should have started");
     #100
     clk <= 1;
+    if( start !== 4'b1111)
+      $display("decompressor should have started");
     #100
     temp <= 32'b11111111000000001111111100000000;
     clk <= 0;
     #100
+    eob <= 1;
     clk <= 1;
     #100
     clk <= 0;
     #100
+    eob <= 0;
     clk <= 1;
     #100
     clk <=0;
@@ -49,31 +51,47 @@ module io_fsm_tbench();
     clk <=0;
     #100
     clk <= 1;
+    #100
     if( start !== 4'b1111)
-      $display("all decompressor should start");
-    #100
+      $display("Start Should be 1111 for second object");
     eob <= 1;
     clk <=0;
     #100
     clk <= 1;
     #100
+    eob <= 0;
     clk <=0;
     #100
     clk <= 1;
     #100
-   eob <= 0;
-    if( next !== 1)
-      $display("Should aknowledge memory manager");
     clk <=0;
     #100
     clk <=1;
     #100
     clk <= 0;
-    if( start !== 4'b1001)
-      $display("Started wrong decompressors");
     #100
     clk <=1 ;
     #100
     clk <=0 ;
+    eob <= 1;
+    if( start !== 4'b1101)
+      $display("Started wrong decompressors");
+    #100
+    clk <=1;
+    #100
+    clk <= 0;
+    #100
+    eob <= 0;
+    clk <=1;
+    #100
+    clk <=0;
+    #100
+    clk <= 1;
+    #100
+    clk <=0;
+    #100
+    clk <=1 ;
+    if( start !== 4'b1001)
+      $display("Started wrong decompressors");
   end
 endmodule

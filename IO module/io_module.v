@@ -5,7 +5,7 @@ module io_module #(parameter N=32)(clk,reset,int,process,eob,data,ready , out , 
   wire [7:0]out1,out2,out3,out4;
   wire [3:0] start;
   wire next; // next address for decompressor 4
-  wire store1,store2,store3,store4,write1,write2,c1,c2,of1,of2,n1,n2;
+  wire store1,store2,store3,store4,write1,write2,c1,c2,of1,of2,zero,n1,n2;
   wire [1:0]select1,select2; 
   wire [N-1:0] decoded1,decoded2,decoded3,decoded4,unused1,unused2;
   reg [N-1:0] MDR1,MDR2;
@@ -16,8 +16,8 @@ module io_module #(parameter N=32)(clk,reset,int,process,eob,data,ready , out , 
   reg [19:0]counter2 ;
   reg counter;
   
-  assign one = 1;
   assign zero = 0;
+  assign one = 1;
   assign A_addr = 5;
   assign B_addr = 10;
   assign U_addr = 5;
@@ -96,7 +96,6 @@ module io_module #(parameter N=32)(clk,reset,int,process,eob,data,ready , out , 
     endcase 
  
 end
-
  
   always@(posedge clk , posedge next , posedge reset)begin
    if(reset == 1) begin
@@ -110,5 +109,5 @@ end
     end
  end    
      
+     
 endmodule
-

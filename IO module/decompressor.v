@@ -67,3 +67,5 @@ module decompressor #(parameter N = 32)(clk ,  reset , start , bit , value , sto
  	    counter2 <= 0;
  	 end
 endmodule
+
+

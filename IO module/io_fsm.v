@@ -19,7 +19,7 @@ wire zero,c1,c2,of1,of2,n1,n2;
 
   
   adder #(2) add1(counter , one , zero, temp , c1 , of1 , n1);
-  adder #(2) add2(counter2 , one , zero , temp2 , c2 , of2 , n2);
+  adder #(2) add2({1'b0,zero} , one , zero , temp2 , c2 , of2 , n2);
   
   assign out1 = data[7:0];  //A
   assign out2 = data[15:8]; //B
@@ -55,7 +55,13 @@ begin
     begin
       if( int & (process))
         next_state <= calculate;
-      case(counter)
+          end
+    endcase
+end
+  
+  always@(negedge clk)begin
+    if( current_state == decompress)begin
+    case(counter)
         2'b00:
         begin
           next <= 0;
@@ -70,20 +76,19 @@ begin
         2'b10:
         begin
           next <= eob;
-          if(eob == 1)
-            counter2 <= temp2;
-          if(counter2 == 2) // assuming 2 different objects
+        if(counter2 == 1 & eob) // assuming 2 different objects
             finish[2] <= 1;
+        else if(eob == 1)
+            counter2 <= temp2;
           start <= 0;
         end
         2'b11:
         begin
-          finish[2] <= eob | finish[2];
+          finish[3] <= eob | finish[3];
           start <= 0;
         end          
         endcase
     end
-    endcase
-end
+  end
   
 endmodule
