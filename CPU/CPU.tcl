@@ -1,18 +1,16 @@
 source cpu_procs.tcl
 
-# system variables
 set clk 100
-set input_file {sample_input.txt}
-
 set mem_width 32
-
-# additional variables
 set max_len 6
+
 set num_clks 1000
 set half_clk [expr {$clk >> 1}]
 if {$mem_width eq 16} {
 	set max_len 5
 }
+
+set input_file {sample_input.txt}
 
 # read input
 set fp [open $input_file "r"]
@@ -195,18 +193,21 @@ run $half_clk
 force int 0
 foreach a $a_encoded b $b_encoded u $Us_encoded o $others_encoded ea $a_eob eb $b_eob eu $u_eob eo $others_eob {
 	# fix data if empty
+	
 	if {$a eq {}} {
-		set a [string repeat {0} $max_len]
+		set a [string repeat {0} [expr {$max_len +1}]]
 	}
 	if {$b eq {}} {
-		set b [string repeat {0} $max_len]
+		set b [string repeat {0} [expr {$max_len +1}]]
 	}
 	if {$u eq {}} {
-		set u [string repeat {0} $max_len]
+		set u [string repeat {0} [expr {$max_len +1}]]
 	}
 	if {$o eq {}} {
-		set o [string repeat {0} $max_len]
+		set o [string repeat {0} [expr {$max_len +1}]]
 	}
+	puts $o
+	
 	# load data
 	force data 0${o}0${u}0${b}0${a}
 	# a cycle
