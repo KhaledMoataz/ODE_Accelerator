@@ -6,12 +6,23 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
  input init_start,
  input finished_one_row,
  input final_done,
- output [DATA_SIZE-1:0] data_mat,
- output [DATA_SIZE-1:0] data_vec
+ output [ADD_SIZE-1: 0] pc_mat_addr, 
+ output [ADD_SIZE-1: 0] pc_vec_addr
+
 );
  
- reg [ADD_SIZE-1:0] pc_matrix_init =   16'h0032;
- reg [ADD_SIZE-1:0] pc_vector_init =   16'h0000;
+ reg [ADD_SIZE-1:0] pc_matrix_init ;
+ reg [ADD_SIZE-1:0] pc_vector_init ;
+
+always @(posedge clk)
+begin
+    if(reset)
+    begin
+        pc_matrix_init <= 16'h0032;
+        pc_vector_init <= 16'h0000;
+    end
+end
+ 
  wire [ADD_SIZE-1: 0] pc_mat, pc_vec, mux_mat_out, mux_vec_out, inc_mat_out, inc_vec_out;
  
  assign sel_vec = finished_one_row | final_done | init_start;
@@ -25,7 +36,7 @@ module fetch_stage #(parameter ADD_SIZE = 16, parameter DATA_SIZE = 16)
  
  Register #(ADD_SIZE) pc_matrix(clk, reset, enable|init_start, mux_mat_out, pc_mat);
  Register #(ADD_SIZE) pc_vector(clk, reset, enable | finished_one_row | init_start, mux_vec_out, pc_vec);
-
-RAM #(ADD_SIZE,DATA_SIZE) ram(clk, 1'b0, 1'b0, pc_vec, pc_mat, data_vec, data_mat); 
+ assign pc_vec_addr = pc_vec;
+ assign pc_mat_addr = pc_mat;
 
 endmodule

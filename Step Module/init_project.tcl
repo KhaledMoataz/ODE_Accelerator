@@ -1,0 +1,15 @@
+vdel -all -lib work
+vlib work
+vlog -reportprogress 300 -work work "Step Module/src/StepModule.v"
+vlog -reportprogress 300 -work work "Step Module/src/StepControlFSM.v"
+vlog -reportprogress 300 -work work "Step Module/test/TestStepModule.v"
+vlog -reportprogress 300 -work work "RAM/src/RAM.v"
+vlog -reportprogress 300 -work work "Utilities/NegEdgeDFF.v"
+vlog -reportprogress 300 -work work "Utilities/NegEdgeCounter.v"
+vlog -reportprogress 300 -work work "Utilities/register.v"
+vlog -reportprogress 300 -work work "Fixed Point Arithmetic/src/Adder/adder_block.v"
+vlog -reportprogress 300 -work work "Fixed Point Arithmetic/src/Adder/carry_select_adder.v"
+vlog -reportprogress 300 -work work "Fixed Point Arithmetic/src/Adder/full_adder.v"
+vlog -reportprogress 300 -work work "Fixed Point Arithmetic/src/Adder/which_adder.v"
+vlog -reportprogress 300 -work work "Fixed Point Arithmetic/src/Multiplier/multiplier_modified_booth.v"
+vlog -reportprogress 300 -work work "Fixed Point Arithmetic/src/Division/fixed_point_division.v"

@@ -1,5 +1,5 @@
 module FSM_END_EULAR (
-input clk,rst_sync,rst_async,F,R,D,
+input clk,rst_sync,F,R,D,
 output [1:0] outp
 );
 
@@ -10,14 +10,10 @@ reg[1:0] current_state;
 
 assign outp = current_state; 
 
-initial 
-    begin
-        current_state <= State0;
-    end
 
-always @(negedge clk or posedge rst_async)
+always @(posedge clk)
 begin
-    if(rst_sync == 1'b1 || rst_async == 1'b1)
+    if(rst_sync == 1'b1)
         begin
             current_state <= State0;
         end

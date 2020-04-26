@@ -8,7 +8,11 @@ module memory_manager #(parameter N = 32)( clk,reset,store1,store2 , write , tem
   reg wait1,wait2;
   
   
-  always@(posedge(clk))begin
+  always@(negedge clk)begin
+    if(reset) begin 
+      wait1 <= 0;
+      wait2 <= 0;
+    end else begin
     if(counter == 0)begin
       if(store2 == 1)begin
         wait2 <= 1;
@@ -39,18 +43,16 @@ module memory_manager #(parameter N = 32)( clk,reset,store1,store2 , write , tem
       end else if( store2 == 1)begin
         select <= 1;
       end
-    end    
-    counter = ~counter;    
+    end     
+    write <= wait1 | wait2 | store1 | store2;   
+    end
   end
-  
-  always@(negedge(clk))begin
-    write <= wait1 | wait2 | store1 | store2;
-  end
-  
-  always@(posedge(reset))begin
-    counter = 0;
-    wait1 <= 0;
-    wait2 <= 0;
-  end
-endmodule
 
+always@(posedge clk , posedge reset)begin
+  if(reset)
+    counter <= 0;
+  else
+    counter <= ~counter;
+  end
+  
+endmodule

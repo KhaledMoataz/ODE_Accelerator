@@ -1,0 +1,30 @@
+Report End Points: 
+-----+-------+------+-------+-----+-----+-----+-----+-----------------------------------+---------------------------------------------------------
+     |Group  |Launch|Capture|Shift|Delay|Depth|Slack|Begin Point                        |End Point                                                
+-----+-------+------+-------+-----+-----+-----+-----+-----------------------------------+---------------------------------------------------------
+1    |default|sysclk|sysclk |950.0|733.8|   12| 77.6|pipeline2/acc_buffer_/temp_reg[1]/Q|pipeline2/acc_stage_/accumulator/temp_overflow_flag_reg/D
+2    |default|sysclk|sysclk |950.0|733.8|   12| 77.6|pipeline1/acc_buffer_/temp_reg[1]/Q|pipeline1/acc_stage_/accumulator/temp_overflow_flag_reg/D
+3    |default|sysclk|sysclk |950.0|664.7|   11|146.7|pipeline1/acc_buffer_/temp_reg[1]/Q|pipeline1/acc_stage_/accumulator/accum_reg[15]/D         
+-----+-------+------+-------+-----+-----+-----+-----+-----------------------------------+---------------------------------------------------------
+Report End Points: 
+-----+-----+--------------+-------+-----+-----+-----+-----+-----------+----------------------------------------
+     |Group|Launch        |Capture|Shift|Delay|Depth|Slack|Begin Point|End Point                               
+-----+-----+--------------+-------+-----+-----+-----+-----+-----------+----------------------------------------
+1    |I2R  |rtDefaultClock|sysclk |950.0|208.9|    4|  5.9|shape2_1[5]|pipeline2/fsm_end/current_state_reg[1]/D
+2    |I2R  |rtDefaultClock|sysclk |950.0|208.9|    4|  5.9|shape1_1[5]|pipeline1/fsm_end/current_state_reg[1]/D
+3    |I2R  |rtDefaultClock|sysclk |950.0|194.1|    5| 17.2|rst        |pipeline2/mul_buffer_/temp2_reg[15]/D   
+-----+-----+--------------+-------+-----+-----+-----+-----+-----------+----------------------------------------
+Report End Points: 
+-----+-----+------+-------+-----+-----+-----+-----+-----------+---------
+     |Group|Launch|Capture|Shift|Delay|Depth|Slack|Begin Point|End Point
+-----+-----+------+-------+-----+-----+-----+-----+-----------+---------
+1    |I2O  |      |       |     |     |     |     |           |         
+-----+-----+------+-------+-----+-----+-----+-----+-----------+---------
+Report End Points: 
+-----+-----+------+-------+------+-----+-----+-----+--------------------------------+----------------
+     |Group|Launch|Capture|Shift |Delay|Depth|Slack|Begin Point                     |End Point       
+-----+-----+------+-------+------+-----+-----+-----+--------------------------------+----------------
+1    |R2O  |sysclk|vsysclk|1900.0|355.8|    9|857.7|join_pipe/multiplier_/Q_reg[9]/Q|result_saved[15]
+2    |R2O  |sysclk|vsysclk|1900.0|314.1|    8|899.4|join_pipe/multiplier_/Q_reg[9]/Q|result_saved[14]
+3    |R2O  |sysclk|vsysclk|1900.0|301.0|    8|912.5|join_pipe/multiplier_/Q_reg[9]/Q|result_saved[13]
+-----+-----+------+-------+------+-----+-----+-----+--------------------------------+----------------

@@ -1,0 +1,36 @@
+Report Physical info: 
+------------------------+-------------+-----------+------------
+                        |             |Area (squm)|Leakage (uW)
+------------------------+-------------+-----------+------------
+Design Name             |RAM          |           |            
+  Total Instances       |         1340|       3447|      65.438
+    Macros              |            0|          0|       0.000
+    Pads                |            0|          0|       0.000
+    Phys                |            0|          0|       0.000
+    Blackboxes          |            0|          0|       0.000
+    Cells               |         1340|       3447|      65.438
+      Buffers           |            0|          0|       0.000
+      Inverters         |            9|          5|       0.129
+      Clock-Gates       |           16|         64|       0.946
+      Combinational     |          803|       1063|      23.857
+      Latches           |            0|          0|       0.000
+      FlipFlops         |          512|       2315|      40.506
+       Single-Bit FF    |          512|       2315|      40.506
+       Multi-Bit FF     |            0|          0|       0.000
+       Clock-Gated      |          512|           |            
+       Bits             |          512|       2315|      40.506
+         Load-Enabled   |            0|           |            
+         Clock-Gated    |          512|           |            
+  Tristate Pin Count    |           32|           |            
+Physical Info           |Placed       |           |            
+  Chip Size (mm x mm)   |0.136 x 0.136|      18439|            
+  Fixed Cell Area       |             |          0|            
+    Phys Only           |            0|          0|            
+  Placeable Area        |             |       5717|            
+  Movable Cell Area     |             |       3447|            
+  Utilization (%)       |           60|           |            
+  Chip Utilization (%)  |           60|           |            
+  Total Wire Length (mm)|        6.712|           |            
+  Longest Wire (mm)     |        0.105|           |            
+  Average Wire (mm)     |        0.063|           |            
+------------------------+-------------+-----------+------------
