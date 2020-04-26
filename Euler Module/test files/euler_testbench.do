@@ -73,10 +73,8 @@ force -freeze sim:/demomain/eul/h_step $h 0
 force -freeze sim:/demomain/eul/data_ready1 0 0
 force -freeze sim:/demomain/eul/data_ready2 0 0
 force -freeze sim:/demomain/eul/pipeline1/flush_mul_buffer 0 0
-force -freeze sim:/demomain/eul/pipeline1/flush_acc_buffer 0 0
 force -freeze sim:/demomain/eul/pipeline1/done_mul 0 0
 force -freeze sim:/demomain/eul/pipeline2/flush_mul_buffer 0 0
-force -freeze sim:/demomain/eul/pipeline2/flush_acc_buffer 0 0
 force -freeze sim:/demomain/eul/pipeline2/done_mul 0 0
 
 
@@ -87,10 +85,8 @@ force -freeze sim:/demomain/eul/shape2_1 10#$M 0
 run
 
 noforce sim:/demomain/eul/pipeline1/flush_mul_buffer
-noforce sim:/demomain/eul/pipeline1/flush_acc_buffer
 noforce sim:/demomain/eul/pipeline1/done_mul
 noforce sim:/demomain/eul/pipeline2/flush_mul_buffer
-noforce sim:/demomain/eul/pipeline2/flush_acc_buffer
 noforce sim:/demomain/eul/pipeline2/done_mul
 noforce sim:/demomain/eul/data_ready2
 noforce sim:/demomain/eul/data_ready1
@@ -126,6 +122,7 @@ foreach line $file_data {
         set overflowflag [examine -binary /demomain/eul/errorr];
         if {$overflowflag == 1 && ($overflowflag == $line )} {
             echo "Overflow occurs!";
+            break;
         }
     } else {
         set element [examine /demomain/ram3/MEM($itt)];
