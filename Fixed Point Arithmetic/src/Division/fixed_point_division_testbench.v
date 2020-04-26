@@ -32,10 +32,12 @@ module division_testbench;
             #5
             {A, B, expected_result, expected_overflow_flag} = read_data[i];
             start <= 1;
+            #10
+            start <= 0;
             #235
             if (finish != 1'b1 || overflow_flag != expected_overflow_flag || ((expected_result != result) && (!overflow_flag)))
                 $display("%d : FAILED", i);
-            start <= 0;
+            //start <= 0;
         end
         $stop;
     end

@@ -1,0 +1,121 @@
+Report for group default
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: f_reg/Q
+    (Clocked by sysclk R)
+Endpoint: rem_reg[0]/D
+    (Clocked by sysclk R)
+Path Group: default
+Data required time: 1467.6
+    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 32.4)
+Data arrival time: 1282.8
+Slack: 184.8
+Logic depth: 17
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0      3    48,   98                       
+clk_gate_rem_reg/CK->GCK CLKGATETST_X1           rr      0.0      0.0      0.0      0.0      0.0      0.0      0.0     55    49,   50  /PD_TOP        (1.10)
+f_reg/CK->Q              DFF_X1*                 rr    179.6    179.6    179.6      0.0      0.0     30.7    175.0     45    49,   50  /PD_TOP        (1.10)
+adder_loop/i_0_15/A->Z   XOR2_X2                 rr    269.0     89.4     88.4      1.0     15.3      2.8     18.0      4    49,   50  /PD_TOP        (1.10)
+adder_loop/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_0/B->Z
+                         XOR2_X2                 rr    340.9     71.9     71.8      0.1     58.2      1.4      8.7      2    49,   50  /PD_TOP        (1.10)
+adder_loop/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_2/A1->ZN
+                         AOI22_X4                rf    376.5     35.6     35.6      0.0     36.7      0.7     26.2      1    49,   50  /PD_TOP        (1.10)
+adder_loop/which_adder_0/adder_block_inst1/full_adder_inst2/i_0_3/A->ZN
+                         INV_X8                  fr    389.7     13.2     13.2      0.0     22.0      0.6      1.9      1    49,   50  /PD_TOP        (1.10)
+adder_loop/which_adder_0/i_0_2/A->Z
+                         MUX2_X2                 rr    434.2     44.5     44.5      0.0      4.7      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_1_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf    516.2     82.0     82.0      0.0     15.5      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_2_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 fr    585.3     69.1     69.1      0.0     13.6      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_3_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf    667.3     82.0     82.0      0.0     15.5      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_4_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 fr    736.4     69.1     69.1      0.0     13.6      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_5_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf    818.4     82.0     82.0      0.0     15.5      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_6_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 fr    887.5     69.1     69.1      0.0     13.6      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_7_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf    969.5     82.0     82.0      0.0     15.5      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_8_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 fr   1038.6     69.1     69.1      0.0     13.6      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_9_which_adder_x/i_0_2/S->Z
+                         MUX2_X2                 rf   1120.6     82.0     82.0      0.0     15.5      2.2      9.0      3    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_10_which_adder_x/i_0_2/S->Z
+                         MUX2_X1                 fr   1175.7     55.1     55.1      0.0     13.6      0.7      3.0      1    49,   50  /PD_TOP        (1.10)
+adder_loop/Gen_Modules_11_which_adder_x/i_0_0/S->Z
+                         MUX2_X2                 rf   1256.8     81.1     81.1      0.0     11.7      1.4      9.5      2    49,   50  /PD_TOP        (1.10)
+i_0_0_2/A2->ZN           NOR2_X2                 fr   1282.8     26.0     26.0      0.0     13.9      0.7      1.8      1    49,   50  /PD_TOP        (1.10)
+rem_reg[0]/D             DFF_X1                   r   1282.8      0.0               0.0     12.1                             49,   50  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2R
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: divisor[1]
+    (Clocked by rtDefaultClock R)
+Endpoint: B_reg[14]/D
+    (Clocked by sysclk R)
+Path Group: I2R
+Data required time: 1461.3
+    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 38.7)
+Data arrival time: 1288.9
+Slack: 172.4
+Logic depth: 14
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+divisor[1]               {set_input_delay}        f    700.0    700.0    700.0                        7.7     17.2      3     0,   50                       
+i_0_0_160/A2->ZN         OR3_X4                  ff    803.9    103.9    103.2      0.7    100.0      1.3      7.4      2    49,   50  /PD_TOP        (1.10)
+i_0_0_159/A1->ZN         OR2_X4                  ff    847.8     43.9     43.9      0.0     12.8      1.2      7.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_158/A1->ZN         OR2_X4                  ff    892.8     45.0     45.0      0.0      9.1      2.0     11.9      3    49,   50  /PD_TOP        (1.10)
+i_0_0_157/A1->ZN         OR3_X4                  ff    953.8     61.0     61.0      0.0     10.3      1.3      9.3      2    49,   50  /PD_TOP        (1.10)
+i_0_0_156/A1->ZN         NOR2_X4                 fr    985.1     31.3     31.3      0.0     13.3      1.2      9.2      2    49,   50  /PD_TOP        (1.10)
+i_0_0_155/A1->ZN         NAND2_X4                rf   1002.5     17.4     17.4      0.0     21.1      1.2      7.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_154/A1->ZN         OR2_X4                  ff   1044.4     41.9     41.9      0.0      8.1      1.2      7.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_153/A1->ZN         OR2_X4                  ff   1086.7     42.3     42.3      0.0      9.1      1.2      7.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_152/A1->ZN         OR2_X4                  ff   1129.0     42.3     42.3      0.0      9.1      1.2      7.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_151/A1->ZN         OR2_X4                  ff   1171.3     42.3     42.3      0.0      9.1      1.2      7.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_150/A1->ZN         OR2_X4                  ff   1214.7     43.4     43.4      0.0      9.1      1.3      9.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_146/A1->ZN         NAND2_X4                fr   1228.9     14.2     14.2      0.0      9.6      0.6      4.1      1    49,   50  /PD_TOP        (1.10)
+i_0_0_145/B->Z           XOR2_X2                 rr   1280.3     51.4     51.4      0.0      9.4      0.6      4.8      1    49,   50  /PD_TOP        (1.10)
+i_0_0_144/A1->ZN         NOR2_X2                 rf   1288.9      8.6      8.6      0.0     27.7      0.7      1.8      1    49,   50  /PD_TOP        (1.10)
+B_reg[14]/D              DFF_X1                   f   1288.9      0.0               0.0      4.8                             49,   50  /PD_TOP        (1.10)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group I2O
+Report for group R2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: rem_reg[0]/Q
+    (Clocked by sysclk R)
+Endpoint: result[15]
+    (Clocked by vsysclk R)
+Path Group: R2O
+Data required time: 1350.0
+    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 150.0)
+Data arrival time: 570.4
+Slack: 779.6
+Logic depth: 10
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0      3    48,   98                       
+clk_gate_rem_reg/CK->GCK CLKGATETST_X1           rr      0.0      0.0      0.0      0.0      0.0      0.0      0.0     55    49,   50  /PD_TOP        (1.10)
+rem_reg[0]/CK->Q         DFF_X1                  rf    106.1    106.1    106.1      0.0      0.0      1.9     21.6      4    49,   50  /PD_TOP        (1.10)
+i_0_0_217/A2->ZN         OR2_X4                  ff    159.9     53.8     53.8      0.0     25.5      1.4      7.3      2    49,   50  /PD_TOP        (1.10)
+i_0_0_216/A1->ZN         OR4_X4                  ff    241.6     81.7     81.7      0.0      9.1      2.3     14.2      3    49,   50  /PD_TOP        (1.10)
+i_0_0_215/A1->ZN         NOR4_X4                 fr    304.3     62.7     62.7      0.0     18.9      1.4      9.4      2    49,   50  /PD_TOP        (1.10)
+i_0_0_214/A1->ZN         NAND2_X4                rf    330.6     26.3     26.3      0.0     55.1      2.0     11.9      3    49,   50  /PD_TOP        (1.10)
+i_0_0_213/A1->ZN         OR3_X4                  ff    390.2     59.6     59.6      0.0     10.0      1.4      7.4      2    49,   50  /PD_TOP        (1.10)
+i_0_0_199/B1->ZN         OAI21_X4                fr    421.9     31.7     31.7      0.0     12.8      1.3      7.1      2    49,   50  /PD_TOP        (1.10)
+i_0_0_198/A1->ZN         AND2_X4                 rr    457.6     35.7     35.7      0.0     21.6      1.3      8.9      2    49,   50  /PD_TOP        (1.10)
+i_0_0_197/A->ZN          OAI21_X4                rf    478.4     20.8     20.8      0.0     10.2      1.4      8.7      2    49,   50  /PD_TOP        (1.10)
+i_0_0_196/A->ZN          AOI21_X4                fr    518.4     40.0     40.0      0.0     11.2      0.7      4.4      1    49,   50  /PD_TOP        (1.10)
+i_0_0_195/B->ZN          XNOR2_X2                rr    569.7     51.3     51.3      0.0     21.7      6.2     11.2      1    49,   50  /PD_TOP        (1.10)
+result[15]                                        r    570.4      0.7               0.7     39.4                             49,   98                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------

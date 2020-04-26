@@ -1,0 +1,10 @@
+---------------------------------------------------------------------  
+     Usage:                                                          
+       report_delay                                                  
+         -delay_type <instance/net>                                  
+         -from <string>                                              
+         -to <string>                                                
+         [-min | -max]                                             
+         [-derate]                                                 
+---------------------------------------------------------------------
+error: No delay type provided.

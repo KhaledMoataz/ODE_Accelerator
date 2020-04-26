@@ -73,10 +73,8 @@ force -freeze sim:/demomain/eul/h_step $h 0
 force -freeze sim:/demomain/eul/data_ready1 0 0
 force -freeze sim:/demomain/eul/data_ready2 0 0
 force -freeze sim:/demomain/eul/pipeline1/flush_mul_buffer 0 0
-force -freeze sim:/demomain/eul/pipeline1/flush_acc_buffer 0 0
 force -freeze sim:/demomain/eul/pipeline1/done_mul 0 0
 force -freeze sim:/demomain/eul/pipeline2/flush_mul_buffer 0 0
-force -freeze sim:/demomain/eul/pipeline2/flush_acc_buffer 0 0
 force -freeze sim:/demomain/eul/pipeline2/done_mul 0 0
 
 
@@ -87,10 +85,8 @@ force -freeze sim:/demomain/eul/shape2_1 10#$M 0
 run
 
 noforce sim:/demomain/eul/pipeline1/flush_mul_buffer
-noforce sim:/demomain/eul/pipeline1/flush_acc_buffer
 noforce sim:/demomain/eul/pipeline1/done_mul
 noforce sim:/demomain/eul/pipeline2/flush_mul_buffer
-noforce sim:/demomain/eul/pipeline2/flush_acc_buffer
 noforce sim:/demomain/eul/pipeline2/done_mul
 noforce sim:/demomain/eul/data_ready2
 noforce sim:/demomain/eul/data_ready1
@@ -120,17 +116,20 @@ set inputfile [open "C:/Users/user/Desktop/ODE_Accelerator/Euler\ Module/test\ f
 set file_data [read $inputfile];
 
 set it 0
+set itt 0
 foreach line $file_data {
     if {$it == 0 } {
         set overflowflag [examine -binary /demomain/eul/errorr];
         if {$overflowflag == 1 && ($overflowflag == $line )} {
             echo "Overflow occurs!";
+            break;
         }
     } else {
-        set element [examine /demomain/ram3/MEM($it)];
+        set element [examine /demomain/ram3/MEM($itt)];
         if { $line != $element } {
              echo "Element $it is NOT Correct !";
         }
+        incr itt;
     }
     incr it;
 }
